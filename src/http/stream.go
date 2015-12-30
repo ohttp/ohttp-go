@@ -49,6 +49,7 @@ func NewStream(type_, httpVersion string) (*Stream) {
 
 func (this *Stream) SetType(type_ string) (*Stream) {
     this.type_ = type_
+    return this
 }
 func (this *Stream) GetType() (string) {
     return this.type_
@@ -56,6 +57,7 @@ func (this *Stream) GetType() (string) {
 
 func (this *Stream) SetHttpVersion(httpVersion string) (*Stream) {
     this.httpVersion = httpVersion
+    return this
 }
 func (this *Stream) GetHttpVersion() (string) {
     return this.httpVersion
@@ -63,6 +65,7 @@ func (this *Stream) GetHttpVersion() (string) {
 
 func (this *Stream) SetHeader(name, value string) (*Stream) {
     this.headers.Set(name, value)
+    return this
 }
 func (this *Stream) GetHeader(name string) (string) {
     return this.headers.Get(name)
@@ -70,6 +73,7 @@ func (this *Stream) GetHeader(name string) (string) {
 
 func (this *Stream) SetHeaderAll(data map[string]string) (*Stream) {
     this.headers.SetAll(data)
+    return this
 }
 func (this *Stream) GetHeaderAll() (map[string]string) {
     return this.headers.GetAll(nil)
