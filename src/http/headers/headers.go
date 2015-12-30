@@ -24,3 +24,11 @@ func (this *Headers) Get(name string) (string) {
     }
     return ""
 }
+
+func (this *Headers) Data(data map[string]string) (map[string]string) {
+    if data != nil {
+        this.data = data
+        return nil
+    }
+    return this.data
+}
