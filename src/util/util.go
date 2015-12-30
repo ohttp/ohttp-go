@@ -222,7 +222,7 @@ func MapString() (map[string]string) {
 // @param  length interface{}
 // @return ([]int)
 func MapIntSlice(length interface{}) ([]int) {
-    len := length(length)
+    len := _length(length)
     if len != -1 {
         return make([]int, len)
     }
@@ -234,7 +234,7 @@ func MapIntSlice(length interface{}) ([]int) {
 // @param  length interface{}
 // @return ([]string)
 func MapStringSlice(length interface{}) ([]string) {
-    len := length(length)
+    len := _length(length)
     if len != -1 {
         return make([]string, len)
     }
@@ -246,7 +246,7 @@ func MapStringSlice(length interface{}) ([]string) {
 // @param  length interface{}
 // @return (int)
 // @private
-func length(length interface{}) (int) {
+func _length(length interface{}) (int) {
     switch length.(type) {
         case int:
             return length.(int)
