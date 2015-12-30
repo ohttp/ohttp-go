@@ -179,6 +179,23 @@ func UrlDecode(input string) (string) {
     return input
 }
 
+// Parse query.
+//
+// @param  query string
+// @return (map[string]string)
+func ParseQuery(query string) (map[string]string) {
+    var ret = MapString()
+    if tmps := _str.Split(query, "&"); tmps != nil {
+        for _, tmp := range tmps {
+            if t := _str.SplitN(tmp, "=", 2); len(t) == 2 {
+                ret[t[0]] = t[1]
+            }
+        }
+    }
+
+    return ret
+}
+
 // Map maker.
 //
 // @return (map[string]interface{})
