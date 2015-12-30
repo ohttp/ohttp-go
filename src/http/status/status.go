@@ -18,7 +18,7 @@ func Code(x string) (int) {
 // @param  x int
 // @return string
 func Text(x int) (string) {
-    for code, text := range statuses {
+    for code, text := range _statuses {
         if x == code {
             return text
         }
@@ -28,7 +28,7 @@ func Text(x int) (string) {
 
 // Statuses.
 // @var map[int]string
-var statuses = map[int]string{
+var _statuses = map[int]string{
     // informationals
     100: "Continue",
     101: "Switching Protocols",
