@@ -1,10 +1,6 @@
 package http
 
 import (
-    // _fmt "fmt"
-)
-
-import (
     "util"
     "http/headers"
 )
@@ -76,4 +72,8 @@ func (this *Stream) SetHeaderAll(data map[string]string) {
 }
 func (this *Stream) GetHeaderAll() (map[string]string) {
     return this.headers.GetAll(nil)
+}
+
+func (this *Stream) GetBody() (string) {
+    return this.body
 }
