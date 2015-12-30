@@ -3,7 +3,7 @@ package util
 import (
     _fmt "fmt"
     _rex "regexp"
-    _strc "strconv"
+    _str "strings"; _strc "strconv"
 )
 
 func Shutup() {}
