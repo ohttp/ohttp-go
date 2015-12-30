@@ -4,6 +4,8 @@ import (
     _fmt "fmt"
 )
 
+func Shutup() {}
+
 // Dump.
 //
 // @param  args... interface{}
