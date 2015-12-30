@@ -2,13 +2,23 @@ package main
 
 import (
     "util"
+    // "util/params"
     "http"
     // "http/status"
 )
 
 func main() {
     req := http.NewRequest()
-    req.SetHeader("foo", "...")
-
+    req.SetUri("http://localhost/foo", nil)
     util.Dumpf("%#v", req)
+    util.Dumpf("%#v", req.GetUri().Path())
+
+    // uri := http.NewUri("http://kerem:123@git.local.com")
+    // uri := http.NewUri("http://kerem:123@git.local.com:8080/foo?a=the%20a!#xxx")
+    // util.Dumps(uri)
+    // util.Dumps(uri.Segments())
+    // util.Dumps(uri.Segment(0))
+    // util.Dumps(uri.Query())
+    // util.Dumps(uri.QueryParams())
+    // util.Dumps(uri.QueryParam("aaa"))
 }
