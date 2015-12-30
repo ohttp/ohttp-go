@@ -7,7 +7,7 @@ type Request struct {
 }
 
 func NewRequest() (*Request) {
-    this := &Request{}
-    this.Stream = *NewStream(TYPE_REQUEST, HTTP_VERSION_1_0)
-    return this
+    return &Request{
+        Stream: *NewStream(TYPE_REQUEST, HTTP_VERSION_1_0),
+    }
 }
