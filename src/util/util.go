@@ -139,7 +139,7 @@ func String(input interface{}) (string) {
         case int, bool, string:
             return _fmt.Sprintf("%v", input)
         default:
-            inputType := _fmt.Sprintf("%T", input)
+            inputType := TypeReal(input)
             // check numerics
             if StringSearch(inputType, "u?int(\\d+)?|float(32|64)") {
                 return _fmt.Sprintf("%v", input)
