@@ -63,3 +63,17 @@ func (this *Stream) SetHttpVersion(httpVersion string) {
 func (this *Stream) GetHttpVersion() (string) {
     return this.httpVersion
 }
+
+func (this *Stream) SetHeader(name, value string) {
+    this.headers.Set(name, value)
+}
+func (this *Stream) GetHeader(name string) (string) {
+    return this.headers.Get(name)
+}
+
+func (this *Stream) SetHeaderAll(data map[string]string) {
+    this.headers.SetAll(data)
+}
+func (this *Stream) GetHeaderAll() (map[string]string) {
+    return this.headers.GetAll(nil)
+}
