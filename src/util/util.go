@@ -240,3 +240,24 @@ func MapStringSlice(length interface{}) ([]string) {
     }
     return []string{}
 }
+
+// Detect length.
+//
+// @param  length interface{}
+// @return (int)
+// @private
+func _length(length interface{}) (int) {
+    switch length.(type) {
+        case int:
+            return length.(int)
+        case []int:
+            return len(length.([]int))
+        case []string:
+            return len(length.([]string))
+        case []interface{}:
+            return len(length.([]interface{}))
+        // case:
+            // @todo add more cases if needs
+    }
+    return -1
+}
