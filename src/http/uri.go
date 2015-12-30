@@ -7,19 +7,21 @@ import (
 
 import (
     "util"
+    "util/col/scol"
 )
 
 type Uri struct {
-    source   interface{}
-    scheme   string
-    host     string
-    port     uint
-    path     string
-    username string
-    password string
-    query    map[string]string
-    fragment string
-    segments []string // @todo
+    source      string
+    scheme      string
+    host        string
+    port        uint
+    path        string
+    username    string
+    password    string
+    query       string
+    queryParams map[string]string
+    fragment    string
+    segments    []string // @todo
 }
 
 func NewUri(source string) (*Uri) {
@@ -49,6 +51,7 @@ func NewUri(source string) (*Uri) {
                         this.segments[i] = segment
                     }
                 }
+                this.segments = scol.Filter(this.segments, nil)
             }
         }
         if username := source.User.Username(); username != "" {
@@ -58,7 +61,8 @@ func NewUri(source string) (*Uri) {
             this.password = password
         }
         if query := source.RawQuery; query != "" {
-            this.query = util.ParseQuery(query)
+            this.query = query
+            this.queryParams = util.ParseQuery(query)
         }
         if fragment := source.Fragment; fragment != "" {
             this.fragment = fragment
@@ -66,4 +70,50 @@ func NewUri(source string) (*Uri) {
     }
 
     return this
+}
+
+func (this *Uri) Source() (string) {
+    return this.source
+}
+func (this *Uri) Scheme() (string) {
+    return this.scheme
+}
+func (this *Uri) Host() (string) {
+    return this.host
+}
+func (this *Uri) Port() (uint) {
+    return this.port
+}
+func (this *Uri) Path() (string) {
+    return this.path
+}
+func (this *Uri) Username() (string) {
+    return this.username
+}
+func (this *Uri) Password() (string) {
+    return this.password
+}
+func (this *Uri) Query() (string) {
+    return this.query
+}
+func (this *Uri) QueryParam(key string) (string) {
+    if param, ok := this.queryParams[key]; ok {
+        return param
+    }
+    return ""
+}
+func (this *Uri) QueryParams() (map[string]string) {
+    return this.queryParams
+}
+func (this *Uri) Fragment() (string) {
+    return this.fragment
+}
+func (this *Uri) Segment(i int) (string) {
+    if segment, ok := scol.FindIndex(this.segments, i); ok {
+        return segment
+    }
+    return ""
+}
+func (this *Uri) Segments() ([]string) {
+    return this.segments
 }
