@@ -30,6 +30,19 @@ func Dumps(args... interface{}) {
     _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
 }
 
+// Dump types.
+//
+// @param  args... interface{}
+// @return (void)
+func Dumpt(args... interface{}) {
+    var format string
+    for _, arg := range args {
+        _ = arg // silence..
+        format += "%T "
+    }
+    _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
+}
+
 // Dump as formatted string.
 //
 // @param  format  string
@@ -126,7 +139,7 @@ func String(input interface{}) (string) {
              string:
             return _fmt.Sprintf("%v", input)
         default:
-            var inputType = _fmt.Sprintf("%T", input)
+            inputType := _fmt.Sprintf("%T", input)
             // check numerics
             if StringSearch(inputType, "u?int(\\d+)?|float(32|64)") {
                 return _fmt.Sprintf("%v", input)
@@ -184,7 +197,7 @@ func UrlDecode(input string) (string) {
 // @param  query string
 // @return (map[string]string)
 func ParseQuery(query string) (map[string]string) {
-    var ret = MapString()
+    ret := MapString()
     if tmps := _str.Split(query, "&"); tmps != nil {
         for _, tmp := range tmps {
             if t := _str.SplitN(tmp, "=", 2); len(t) == 2 {
