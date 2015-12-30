@@ -1,11 +1,17 @@
 package headers
 
+import (
+    "util"
+)
+
 type Headers struct {
     data map[string]string
 }
 
 func New() (*Headers) {
-    return &Headers{}
+    return &Headers{
+        data: util.MapString(),
+    }
 }
 
 func (this *Headers) Set(name, value string) (*Headers) {
