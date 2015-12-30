@@ -216,3 +216,27 @@ func MapInt() (map[int]string) {
 func MapString() (map[string]string) {
     return make(map[string]string)
 }
+
+// Map int slice maker.
+//
+// @param  length interface{}
+// @return ([]int)
+func MapIntSlice(length interface{}) ([]int) {
+    len := _length(length)
+    if len != -1 {
+        return make([]int, len)
+    }
+    return []int{}
+}
+
+// Map string slice maker.
+//
+// @param  length interface{}
+// @return ([]string)
+func MapStringSlice(length interface{}) ([]string) {
+    len := _length(length)
+    if len != -1 {
+        return make([]string, len)
+    }
+    return []string{}
+}
