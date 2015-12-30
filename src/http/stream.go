@@ -10,6 +10,7 @@ type Stream struct {
     httpVersion string
     headers     *headers.Headers
     body        string
+    bodyData    interface{} // parsed
     StreamBody
     StreamString
 }
