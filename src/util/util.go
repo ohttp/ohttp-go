@@ -134,9 +134,9 @@ func Number(input interface{}, inputType string) (interface{}) {
 // @panics
 func String(input interface{}) (string) {
     switch input.(type) {
-        case int,
-             bool,
-             string:
+        case nil:
+            return ""
+        case int, bool, string:
             return _fmt.Sprintf("%v", input)
         default:
             inputType := _fmt.Sprintf("%T", input)
