@@ -44,6 +44,22 @@ func Dumpf(format string, args... interface{}) {
     _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
 }
 
+// Get short type.
+//
+// @param  args.. interface{}
+// @return (string)
+func Type(args... interface{}) (string) {
+    return _str.Trim(TypeReal(args[0]), " *<>{}[]")
+}
+
+// Get real type.
+//
+// @param  args.. interface{}
+// @return (string)
+func TypeReal(args... interface{}) (string) {
+    return _str.Replace(_fmt.Sprintf("%T", args[0]), " ", "", -1)
+}
+
 // Int converter..
 //
 // @param  input interface{}
