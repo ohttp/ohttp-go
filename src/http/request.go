@@ -24,5 +24,9 @@ func (this *Request) SetUri(uri string, uriParams map[string]string) (*Request) 
         }
         uri += "?"+ query
     }
+    this.uri = NewUri(uri)
     return this
+}
+func (this *Request) GetUri() (*Uri) {
+    return this.uri
 }
