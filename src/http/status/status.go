@@ -5,7 +5,7 @@ package status
 // @param  x string
 // @return int
 func Code(x string) (int) {
-    for code, text := range statuses {
+    for code, text := range _statuses {
         if x == text {
             return code
         }
