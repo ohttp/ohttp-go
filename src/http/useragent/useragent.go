@@ -1,5 +1,12 @@
 package useragent
 
+type UserAgent struct {
+    name        string
+    platform    string
+    version     float32
+    versionOrig string
+}
+
 // User agent strings.
 // @const string
 const (
@@ -18,3 +25,6 @@ const (
     IPAD       = "Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 "+
                  "Mobile/9A334 Safari/7534.48.3"
 )
+
+// @todo
+func _parse() {}
