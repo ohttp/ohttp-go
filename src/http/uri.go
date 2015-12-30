@@ -54,11 +54,13 @@ func NewUri(source string) (*Uri) {
                 this.segments = scol.Filter(this.segments, nil)
             }
         }
-        if username := source.User.Username(); username != "" {
-            this.username = username
-        }
-        if password, _ := source.User.Password(); password != "" {
-            this.password = password
+        if source.User != nil {
+            if username := source.User.Username(); username != "" {
+                this.username = username
+            }
+            if password, _ := source.User.Password(); password != "" {
+                this.password = password
+            }
         }
         if query := source.RawQuery; query != "" {
             this.query = query
