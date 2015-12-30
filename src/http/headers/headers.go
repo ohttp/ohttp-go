@@ -25,10 +25,9 @@ func (this *Headers) Get(name string) (string) {
     return ""
 }
 
-func (this *Headers) Data(data map[string]string) (map[string]string) {
-    if data != nil {
-        this.data = data
-        return nil
-    }
+func (this *Headers) SetAll(data map[string]string) {
+    this.data = data
+}
+func (this *Headers) GetAll(data map[string]string) (map[string]string) {
     return this.data
 }
