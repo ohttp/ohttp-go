@@ -14,10 +14,19 @@ func Has(scol []string, s string) bool {
     return Index(scol, s) >= 0
 }
 
-func Find(scol[]string, s string) (string, bool) {
+func Find(scol []string, s string) (string, bool) {
     i := Index(scol, s)
     if i >= 0 {
         return scol[i], true
+    }
+    return "", false
+}
+
+func FindIndex(scol []string, s int) (string, bool) {
+    for i, val := range scol {
+        if i == s {
+            return val, true
+        }
     }
     return "", false
 }
