@@ -2,6 +2,7 @@ package util
 
 import (
     _fmt "fmt"
+    _rex "regexp"
     _strc "strconv"
 )
 
@@ -94,6 +95,50 @@ func Number(input interface{}, inputType string) (interface{}) {
         }
     }
     return nil
+}
+
+// String converter.
+//
+// @param  input interface{}
+// @return (string)
+// @panics
+func String(input interface{}) (string) {
+    switch input.(type) {
+        case int,
+             bool,
+             string:
+            return _fmt.Sprintf("%v", input)
+        default:
+            var inputType = _fmt.Sprintf("%T", input)
+            // check numerics
+            if StringSearch(inputType, "u?int(\\d+)?|float(32|64)") {
+                return _fmt.Sprintf("%v", input)
+            }
+            panic("Unsupported input type '"+ inputType +"' given!")
+    }
+}
+
+// String format.
+//
+// @param  format string
+// @param  args... interface{}
+// @return (string)
+func StringFormat(format string, args... interface{}) (string) {
+    return _fmt.Sprintf(format, args...)
+}
+
+// String search.
+//
+// @param  format string
+// @param  search string
+// @return (bool)
+func StringSearch(input, search string) (bool) {
+    re, _ := _rex.Compile(search)
+    if re == nil {
+        return false
+    }
+
+    return ("" != re.FindString(input))
 }
 
 // Map maker.
