@@ -4,6 +4,7 @@ import (
     _fmt "fmt"
     _rex "regexp"
     _str "strings"; _strc "strconv"
+    _url "net/url"
 )
 
 func Shutup() {}
@@ -155,6 +156,27 @@ func StringSearch(input, search string) (bool) {
     }
 
     return ("" != re.FindString(input))
+}
+
+// URL encode.
+//
+// @param  input string
+// @return (string)
+func UrlEncode(input string) (string) {
+    return _url.QueryEscape(input)
+}
+
+// URL decode.
+//
+// @param  input string
+// @return (string)
+func UrlDecode(input string) (string) {
+    input, err := _url.QueryUnescape(input)
+    if err != nil {
+        return ""
+    }
+
+    return input
 }
 
 // Map maker.
