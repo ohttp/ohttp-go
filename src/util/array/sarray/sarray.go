@@ -30,23 +30,23 @@ func FindIndex(arr []string, s int) (string, bool) {
     return "", false
 }
 
-func Map(arr []string, fun func(string) string) ([]string) {
+func Map(arr []string, fun func(string, int) (string)) ([]string) {
     ret := make([]string, len(arr))
-    for i, v := range arr {
-        ret[i] = fun(v)
+    for k, v := range arr {
+        ret[k] = fun(v, k)
     }
     return ret
 }
 
-func Filter(arr []string, fun func(string) bool) ([]string) {
+func Filter(arr []string, fun func(string, int) (bool)) ([]string) {
     if fun == nil {
-        fun = func(s string) (bool) {
-            return s != ""
+        fun = func(v string, k int) (bool) {
+            return v != ""
         }
     }
     ret := make([]string, 0)
-    for _, v := range arr {
-        if fun(v) {
+    for k, v := range arr {
+        if fun(v, k) {
             ret = append(ret, v)
         }
     }
