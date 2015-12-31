@@ -194,18 +194,33 @@ func UrlDecode(input string) (string) {
 
 // Parse URL query.
 //
-// @param  query string
+// @param  q string
 // @return (map[string]string)
-func UrlQueryParse(query string) (map[string]string) {
-    ret := MapString()
-    if tmps := _str.Split(query, "&"); tmps != nil {
-        for _, tmp := range tmps {
-            if t := _str.SplitN(tmp, "=", 2); len(t) == 2 {
-                ret[t[0]] = t[1]
+func UrlQueryParse(q string) (map[string]string) {
+    r := MapString()
+    if tmp := _str.Split(q, "&"); tmp != nil {
+        for _, tm := range tmp {
+            if t := _str.SplitN(tm, "=", 2); len(t) == 2 {
+                r[t[0]] = t[1]
             }
         }
     }
-    return ret
+    return r
+}
+
+// Unparse URL q.
+//
+// @param  qp map[string]string
+// @return (string)
+func UrlQueryUnparse(qp map[string]string) (string) {
+    if qp != nil {
+        var q string
+        for k, v := range qp {
+            q += StringFormat("%s=%s", k, UrlEncode(v))
+        }
+        return q
+    }
+    return ""
 }
 
 // String upper/lower
