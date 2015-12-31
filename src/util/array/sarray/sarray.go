@@ -11,11 +11,11 @@ func Index(arr []string, s string) (int) {
 }
 
 func Has(arr []string, s string) (bool) {
-    return Index(arr, s) >= 0
+    return Index(arr, s) > -1
 }
 
 func Find(arr []string, s string) (string, bool) {
-    if i := Index(arr, s); i >= 0 {
+    if i := Index(arr, s); i > -1 {
         return arr[i], true
     }
     return "", false
