@@ -1,5 +1,9 @@
 package status
 
+import (
+    "util"
+)
+
 // Informational constants.
 // @const int
 const (
@@ -109,7 +113,7 @@ const (
 
 // Statuses.
 // @var map[int]string
-var _statuses = map[int]string{
+var statuses = map[int]string{
     // informationals
     100: "Continue",
     101: "Switching Protocols",
@@ -200,9 +204,9 @@ var _statuses = map[int]string{
 // @param  x string
 // @return int
 func Code(x string) (int) {
-    for code, text := range _statuses {
-        if x == text {
-            return code
+    for c, t := range statuses {
+        if x == t {
+            return c
         }
     }
     return 0
@@ -213,10 +217,65 @@ func Code(x string) (int) {
 // @param  x int
 // @return string
 func Text(x int) (string) {
-    for code, text := range _statuses {
-        if x == code {
-            return text
+    for c, t := range statuses {
+        if x == c {
+            return t
         }
     }
     return ""
+}
+
+// @object https.status.Status
+type Status struct {
+    code         int
+    text         string // reason phrase
+    textPhrase   string
+}
+
+// Constructor.
+//
+// @param  c  int
+// @param  t  string
+// @param  tp string
+// @return (*http.status.Status)
+func New(c int, t string, tp string) (*Status) {
+    this := &Status{
+        code: c,
+        text: t,
+    }
+
+    // check text phrase
+    if tp == "" {
+        tp = util.StringFormat("%s %s", c, t)
+    }
+    this.textPhrase = tp
+
+    return this
+}
+
+// Set code.
+//
+// @param  c int
+// @return (*http.status.Status)
+func (this *Status) SetCode(c int) (*Status) {
+    this.code = c
+    return this
+}
+
+// Set text.
+//
+// @param  t string
+// @return (*http.status.Status)
+func (this *Status) SetText(t string) (*Status) {
+    this.text = t
+    return this
+}
+
+// Set text phrase.
+//
+// @param  tp string
+// @return (*http.status.Status)
+func (this *Status) SetTextPhrase(tp string) (*Status) {
+    this.textPhrase = tp
+    return this
 }
