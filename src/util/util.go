@@ -127,6 +127,17 @@ func UInt(input interface{}) (uint) {
     return 0
 }
 
+// Bool converter..
+//
+// @param  input interface{}
+// @return (bool)
+func Bool(i interface{}) (bool) {
+    if r := String(i); r == "1" || r == "true" {
+        return true
+    }
+    return false
+}
+
 // String converter.
 //
 // @param  input interface{}
