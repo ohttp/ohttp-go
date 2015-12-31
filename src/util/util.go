@@ -182,18 +182,6 @@ func StringSearch(input, search string) (bool) {
     return ("" != re.FindString(input))
 }
 
-// Trim.
-//
-// @param  s  string
-// @param  sc string
-// @return (string)
-func Trim(s, sc string) (string) {
-    if sc == "" {
-        return _str.TrimSpace(s)
-    }
-    return _str.Trim(s, sc)
-}
-
 // URL encode.
 //
 // @param  input string
@@ -332,6 +320,52 @@ func MapStringSlice(length interface{}) ([]string) {
         return make([]string, len)
     }
     return []string{}
+}
+
+// Trim.
+//
+// @param  s  string
+// @param  sc string
+// @return (string)
+func Trim(s, sc string) (string) {
+    if sc == "" {
+        return _str.TrimSpace(s)
+    }
+    return _str.Trim(s, sc)
+}
+
+// Explode.
+//
+// @param  i string
+// @param  s string
+// @param  n int
+// @return ([]string)
+func Explode(i, s string, n int) ([]string) {
+    ret := _str.SplitN(i, s, n)
+    if len(ret) < 2 {
+        return nil
+    }
+    return ret
+}
+
+// Implode.
+//
+// @param  i interface{}
+// @param  s string
+// @param  n int
+// @return ([]string)
+func Implode(i interface{}, s string) (string) {
+    var ret string
+    switch iv := i.(type) {
+        case []int:
+            for _, v := range iv {
+                ret += String(v) + s
+            }
+            ret = ret[: len(ret) -1]
+        case []string:
+            ret = _str.Join(iv, s)
+    }
+    return ret
 }
 
 // Detect length.
