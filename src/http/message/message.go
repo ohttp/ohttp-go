@@ -23,8 +23,8 @@ type MessageBodyData struct {
 }
 
 type MessageBodyInterface interface {
-    SetBody(body string)
-    SetBodyData(body string, i interface{}) interface{}
+    SetBody(b string)
+    SetBodyData(b string, i interface{}) interface{}
     String() (string)
 }
 
@@ -49,40 +49,40 @@ const (
 
 func Shutup() {}
 
-func NewMessage(type_ uint, protocolVersion string) (*Message) {
+func NewMessage(t uint, pv string) (*Message) {
     return &Message{
-                  type_: type_,
-        protocolVersion: protocolVersion,
+                  type_: t,
+        protocolVersion: pv,
                 headers: headers.New(),
     }
 }
 
-func (this *Message) SetType(type_ uint) (*Message) {
-    this.type_ = type_
+func (this *Message) SetType(t uint) (*Message) {
+    this.type_ = t
     return this
 }
 func (this *Message) GetType() (uint) {
     return this.type_
 }
 
-func (this *Message) SetProtocolVersion(protocolVersion string) (*Message) {
-    this.protocolVersion = protocolVersion
+func (this *Message) SetProtocolVersion(pv string) (*Message) {
+    this.protocolVersion = pv
     return this
 }
 func (this *Message) GetProtocolVersion() (string) {
     return this.protocolVersion
 }
 
-func (this *Message) SetHeader(name, value string) (*Message) {
-    this.headers.Set(name, value)
+func (this *Message) SetHeader(k, v string) (*Message) {
+    this.headers.Set(k, v)
     return this
 }
-func (this *Message) GetHeader(name string) (string) {
-    return this.headers.Get(name)
+func (this *Message) GetHeader(k string) (string) {
+    return this.headers.Get(k)
 }
 
-func (this *Message) SetHeaderAll(data map[string]string) (*Message) {
-    this.headers.SetAll(data)
+func (this *Message) SetHeaderAll(kv map[string]string) (*Message) {
+    this.headers.SetAll(kv)
     return this
 }
 func (this *Message) GetHeaderAll() (map[string]string) {
