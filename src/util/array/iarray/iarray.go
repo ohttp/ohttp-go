@@ -15,8 +15,7 @@ func Has(arr []int, s int) (bool) {
 }
 
 func Find(arr[]int, s int) (int, bool) {
-    i := Index(arr, s)
-    if i >= 0 {
+    if i := Index(arr, s); i >= 0 {
         return arr[i], true
     }
     return 0, false
@@ -32,7 +31,7 @@ func Map(arr []int, fun func(int) int) ([]int) {
 
 func Filter(arr []int, fun func(int) bool) ([]int) {
     if fun == nil {
-        fun = func(s int) bool {
+        fun = func(s int) (bool) {
             return s != 0
         }
     }

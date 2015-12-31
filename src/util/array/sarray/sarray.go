@@ -15,8 +15,7 @@ func Has(arr []string, s string) (bool) {
 }
 
 func Find(arr []string, s string) (string, bool) {
-    i := Index(arr, s)
-    if i >= 0 {
+    if i := Index(arr, s); i >= 0 {
         return arr[i], true
     }
     return "", false
@@ -41,7 +40,7 @@ func Map(arr []string, fun func(string) string) ([]string) {
 
 func Filter(arr []string, fun func(string) bool) ([]string) {
     if fun == nil {
-        fun = func(s string) bool {
+        fun = func(s string) (bool) {
             return s != ""
         }
     }
