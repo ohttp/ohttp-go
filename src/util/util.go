@@ -192,6 +192,17 @@ func UrlDecode(input string) (string) {
     return input
 }
 
+// String upper/lower
+//
+// @param  input string
+// @return (string)
+func Upper(input string) (string) {
+    return _str.ToUpper(input)
+}
+func Lower(input string) (string) {
+    return _str.ToLower(input)
+}
+
 // Parse query.
 //
 // @param  query string
