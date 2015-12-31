@@ -12,10 +12,11 @@ type Response struct {
 }
 
 func New(m *message.Message) (*Response) {
-    return &Response{
+    this := &Response{
         Message: *m,
-         status: status.New(0, "", ""),
     }
+    this.status = status.New(0, "", "")
+    return this
 }
 
 func (this *Response) SetStatus(s string) (*Response) {
