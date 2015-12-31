@@ -1,17 +1,22 @@
 package main
 
 import (
-    "util"
+    // "util"
     // "util/params"
-    "http"
+    // "http"
     // "http/status"
 )
 
 func main() {
-    req := http.NewRequest()
-    req.SetUri("http://localhost/foo", nil)
-    util.Dumpf("%#v", req)
-    util.Dumpf("%#v", req.GetUri().Path())
+    // req := http.NewRequest()
+    // req.SetUri("http://localhost/foo", nil)
+    // util.Dumpf("%#v", req)
+    // util.Dumpf("%#v", req.GetUri().Path())
+
+    // res := http.NewResponse()
+    // res.SetStatus("HTTP/1.0 200 OK")
+    // util.Dumpf("%#v", res)
+    // util.Dumpf("%#v", res.GetStatus())
 
     // uri := http.NewUri("http://kerem:123@git.local.com")
     // uri := http.NewUri("http://kerem:123@git.local.com:8080/foo?a=the%20a!#xxx")
