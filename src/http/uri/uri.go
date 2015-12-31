@@ -7,6 +7,7 @@ import (
 
 import (
     "util"
+    "util/query"
     "util/array/sarray"
 )
 
@@ -18,10 +19,9 @@ type Uri struct {
     path          string
     username      string
     password      string
-    query         string
-    queryParams   map[string]string
+    query         *Query
     fragment      string
-    segments      []string // @todo
+    segments      []string
 }
 
 func New(s string) (*Uri) {
@@ -63,8 +63,7 @@ func New(s string) (*Uri) {
             }
         }
         if sq := s.RawQuery; sq != "" {
-            this.query = sq
-            this.queryParams = util.UrlQueryParse(sq)
+            this.query = query.New(data)
         }
         if sf := s.Fragment; sf != "" {
             this.fragment = sf
@@ -97,15 +96,6 @@ func (this *Uri) Password() (string) {
 }
 func (this *Uri) Query() (string) {
     return this.query
-}
-func (this *Uri) QueryParam(k string) (string) {
-    if v, ok := this.queryParams[k]; ok {
-        return v
-    }
-    return ""
-}
-func (this *Uri) QueryParams() (map[string]string) {
-    return this.queryParams
 }
 func (this *Uri) Fragment() (string) {
     return this.fragment
