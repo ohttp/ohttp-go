@@ -2,8 +2,8 @@
 package sarray
 
 func Index(arr []string, s string) int {
-    for i, val := range arr {
-        if val == s {
+    for i, v := range arr {
+        if v == s {
             return i
         }
     }
@@ -23,9 +23,9 @@ func Find(arr []string, s string) (string, bool) {
 }
 
 func FindIndex(arr []string, s int) (string, bool) {
-    for i, val := range arr {
+    for i, v := range arr {
         if i == s {
-            return val, true
+            return v, true
         }
     }
     return "", false
@@ -33,8 +33,8 @@ func FindIndex(arr []string, s int) (string, bool) {
 
 func Map(arr []string, fun func(string) string) []string {
     ret := make([]string, len(arr))
-    for i, val := range arr {
-        ret[i] = fun(val)
+    for i, v := range arr {
+        ret[i] = fun(v)
     }
     return ret
 }
@@ -46,9 +46,9 @@ func Filter(arr []string, fun func(string) bool) []string {
         }
     }
     ret := make([]string, 0)
-    for _, val := range arr {
-        if fun(val) {
-            ret = append(ret, val)
+    for _, v := range arr {
+        if fun(v) {
+            ret = append(ret, v)
         }
     }
     return ret

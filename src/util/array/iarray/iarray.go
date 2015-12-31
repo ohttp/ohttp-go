@@ -2,8 +2,8 @@
 package iarray
 
 func Index(arr []int, s int) int {
-    for i, val := range arr {
-        if val == s {
+    for i, v := range arr {
+        if v == s {
             return i
         }
     }
@@ -24,8 +24,8 @@ func Find(arr[]int, s int) (int, bool) {
 
 func Map(arr []int, fun func(int) int) []int {
     ret := make([]int, len(arr))
-    for i, val := range arr {
-        ret[i] = fun(val)
+    for i, v := range arr {
+        ret[i] = fun(v)
     }
     return ret
 }
@@ -37,9 +37,9 @@ func Filter(arr []int, fun func(int) bool) []int {
         }
     }
     ret := make([]int, 0)
-    for _, val := range arr {
-        if fun(val) {
-            ret = append(ret, val)
+    for _, v := range arr {
+        if fun(v) {
+            ret = append(ret, v)
         }
     }
     return ret
