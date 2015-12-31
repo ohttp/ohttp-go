@@ -279,3 +279,24 @@ func (this *Status) SetTextPhrase(tp string) (*Status) {
     this.textPhrase = tp
     return this
 }
+
+// Get code.
+//
+// @return (int)
+func (this *Status) GetCode() (int) {
+    return this.code
+}
+
+// Get text.
+//
+// @return (string)
+func (this *Status) GetText() (string) {
+    return this.text
+}
+
+// Get text phrase.
+//
+// @return (string)
+func (this *Status) GetTextPhrase() (string) {
+    return this.textPhrase
+}
