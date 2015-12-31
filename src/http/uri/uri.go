@@ -24,50 +24,50 @@ type Uri struct {
     segments      []string // @todo
 }
 
-func New(source string) (*Uri) {
+func New(s string) (*Uri) {
     this := &Uri{
-        source: source,
+        source: s,
     }
 
-    if source != "" {
-        source, _ := _url.Parse(util.UrlDecode(source))
-        if scheme := source.Scheme; scheme != "" {
-            this.scheme = scheme
+    if s != "" {
+        s, _ := _url.Parse(util.UrlDecode(s))
+        if ss := s.Scheme; ss != "" {
+            this.scheme = ss
         }
-        if host := source.Host; host != "" {
-            this.host = host
-            if tmp := _str.Split(host, ":"); len(tmp) == 2 {
+        if sh := s.Host; sh != "" {
+            this.host = sh
+            if tmp := _str.Split(sh, ":"); len(tmp) == 2 {
                 this.host = tmp[0]
                 this.port = util.UInt(tmp[1])
             }
         }
-        if path := source.Path; path != "" {
-            this.path = path
-            if segments := _str.Split(path, "/"); len(segments) > 0 {
-                this.segments = util.MapStringSlice(segments)
-                for i, segment := range segments {
-                    segment = _str.TrimSpace(segment)
-                    if segment != "" {
-                        this.segments[i] = segment
+        if sp := s.Path; sp != "" {
+            this.path = sp
+            if seg := _str.Split(sp, "/"); len(seg) > 0 {
+                this.segments = util.MapStringSlice(seg)
+                for i, se := range seg {
+                    se = _str.TrimSpace(se)
+                    if se != "" {
+                        this.segments[i] = se
                     }
                 }
                 this.segments = scol.Filter(this.segments, nil)
             }
         }
-        if source.User != nil {
-            if username := source.User.Username(); username != "" {
-                this.username = username
+        if s.User != nil {
+            if su := s.User.Username(); su != "" {
+                this.username = su
             }
-            if password, _ := source.User.Password(); password != "" {
-                this.password = password
+            if sp, _ := s.User.Password(); sp != "" {
+                this.password = sp
             }
         }
-        if query := source.RawQuery; query != "" {
-            this.query = query
-            this.queryParams = util.UrlQueryParse(query)
+        if sq := s.RawQuery; sq != "" {
+            this.query = sq
+            this.queryParams = util.UrlQueryParse(sq)
         }
-        if fragment := source.Fragment; fragment != "" {
-            this.fragment = fragment
+        if sf := s.Fragment; sf != "" {
+            this.fragment = sf
         }
     }
 
@@ -98,9 +98,9 @@ func (this *Uri) Password() (string) {
 func (this *Uri) Query() (string) {
     return this.query
 }
-func (this *Uri) QueryParam(key string) (string) {
-    if param, ok := this.queryParams[key]; ok {
-        return param
+func (this *Uri) QueryParam(k string) (string) {
+    if v, ok := this.queryParams[k]; ok {
+        return v
     }
     return ""
 }
@@ -110,12 +110,12 @@ func (this *Uri) QueryParams() (map[string]string) {
 func (this *Uri) Fragment() (string) {
     return this.fragment
 }
-func (this *Uri) Segment(i int) (string) {
-    if segment, ok := scol.FindIndex(this.segments, i); ok {
-        return segment
-    }
-    return ""
-}
 func (this *Uri) Segments() ([]string) {
     return this.segments
+}
+func (this *Uri) Segment(i int) (string) {
+    if se, ok := scol.FindIndex(this.segments, i); ok {
+        return se
+    }
+    return ""
 }
