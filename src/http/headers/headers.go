@@ -9,25 +9,26 @@ type Headers struct {
 }
 
 func New() (*Headers) {
-    return &Headers{
+    this := &Headers{
         data: util.MapString(),
     }
-}
-
-func (this *Headers) Set(name, value string) (*Headers) {
-    this.data[name] = value
     return this
 }
-func (this *Headers) Get(name string) (string) {
-    if value, ok := this.data[name]; ok {
-        return value
-    }
-    return ""
-}
 
+func (this *Headers) Set(k, v string) (*Headers) {
+    this.data[k] = v
+    return this
+}
 func (this *Headers) SetAll(data map[string]string) {
     this.data = data
 }
-func (this *Headers) GetAll(data map[string]string) (map[string]string) {
+
+func (this *Headers) Get(k string) (string) {
+    if v, ok := this.data[k]; ok {
+        return v
+    }
+    return ""
+}
+func (this *Headers) GetAll() (map[string]string) {
     return this.data
 }
