@@ -21,15 +21,15 @@ func Find(arr[]int, s int) (int, bool) {
     return 0, false
 }
 
-func Map(arr []int, fun func(int) int) ([]int) {
+func Map(arr []int, fun func(int, int) (int)) ([]int) {
     ret := make([]int, len(arr))
-    for i, v := range arr {
-        ret[i] = fun(v)
+    for k, v := range arr {
+        ret[k] = fun(v, k)
     }
     return ret
 }
 
-func Filter(arr []int, fun func(v, k int) (bool)) ([]int) {
+func Filter(arr []int, fun func(int, int) (bool)) ([]int) {
     if fun == nil {
         fun = func(v, k int) (bool) {
             return v != 0
