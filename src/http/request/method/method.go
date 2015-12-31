@@ -1,5 +1,7 @@
 package method
 
+// HTTP methods.
+// @const string
 const (
     OPTIONS = "OPTIONS"
     HEAD    = "HEAD"
