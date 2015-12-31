@@ -52,3 +52,14 @@ func Filter(arr []string, fun func(string, int) (bool)) ([]string) {
     }
     return ret
 }
+
+func Uniq(arr []string) ([]string) {
+    ret, f := []string{}, map[string]bool{}
+    for k := range arr {
+        if f[arr[k]] != true {
+            f[arr[k]] = true
+            ret = append(ret, arr[k])
+        }
+    }
+    return ret
+}
