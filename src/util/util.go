@@ -209,15 +209,15 @@ func UrlDecode(input string) (string) {
 // @param  q string
 // @return (map[string]string)
 func UrlQueryParse(q string) (map[string]string) {
-    r := MapString()
+    ret := MapString()
     if tmp := _str.Split(q, "&"); tmp != nil {
         for _, tm := range tmp {
             if t := _str.SplitN(tm, "=", 2); len(t) == 2 {
-                r[t[0]] = t[1]
+                ret[t[0]] = t[1]
             }
         }
     }
-    return r
+    return ret
 }
 
 // Unparse URL q.
@@ -244,6 +244,38 @@ func Upper(input string) (string) {
 }
 func Lower(input string) (string) {
     return _str.ToLower(input)
+}
+
+// RegExp match.
+//
+// @param  s  string
+// @param  sr string
+// @return ([]string, *regexp.Regexp, error)
+func RegExpMatch(s, sr string) ([]string, *_rex.Regexp, error) {
+    re, err := _rex.Compile(sr)
+    if err != nil {
+        return nil, re, err
+    }
+    return re.FindStringSubmatch(s), re, nil
+}
+
+// RegExp match named.
+//
+// @param  s  string
+// @param  sr string
+// @return (map[string]string, *regexp.Regexp, error)
+func RegExpMatchNamed(s, sr string) (map[string]string, *_rex.Regexp, error) {
+    m, re, err := RegExpMatch(s, sr)
+    if err != nil {
+        return nil, re, err
+    }
+    ret := MapString()
+    for i, n := range re.SubexpNames() {
+        if i != 0 { // pass re input
+            ret[n] = m[i]
+        }
+    }
+    return ret, re, nil
 }
 
 // Map maker.
