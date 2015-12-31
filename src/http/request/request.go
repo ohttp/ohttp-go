@@ -2,8 +2,8 @@ package request
 
 import (
     "util"
-    "http/uri"
     "http/message"
+    "http/uri"
 )
 
 type Request struct {
@@ -13,9 +13,10 @@ type Request struct {
 }
 
 func New(m *message.Message) (*Request) {
-    return &Request{
+    this := &Request{
         Message: *m,
     }
+    return this
 }
 
 func (this *Request) SetMethod(m string) (*Request) {
