@@ -1,7 +1,7 @@
 // @link https://gobyexample.com/collection-functions
 package sarray
 
-func Index(arr []string, s string) int {
+func Index(arr []string, s string) (int) {
     for i, v := range arr {
         if v == s {
             return i
@@ -10,7 +10,7 @@ func Index(arr []string, s string) int {
     return -1
 }
 
-func Has(arr []string, s string) bool {
+func Has(arr []string, s string) (bool) {
     return Index(arr, s) >= 0
 }
 
@@ -31,7 +31,7 @@ func FindIndex(arr []string, s int) (string, bool) {
     return "", false
 }
 
-func Map(arr []string, fun func(string) string) []string {
+func Map(arr []string, fun func(string) string) ([]string) {
     ret := make([]string, len(arr))
     for i, v := range arr {
         ret[i] = fun(v)
@@ -39,7 +39,7 @@ func Map(arr []string, fun func(string) string) []string {
     return ret
 }
 
-func Filter(arr []string, fun func(string) bool) []string {
+func Filter(arr []string, fun func(string) bool) ([]string) {
     if fun == nil {
         fun = func(s string) bool {
             return s != ""

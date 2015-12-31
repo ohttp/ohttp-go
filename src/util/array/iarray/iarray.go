@@ -1,7 +1,7 @@
 // @link https://gobyexample.com/collection-functions
 package iarray
 
-func Index(arr []int, s int) int {
+func Index(arr []int, s int) (int) {
     for i, v := range arr {
         if v == s {
             return i
@@ -10,7 +10,7 @@ func Index(arr []int, s int) int {
     return -1
 }
 
-func Has(arr []int, s int) bool {
+func Has(arr []int, s int) (bool) {
     return Index(arr, s) >= 0
 }
 
@@ -22,7 +22,7 @@ func Find(arr[]int, s int) (int, bool) {
     return 0, false
 }
 
-func Map(arr []int, fun func(int) int) []int {
+func Map(arr []int, fun func(int) int) ([]int) {
     ret := make([]int, len(arr))
     for i, v := range arr {
         ret[i] = fun(v)
@@ -30,7 +30,7 @@ func Map(arr []int, fun func(int) int) []int {
     return ret
 }
 
-func Filter(arr []int, fun func(int) bool) []int {
+func Filter(arr []int, fun func(int) bool) ([]int) {
     if fun == nil {
         fun = func(s int) bool {
             return s != 0
