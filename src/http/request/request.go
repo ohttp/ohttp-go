@@ -14,7 +14,7 @@ type Request struct {
 
 func New(m *message.Message) (*Request) {
     return &Request{
-        Message: m,
+        Message: *m,
     }
 }
 
@@ -27,12 +27,8 @@ func (this *Request) GetMethod() (string) {
 }
 
 func (this *Request) SetUri(u string, up map[string]string) (*Request) {
-    if up != nil {
-        var q string
-        for k, v := range up {
-            q += util.StringFormat("%s=%s", k, util.UrlEncode(v))
-        }
-        u += "?"+ q
+    if ups := util.UrlQueryUnparse(up); ups != "" {
+        u += "?"+ ups
     }
     this.uri = uri.New(u)
     return this
