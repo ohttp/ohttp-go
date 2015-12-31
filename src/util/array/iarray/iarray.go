@@ -1,8 +1,8 @@
 // @link https://gobyexample.com/collection-functions
-package icol
+package iarray
 
-func Index(icol []int, s int) int {
-    for i, val := range icol {
+func Index(arr []int, s int) int {
+    for i, val := range arr {
         if val == s {
             return i
         }
@@ -10,34 +10,34 @@ func Index(icol []int, s int) int {
     return -1
 }
 
-func Has(icol []int, s int) bool {
-    return Index(icol, s) >= 0
+func Has(arr []int, s int) bool {
+    return Index(arr, s) >= 0
 }
 
-func Find(icol[]int, s int) (int, bool) {
-    i := Index(icol, s)
+func Find(arr[]int, s int) (int, bool) {
+    i := Index(arr, s)
     if i >= 0 {
-        return icol[i], true
+        return arr[i], true
     }
     return 0, false
 }
 
-func Map(icol []int, fun func(int) int) []int {
-    ret := make([]int, len(icol))
-    for i, val := range icol {
+func Map(arr []int, fun func(int) int) []int {
+    ret := make([]int, len(arr))
+    for i, val := range arr {
         ret[i] = fun(val)
     }
     return ret
 }
 
-func Filter(icol []int, fun func(int) bool) []int {
+func Filter(arr []int, fun func(int) bool) []int {
     if fun == nil {
         fun = func(s int) bool {
             return s != 0
         }
     }
     ret := make([]int, 0)
-    for _, val := range icol {
+    for _, val := range arr {
         if fun(val) {
             ret = append(ret, val)
         }

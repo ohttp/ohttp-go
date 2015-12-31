@@ -7,7 +7,7 @@ import (
 
 import (
     "util"
-    "util/col/scol"
+    "util/array/sarray"
 )
 
 type Uri struct {
@@ -51,7 +51,7 @@ func New(s string) (*Uri) {
                         this.segments[i] = se
                     }
                 }
-                this.segments = scol.Filter(this.segments, nil)
+                this.segments = sarray.Filter(this.segments, nil)
             }
         }
         if s.User != nil {
@@ -114,7 +114,7 @@ func (this *Uri) Segments() ([]string) {
     return this.segments
 }
 func (this *Uri) Segment(i int) (string) {
-    if se, ok := scol.FindIndex(this.segments, i); ok {
+    if se, ok := sarray.FindIndex(this.segments, i); ok {
         return se
     }
     return ""
