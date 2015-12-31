@@ -64,7 +64,7 @@ func New(source string) (*Uri) {
         }
         if query := source.RawQuery; query != "" {
             this.query = query
-            this.queryParams = util.ParseQuery(query)
+            this.queryParams = util.UrlQueryParse(query)
         }
         if fragment := source.Fragment; fragment != "" {
             this.fragment = fragment
