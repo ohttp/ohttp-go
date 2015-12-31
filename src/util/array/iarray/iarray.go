@@ -43,3 +43,14 @@ func Filter(arr []int, fun func(int, int) (bool)) ([]int) {
     }
     return ret
 }
+
+func Uniq(arr []int) ([]int) {
+    ret, f := []int{}, map[int]bool{}
+    for k := range arr {
+        if f[arr[k]] != true {
+            f[arr[k]] = true
+            ret = append(ret, arr[k])
+        }
+    }
+    return ret
+}
