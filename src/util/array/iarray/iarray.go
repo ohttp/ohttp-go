@@ -29,15 +29,15 @@ func Map(arr []int, fun func(int) int) ([]int) {
     return ret
 }
 
-func Filter(arr []int, fun func(int) bool) ([]int) {
+func Filter(arr []int, fun func(v, k int) (bool)) ([]int) {
     if fun == nil {
-        fun = func(s int) (bool) {
-            return s != 0
+        fun = func(v, k int) (bool) {
+            return v != 0
         }
     }
     ret := make([]int, 0)
-    for _, v := range arr {
-        if fun(v) {
+    for k, v := range arr {
+        if fun(v, k) {
             ret = append(ret, v)
         }
     }
