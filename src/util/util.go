@@ -171,6 +171,18 @@ func StringSearch(input, search string) (bool) {
     return ("" != re.FindString(input))
 }
 
+// Trim.
+//
+// @param  s  string
+// @param  sc string
+// @return (string)
+func Trim(s, sc string) (string) {
+    if sc == "" {
+        return _str.TrimSpace(s)
+    }
+    return _str.Trim(s, sc)
+}
+
 // URL encode.
 //
 // @param  input string
