@@ -28,9 +28,10 @@ func (this *Request) GetMethod() (string) {
 
 func (this *Request) SetUri(u string, up map[string]string) (*Request) {
     if ups := util.UrlQueryUnparse(up); ups != "" {
-        u += "?"+ ups
+        this.uri = uri.New(u +"?"+ ups)
+    } else {
+        this.uri = uri.New(u)
     }
-    this.uri = uri.New(u)
     return this
 }
 func (this *Request) GetUri() (*uri.Uri) {
