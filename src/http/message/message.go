@@ -86,5 +86,5 @@ func (this *Message) SetHeaderAll(kv map[string]string) (*Message) {
     return this
 }
 func (this *Message) GetHeaderAll() (map[string]string) {
-    return this.headers.GetAll(nil)
+    return this.headers.GetAll()
 }
