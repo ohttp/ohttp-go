@@ -74,28 +74,6 @@ func TypeReal(args... interface{}) (string) {
     return _str.Replace(_fmt.Sprintf("%T", args[0]), " ", "", -1)
 }
 
-// Int converter..
-//
-// @param  input interface{}
-// @return (int)
-func Int(input interface{}) (int) {
-    if number := Number(input, "int"); number != nil {
-        return number.(int)
-    }
-    return 0
-}
-
-// UInt converter..
-//
-// @param  input interface{}
-// @return (uint)
-func UInt(input interface{}) (uint) {
-    if number := Number(input, "uint"); number != nil {
-        return number.(uint)
-    }
-    return 0
-}
-
 // Number converter..
 //
 // @param  input     interface{}
@@ -125,6 +103,28 @@ func Number(input interface{}, inputType string) (interface{}) {
         }
     }
     return nil
+}
+
+// Int converter..
+//
+// @param  input interface{}
+// @return (int)
+func Int(input interface{}) (int) {
+    if number := Number(input, "int"); number != nil {
+        return number.(int)
+    }
+    return 0
+}
+
+// UInt converter..
+//
+// @param  input interface{}
+// @return (uint)
+func UInt(input interface{}) (uint) {
+    if number := Number(input, "uint"); number != nil {
+        return number.(uint)
+    }
+    return 0
 }
 
 // String converter.
