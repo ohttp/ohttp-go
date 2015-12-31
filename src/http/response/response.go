@@ -31,24 +31,22 @@ func (this *Response) SetStatus(s string) (*Response) {
     }
     return this
 }
-func (this *Response) GetStatus() (*status.Status) {
-    return this.status
-}
-
 func (this *Response) SetStatusCode(c int) (*Response) {
     this.status.SetCode(c)
     return this
 }
-func (this *Response) GetStatusCode() (int) {
-    return this.status.GetCode()
-}
-
 func (this *Response) SetStatusText(t string) (*Response) {
     this.status.SetText(t)
     return this
 }
+
+
+func (this *Response) GetStatus() (*status.Status) {
+    return this.status
+}
+func (this *Response) GetStatusCode() (int) {
+    return this.status.GetCode()
+}
 func (this *Response) GetStatusText() (string) {
     return this.status.GetText()
 }
-
-
