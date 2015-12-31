@@ -1,29 +1,29 @@
 // @link https://gobyexample.com/collection-functions
 package sarray
 
-func Index(arr []string, s string) (int) {
+func Index(arr []string, is string) (int) {
     for i, v := range arr {
-        if v == s {
+        if v == is {
             return i
         }
     }
     return -1
 }
 
-func Has(arr []string, s string) (bool) {
-    return Index(arr, s) > -1
+func Has(arr []string, is string) (bool) {
+    return Index(arr, is) > -1
 }
 
-func Find(arr []string, s string) (string, bool) {
-    if i := Index(arr, s); i > -1 {
+func Find(arr []string, is string) (string, bool) {
+    if i := Index(arr, is); i > -1 {
         return arr[i], true
     }
     return "", false
 }
 
-func FindIndex(arr []string, s int) (string, bool) {
+func FindIndex(arr []string, is int) (string, bool) {
     for i, v := range arr {
-        if i == s {
+        if i == is {
             return v, true
         }
     }
