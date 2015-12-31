@@ -51,9 +51,9 @@ func Shutup() {}
 
 func NewMessage(t uint, pv string) (*Message) {
     return &Message{
-                  type_: t,
+        type_: t,
         protocolVersion: pv,
-                headers: headers.New(),
+        headers: headers.New(),
     }
 }
 
