@@ -24,12 +24,7 @@ func (this *Request) SetMethod(m string) (*Request) {
     return this
 }
 func (this *Request) SetUri(u string, up interface{}) (*Request) {
-    u = util.Trim(u, "?")
-    if up, ok := up.(string); ok {
-        this.uri = uri.New(u +"?"+ up)
-    } else {
-        this.uri = uri.New(u)
-    }
+    this.uri = uri.New(u, up)
     return this
 }
 
