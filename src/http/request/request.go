@@ -26,6 +26,13 @@ func New(m *message.Message) (*Request) {
     return this
 }
 
+func (this *Request) Method() (string) {
+    return this.method
+}
+func (this *Request) Uri() (*uri.Uri) {
+    return this.uri
+}
+
 func (this *Request) SetMethod(m string) (*Request) {
     this.method = util.Upper(m)
     return this
@@ -33,13 +40,6 @@ func (this *Request) SetMethod(m string) (*Request) {
 func (this *Request) SetUri(u string, up interface{}) (*Request) {
     this.uri = uri.New(u, up)
     return this
-}
-
-func (this *Request) GetMethod() (string) {
-    return this.method
-}
-func (this *Request) GetUri() (*uri.Uri) {
-    return this.uri
 }
 
 func (this *Request) Send() (string, error) {
