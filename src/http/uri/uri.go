@@ -24,7 +24,7 @@ type Uri struct {
     segments      []string
 }
 
-func New(s string) (*Uri) {
+func New(s string, q interface{}) (*Uri) {
     this := &Uri{
         source: s,
     }
@@ -64,6 +64,8 @@ func New(s string) (*Uri) {
         }
         if sq := s.RawQuery; sq != "" {
             this.query = query.New(sq)
+        } else if q != nil {
+            this.query = query.New(q)
         }
         if sf := s.Fragment; sf != "" {
             this.fragment = sf
