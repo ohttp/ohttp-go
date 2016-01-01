@@ -45,7 +45,7 @@ func (this *Request) SetUri(u string, up interface{}) (*Request) {
 func (this *Request) Send() (string, error) {
     this.SetHeader("Host", this.uri.Host())
     this.SetHeader("Connection", "close")
-    if this.GetHeader("User-Agent") == "" {
+    if this.Header("User-Agent") == "" {
         this.SetHeader("User-Agent", _fmt.Sprintf("%s/v%s (+%s)",
             useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
     }
@@ -64,9 +64,9 @@ func (this *Request) Send() (string, error) {
     defer link.Close()
 
     var rm, rp, rpv string
-    rm  = this.GetMethod()
+    rm  = this.Method()
     rp  = "/"
-    rpv = this.GetProtocolVersion()
+    rpv = this.ProtocolVersion()
     if s := this.uri.Path(); s != "" {
         rp = s
     }
@@ -76,13 +76,13 @@ func (this *Request) Send() (string, error) {
 
     var rs, rr string
     rs += _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
-    for k, v := range this.GetHeaderAll() {
+    for k, v := range this.HeaderAll() {
         if v != "" {
             rs += _fmt.Sprintf("%s: %s\r\n", k, v)
         }
     }
     rs += "\r\n"
-    rs += this.GetBody().Content()
+    rs += this.Body().Content()
     util.Dumps(rs)
 
     _fmt.Fprint(link, rs)

@@ -45,42 +45,46 @@ func NewMessage(t uint, pv string) (*Message) {
     }
 }
 
+func (this *Message) Type() (uint) {
+    return this.type_
+}
+func (this *Message) ProtocolVersion() (string) {
+    return this.protocolVersion
+}
+func (this *Message) Header(k string) (string) {
+    return this.headers.Get(k)
+}
+func (this *Message) HeaderAll() (map[string]string) {
+    return this.headers.GetAll()
+}
+func (this *Message) Body() (*MessageBody) {
+    return this.body
+}
+
 func (this *Message) SetType(t uint) (*Message) {
     this.type_ = t
     return this
-}
-func (this *Message) GetType() (uint) {
-    return this.type_
 }
 
 func (this *Message) SetProtocolVersion(pv string) (*Message) {
     this.protocolVersion = pv
     return this
 }
-func (this *Message) GetProtocolVersion() (string) {
-    return this.protocolVersion
-}
 
 func (this *Message) SetHeader(k, v string) (*Message) {
     this.headers.Set(k, v)
     return this
-}
-func (this *Message) GetHeader(k string) (string) {
-    return this.headers.Get(k)
 }
 
 func (this *Message) SetHeaderAll(kv map[string]string) (*Message) {
     this.headers.SetAll(kv)
     return this
 }
-func (this *Message) GetHeaderAll() (map[string]string) {
-    return this.headers.GetAll()
-}
 
 func (this *Message) SetBody(b interface{}) {
     if b != nil {
         var c, ct string
-        ct = this.GetHeader("Content-Type")
+        ct = this.Header("Content-Type")
         switch b := b.(type) {
             case string:
                 if ct == "application/json" {
@@ -104,7 +108,4 @@ func (this *Message) SetBody(b interface{}) {
         this.body = NewMessageBody(c, ct)
         this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
     }
-}
-func (this *Message) GetBody() (*MessageBody) {
-    return this.body
 }
