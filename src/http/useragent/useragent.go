@@ -7,6 +7,12 @@ type UserAgent struct {
     versionOrig string
 }
 
+const (
+    OH_NAME      = "Oh! HTTP"
+    OH_LINK      = "http://github.com/oh-http/oh-http-go"
+    OH_VERSION   = "1.0.0"
+)
+
 // User agent strings.
 // @const string
 const (
