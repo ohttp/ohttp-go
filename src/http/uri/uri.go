@@ -60,7 +60,7 @@ func New(s string, q interface{}) (*Uri) {
         }
         if sq := s.RawQuery; sq != "" {
             this.query = query.New(sq)
-        } else if q != nil {
+        } else {
             this.query = query.New(q)
         }
         if sf := s.Fragment; sf != "" {
