@@ -28,3 +28,11 @@ func (this *Params) GetString(k string) (string) {
 func (this *Params) GetBool(k string) (bool) {
     return util.Bool((*this)[k])
 }
+
+func (this *Params) String() (string) {
+    m := util.Map()
+    for k, v := range (*this) {
+        m[k] = v
+    }
+    return util.UrlQueryUnparse(m)
+}
