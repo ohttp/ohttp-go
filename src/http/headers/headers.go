@@ -9,10 +9,9 @@ type Headers struct {
 }
 
 func New() (*Headers) {
-    this := &Headers{
+    return &Headers{
         data: util.MapString(),
     }
-    return this
 }
 
 func (this *Headers) Set(k, v string) (*Headers) {
