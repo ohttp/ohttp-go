@@ -2,7 +2,6 @@ package request
 
 import (
     _fmt "fmt"
-    _net "net"
     _bio "bufio"
 )
 
@@ -10,6 +9,7 @@ import (
     "util"
     "http/message"
     "http/uri"
+    "http/request/scheme"
 )
 
 type Request struct {
@@ -45,33 +45,32 @@ func (this *Request) Send() (string, error) {
     this.SetHeader("Host", this.uri.Host())
     this.SetHeader("Connection", "close")
 
-    uh := this.uri.Host()
-    if s := this.uri.Scheme(); s != "" {
-        if s == "http" {
-            // dial via http
-        } else if s == "https" {
-            // dial via https
-        } else {
-            // ...
-        }
+    var uh, us string
+    uh = this.uri.Host()
+    us = this.uri.Scheme()
+    if this.uri.Port() == scheme.HTTPS_PORT {
+        us = scheme.HTTPS
     }
 
-    // link, err := _net.Dial("tcp", uh)
-    // if err != nil {
-    //     panic(err)
-    // }
+    link, err := scheme.Dial(uh, us)
+    if err != nil {
+        panic(err)
+    }
     defer link.Close()
 
-    us := "/"
+    var rm, rp, rpv string
+    rm  = this.GetMethod()
+    rp  = "/"
+    rpv = this.GetProtocolVersion()
     if s := this.uri.Path(); s != "" {
-        us = s
+        rp = s
     }
     if s := this.uri.Query().String(); s != "" {
-        us += "?"+ s
+        rp += "?"+ s
     }
 
     var rs, rr string
-    rs += _fmt.Sprintf("%s %s HTTP/%s\r\n", this.method, us, this.GetProtocolVersion())
+    rs += _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
     for k, v := range this.GetHeaderAll() {
         if v != "" {
             rs += _fmt.Sprintf("%s: %s\r\n", k, v)
