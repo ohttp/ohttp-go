@@ -1,6 +1,7 @@
 package message
 
 import (
+    "util"
     "http/headers"
 )
 
@@ -15,16 +16,13 @@ type Message struct {
     MessageStringInterface
 }
 
-type MessageBody struct {
-    content         string
-}
 type MessageBodyData struct {
     content         interface{}
 }
 
 type MessageBodyInterface interface {
-    SetBody(b string)
-    SetBodyData(b string, i interface{}) interface{}
+    // SetBody(b string)
+    // SetBodyData(b string, i interface{}) interface{}
     String() (string)
 }
 
@@ -87,4 +85,33 @@ func (this *Message) SetHeaderAll(kv map[string]string) (*Message) {
 }
 func (this *Message) GetHeaderAll() (map[string]string) {
     return this.headers.GetAll()
+}
+
+func (this *Message) SetBody(b interface{}) {
+    if b != nil {
+        var c, ct string
+        ct = this.GetHeader("Content-Type")
+        switch b := b.(type) {
+            case string:
+                if ct == "application/json" {
+                    c = util.Quote(b)
+                }
+            default:
+                bt := util.StringFormat("%T", b)
+                if util.StringSearch(bt, "^u?int(\\d+)?|float(32|64)$") {
+                    c = util.String(b)
+                } else {
+                    if ct == "application/json" {
+                        b, err := util.JsonEncode(b)
+                        if err != nil {
+                            panic(err)
+                        }
+                        c = b
+                    }
+                }
+        }
+        this.body = NewMessageBody(c, ct)
+
+        this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
+    }
 }
