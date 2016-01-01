@@ -12,17 +12,16 @@ import (
 )
 
 type Uri struct {
-    source          string
-    scheme          string
-    host            string
-    port            uint
-    path            string
-    username        string
-    password        string
-    query           *query.Query
-    fragment        string
-    segments        []string
-    authorization   string
+    source     string
+    scheme     string
+    host       string
+    port       uint
+    path       string
+    username   string
+    password   string
+    query      *query.Query
+    fragment   string
+    segments   []string
 }
 
 func New(s string, q interface{}) (*Uri) {
@@ -58,11 +57,6 @@ func New(s string, q interface{}) (*Uri) {
         if s.User != nil {
             this.username = s.User.Username()
             this.password, _ = s.User.Password()
-            if this.username != "" && this.password != "" {
-                this.authorization = this.username +":"+ this.password
-            } else if this.username != "" {
-                this.authorization = this.username
-            }
         }
         if sq := s.RawQuery; sq != "" {
             this.query = query.New(sq)
@@ -110,6 +104,14 @@ func (this *Uri) Segments() ([]string) {
 func (this *Uri) Segment(i int) (string) {
     if se, ok := sarray.FindIndex(this.segments, i); ok {
         return se
+    }
+    return ""
+}
+func (this *Uri) Authorization() (string) {
+    if this.username != "" && this.password != "" {
+        return this.username +":"+ this.password
+    } else if this.username != "" {
+        return this.username
     }
     return ""
 }
