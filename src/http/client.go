@@ -1,8 +1,13 @@
 package http
 
+import (
+    "http/request"
+    "http/response"
+)
+
 type Client struct {
-    request    *Request
-    response   *Response
+    request    *request.Request
+    response   *response.Response
 }
 
 func NewClient() (*Client) {
