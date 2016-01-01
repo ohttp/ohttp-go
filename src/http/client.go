@@ -16,3 +16,10 @@ func NewClient() (*Client) {
         response: NewResponse(),
     }
 }
+
+func (this *Client) Request(uri string, uriParams interface{}, body interface{}, headers interface{}) {}
+
+func (this *Client) Head() {}
+func (this *Client) HeadFunc() {}
+
+// ...
