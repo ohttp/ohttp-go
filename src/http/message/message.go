@@ -11,19 +11,7 @@ type Message struct {
     headers         *headers.Headers
     body            *MessageBody
     bodyData        *MessageBodyData // parsed
-
-    MessageBodyInterface
     MessageStringInterface
-}
-
-type MessageBodyData struct {
-    content         interface{}
-}
-
-type MessageBodyInterface interface {
-    // SetBody(b string)
-    // SetBodyData(b string, i interface{}) interface{}
-    String() (string)
 }
 
 type MessageStringInterface interface {
@@ -52,6 +40,8 @@ func NewMessage(t uint, pv string) (*Message) {
         type_: t,
         protocolVersion: pv,
         headers: headers.New(),
+        body: NewMessageBody("", ""),
+        bodyData: NewMessageBodyData(""),
     }
 }
 
@@ -110,14 +100,11 @@ func (this *Message) SetBody(b interface{}) {
                     }
                 }
         }
+        // @overwrite
         this.body = NewMessageBody(c, ct)
-
         this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
     }
 }
-func (this *Message) GetBody() (string) {
-    if this.body != nil {
-        return this.body.Content()
-    }
-    return ""
+func (this *Message) GetBody() (*MessageBody) {
+    return this.body
 }
