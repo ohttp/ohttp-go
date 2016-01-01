@@ -1,10 +1,5 @@
 package http
 
-import (
-    "http/request"
-    "http/response"
-)
-
 type Client struct {
     request    *Request
     response   *Response
