@@ -6,13 +6,13 @@ import (
 )
 
 const (
-    HTTP  = "http"
-    HTTPS = "https"
+    HTTP            = "http"
+    HTTPS           = "https"
+    HTTP_PORT  uint = 80
+    HTTPS_PORT uint = 443
 )
 
 const (
-    HTTP_PORT  uint = 80
-    HTTPS_PORT      = 443
 )
 
 func Dial(h, s string) (_net.Conn, error) {
