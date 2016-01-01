@@ -253,6 +253,27 @@ func New(c int, t string, tp string) (*Status) {
     return this
 }
 
+// Get code.
+//
+// @return (int)
+func (this *Status) Code() (int) {
+    return this.code
+}
+
+// Get text.
+//
+// @return (string)
+func (this *Status) Text() (string) {
+    return this.text
+}
+
+// Get text phrase.
+//
+// @return (string)
+func (this *Status) TextPhrase() (string) {
+    return this.textPhrase
+}
+
 // Set code.
 //
 // @param  c int
@@ -278,25 +299,4 @@ func (this *Status) SetText(t string) (*Status) {
 func (this *Status) SetTextPhrase(tp string) (*Status) {
     this.textPhrase = tp
     return this
-}
-
-// Get code.
-//
-// @return (int)
-func (this *Status) GetCode() (int) {
-    return this.code
-}
-
-// Get text.
-//
-// @return (string)
-func (this *Status) GetText() (string) {
-    return this.text
-}
-
-// Get text phrase.
-//
-// @return (string)
-func (this *Status) GetTextPhrase() (string) {
-    return this.textPhrase
 }
