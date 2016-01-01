@@ -16,7 +16,7 @@ func New() (*Headers) {
 }
 
 func (this *Headers) Set(k, v string) (*Headers) {
-    this.data[k] = v
+    this.data[k] = util.Trim(v, "")
     return this
 }
 func (this *Headers) SetAll(data map[string]string) {
