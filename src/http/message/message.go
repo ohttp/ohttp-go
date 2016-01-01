@@ -115,3 +115,9 @@ func (this *Message) SetBody(b interface{}) {
         this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
     }
 }
+func (this *Message) GetBody() (string) {
+    if this.body != nil {
+        return this.body.Content()
+    }
+    return ""
+}
