@@ -48,5 +48,8 @@ func (this *Query) Params() (*params.Params) {
 }
 
 func (this *Query) String() (string) {
-    return this.params.String()
+    if this.params != nil {
+        return this.params.String()
+    }
+    return ""
 }
