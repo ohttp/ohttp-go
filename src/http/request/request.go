@@ -9,6 +9,7 @@ import (
     "util"
     "http/message"
     "http/uri"
+    "http/useragent"
     "http/request/scheme"
 )
 
@@ -44,6 +45,10 @@ func (this *Request) GetUri() (*uri.Uri) {
 func (this *Request) Send() (string, error) {
     this.SetHeader("Host", this.uri.Host())
     this.SetHeader("Connection", "close")
+    if this.GetHeader("User-Agent") == "" {
+        this.SetHeader("User-Agent", _fmt.Sprintf("%s/v%s (+%s)",
+            useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
+    }
 
     var uh, us string
     uh = this.uri.Host()
