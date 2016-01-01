@@ -14,8 +14,8 @@ type Response struct {
 func New(m *message.Message) (*Response) {
     this := &Response{
         Message: *m,
+        status: status.New(0, "", ""),
     }
-    this.status = status.New(0, "", "")
     return this
 }
 
