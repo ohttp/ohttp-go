@@ -394,6 +394,14 @@ func Implode(i interface{}, s string) (string) {
     return ret
 }
 
+// Quote.
+//
+// @param  input string
+// @return (string)
+func Quote(input string) (string) {
+    return _strc.Quote(input)
+}
+
 // Detect length.
 //
 // @param  length interface{}
