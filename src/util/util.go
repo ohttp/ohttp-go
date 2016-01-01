@@ -219,20 +219,18 @@ func UrlQueryParse(q string) (map[string]string) {
     return ret
 }
 
-// Unparse URL q.
+// Unparse URL query.
 //
-// @param  qp map[string]string
+// @param  q map[string]interface{}
 // @return (string)
-func UrlQueryUnparse(qp map[string]string) (string) {
-    if qp != nil {
-        var q string
-        for k, v := range qp {
-            q += StringFormat("%s=%s", k, UrlEncode(v))
-        }
-        return q
+func UrlQueryUnparse(q map[string]interface{}) (string) {
+    m := MapStringSlice(0)
+    for k, v := range q {
+        m = append(m, _joinKeyValue(k, v))
     }
-    return ""
+    return Implode(m, "&")
 }
+
 
 // String upper/lower
 //
@@ -387,4 +385,45 @@ func _length(length interface{}) (int) {
             // @todo add more cases if needs
     }
     return -1
+}
+
+// Join key => value pairs (only 2-dims arrays).
+//
+// @param  k string
+// @param  v interface{}
+// @return (string)
+func _joinKeyValue(k string, v interface{}) (string) {
+    var s string
+    switch v := v.(type) {
+        case []int:
+            for _, vv := range v {
+                s += StringFormat("%s[]=%v&", UrlEncode(k), vv)
+            }
+            break
+        case []string:
+            for _, vv := range v {
+                s += StringFormat("%s[]=%v&", UrlEncode(k), vv)
+            }
+            break
+        case map[string]interface{}:
+            for kk, vv := range v {
+                switch vv := vv.(type) {
+                    case []int, []string:
+                        s += _joinKeyValue(k, vv)
+                        break
+                    case map[string]interface{}:
+                        for kkk, vvv := range vv {
+                            s += _joinKeyValue(kkk, vvv)
+                        }
+                        break
+                    default:
+                        s += StringFormat("%s[%s]=%v&",
+                            UrlEncode(k), UrlEncode(kk), UrlEncode(String(vv)))
+                }
+            }
+            break
+        default:
+            s = StringFormat("%s=%v", UrlEncode(k), UrlEncode(String(v)))
+    }
+    return Trim(s, "&")
 }
