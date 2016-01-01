@@ -5,6 +5,7 @@ import (
     _rex "regexp"
     _str "strings"; _strc "strconv"
     _url "net/url"
+    _json "encoding/json"
 )
 
 func Shutup() {}
@@ -178,7 +179,6 @@ func StringSearch(input, search string) (bool) {
     if re == nil {
         return false
     }
-
     return ("" != re.FindString(input))
 }
 
@@ -231,6 +231,34 @@ func UrlQueryUnparse(q map[string]interface{}) (string) {
     return Implode(m, "&")
 }
 
+// JSON encode.
+//
+// @param  in interface{}
+// @return (string, error)
+func JsonEncode(in interface{}) (string, error) {
+    out, err := _json.Marshal(in)
+    if err != nil {
+        return "", _fmt.Errorf("JSON error: %s!", err)
+    }
+    return string(out), nil
+}
+
+// JSON decode.
+//
+// @param  in  string
+// @param  out interface{}
+// @return (interface{}, error)
+func JsonDecode(in string, out interface{}) (interface{}, error) {
+    // simply prevent useless unmarshal error
+    if in == "" {
+        in = `null`
+    }
+    err := _json.Unmarshal([]byte(in), &out)
+    if err != nil {
+        return nil, _fmt.Errorf("JSON error: %s!", err)
+    }
+    return out, nil
+}
 
 // String upper/lower
 //
