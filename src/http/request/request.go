@@ -23,9 +23,10 @@ func (this *Request) SetMethod(m string) (*Request) {
     this.method = util.Upper(m)
     return this
 }
-func (this *Request) SetUri(u string, up map[string]string) (*Request) {
-    if ups := util.UrlQueryUnparse(up); ups != "" {
-        this.uri = uri.New(u +"?"+ ups)
+func (this *Request) SetUri(u string, up interface{}) (*Request) {
+    u = util.Trim(u, "?")
+    if up, ok := up.(string); ok {
+        this.uri = uri.New(u +"?"+ up)
     } else {
         this.uri = uri.New(u)
     }
