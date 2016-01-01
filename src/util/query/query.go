@@ -41,3 +41,7 @@ func (this *Query) Get(k string) (interface{}) {
 func (this *Query) Params() (*params.Params) {
     return this.params
 }
+
+func (this *Query) String() (string) {
+    return this.params.String()
+}
