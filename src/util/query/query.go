@@ -1,6 +1,7 @@
 package query
 
 import (
+    "util"
     "util/params"
 )
 
@@ -23,6 +24,10 @@ func New(p interface{}) (*Query) {
         }
     } else if _, ok := p.(map[string]interface{}); ok {
         for k, v := range p.(map[string]interface{}) {
+            this.params.Set(k, v)
+        }
+    } else if p, ok := p.(string); ok {
+        for k, v := range util.UrlQueryParse(p) {
             this.params.Set(k, v)
         }
     }
