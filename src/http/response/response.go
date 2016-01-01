@@ -19,6 +19,10 @@ func New(m *message.Message) (*Response) {
     return this
 }
 
+func (this *Response) Status() (*status.Status) {
+    return this.status
+}
+
 func (this *Response) SetStatus(s string) (*Response) {
     m, _, err := util.RegExpMatch(s, "^HTTP/\\d+\\.\\d+\\s+(\\d+)\\s+(.+)")
     if err != nil {
@@ -31,8 +35,4 @@ func (this *Response) SetStatus(s string) (*Response) {
         this.status.SetText(t)
     }
     return this
-}
-
-func (this *Response) GetStatus() (*status.Status) {
-    return this.status
 }
