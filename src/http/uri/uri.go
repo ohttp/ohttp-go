@@ -19,7 +19,7 @@ type Uri struct {
     path          string
     username      string
     password      string
-    query         *Query
+    query         *query.Query
     fragment      string
     segments      []string
 }
@@ -63,7 +63,7 @@ func New(s string) (*Uri) {
             }
         }
         if sq := s.RawQuery; sq != "" {
-            this.query = query.New(data)
+            this.query = query.New(sq)
         }
         if sf := s.Fragment; sf != "" {
             this.fragment = sf
@@ -94,7 +94,7 @@ func (this *Uri) Username() (string) {
 func (this *Uri) Password() (string) {
     return this.password
 }
-func (this *Uri) Query() (string) {
+func (this *Uri) Query() (*query.Query) {
     return this.query
 }
 func (this *Uri) Fragment() (string) {
