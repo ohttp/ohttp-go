@@ -1,12 +1,15 @@
 package message
 
 type MessageBodyData struct {
-    content   interface{}
+    content       interface{}
+    contentType   string
 }
 
-func NewMessageBodyData(c string) (*MessageBodyData) {
+func NewMessageBodyData(c, ct string) (*MessageBodyData) {
+    // @todo parse by contentType
     return &MessageBodyData{
-        content: c,
+            content: c,
+        contentType: ct,
     }
 }
 
