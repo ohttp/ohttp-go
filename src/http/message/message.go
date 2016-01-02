@@ -81,8 +81,10 @@ func (this *Message) SetHeader(k, v string) (*Message) {
     return this
 }
 
-func (this *Message) SetHeaderAll(kv map[string]string) (*Message) {
-    this.headers.SetAll(kv)
+func (this *Message) SetHeaderAll(kv interface{}) (*Message) {
+    if kv, _ := kv.(map[string]string); kv != nil {
+        this.headers.SetAll(kv)
+    }
     return this
 }
 
