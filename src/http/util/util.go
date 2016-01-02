@@ -6,6 +6,7 @@ import (
     _url "net/url"
     _json "encoding/json"
     _re "regexp"
+    _err "errors"
 )
 
 const (
@@ -55,6 +56,18 @@ func Dumpt(args... interface{}) {
 // @return (void)
 func Dumpf(format string, args... interface{}) {
     _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
+}
+
+// Error.
+//
+// @param  f   string
+// @param  err error
+// @return (error)
+func Error(f string, err error) (error) {
+    if err == nil {
+        return _err.New(f)
+    }
+    return _fmt.Errorf(f, err)
 }
 
 // Get short type.
