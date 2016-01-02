@@ -63,3 +63,9 @@ func Uniq(arr []string) ([]string) {
     }
     return ret
 }
+
+func Shift(arr *[]string) (string) {
+    v := (*arr)[0]
+    *arr = (*arr)[1 : len(*arr)]
+    return v
+}
