@@ -29,6 +29,14 @@ func (this *Params) GetBool(k string) (bool) {
     return util.Bool((*this)[k])
 }
 
+func (this *Params) Empty() (bool) {
+    for k, v := range (*this) {
+        _ = k; _ = v
+        return false
+    }
+    return true
+}
+
 func (this *Params) String() (string) {
     m := util.Map()
     for k, v := range (*this) {
