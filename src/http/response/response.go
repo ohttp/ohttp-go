@@ -11,9 +11,9 @@ type Response struct {
     status          *status.Status
 }
 
-func New(m *message.Message) (*Response) {
+func New(m message.Message) (*Response) {
     return &Response{
-        Message: *m,
+        Message: m,
         status: status.New(0, "", ""),
     }
 }

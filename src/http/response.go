@@ -8,7 +8,7 @@ import (
 
 func NewResponse(o *params.Params) (*response.Response) {
     return response.New(
-        message.NewMessage(
+        *message.NewMessage(
             message.TYPE_RESPONSE,
             message.PROTOCOL_VERSION_1_0,
             o,

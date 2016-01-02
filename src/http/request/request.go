@@ -19,9 +19,9 @@ type Request struct {
     uri             *uri.Uri
 }
 
-func New(m *message.Message) (*Request) {
+func New(m message.Message) (*Request) {
     return &Request{
-        Message: *m,
+        Message: m,
     }
 }
 
