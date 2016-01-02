@@ -175,11 +175,7 @@ func StringFormat(format string, args... interface{}) (string) {
 // @param  search string
 // @return (bool)
 func StringSearch(input, search string) (bool) {
-    re, _ := _rex.Compile(search)
-    if re == nil {
-        return false
-    }
-    return ("" != re.FindString(input))
+    return _str.Index(input, search) > -1
 }
 
 // URL encode.
