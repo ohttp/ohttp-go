@@ -227,30 +227,37 @@ func Text(x int) (string) {
 
 // @object https.status.Status
 type Status struct {
+    status       string
     code         int
     text         string // reason phrase
-    textPhrase   string
 }
 
 // Constructor.
 //
-// @param  c  int
-// @param  t  string
-// @param  tp string
+// @param  c int
+// @param  t string
+// @param  s string
 // @return (*http.status.Status)
-func New(c int, t string, tp string) (*Status) {
+func New(c int, t string, s string) (*Status) {
     this := &Status{
         code: c,
         text: t,
     }
 
-    // check text phrase
-    if tp == "" {
-        tp = util.StringFormat("%s %s", c, t)
+    // check status line
+    if s == "" {
+        s = util.StringFormat("%s %s", c, t)
     }
-    this.textPhrase = tp
+    this.status = s
 
     return this
+}
+
+// Get status line.
+//
+// @return (string)
+func (this *Status) Status() (string) {
+    return this.status
 }
 
 // Get code.
@@ -267,11 +274,13 @@ func (this *Status) Text() (string) {
     return this.text
 }
 
-// Get text phrase.
+// Set status line.
 //
-// @return (string)
-func (this *Status) TextPhrase() (string) {
-    return this.textPhrase
+// @param  s string
+// @return (*http.status.Status)
+func (this *Status) SetStatus(s string) (*Status) {
+    this.status = s
+    return this
 }
 
 // Set code.
@@ -289,14 +298,5 @@ func (this *Status) SetCode(c int) (*Status) {
 // @return (*http.status.Status)
 func (this *Status) SetText(t string) (*Status) {
     this.text = t
-    return this
-}
-
-// Set text phrase.
-//
-// @param  tp string
-// @return (*http.status.Status)
-func (this *Status) SetTextPhrase(tp string) (*Status) {
-    this.textPhrase = tp
     return this
 }
