@@ -72,11 +72,11 @@ func (this *Request) Send() (string, error) {
 
     r := _bio.NewReader(link)
     // status-line
-    s, err := r.ReadString('\n')
-    if s == "" {
+    sl, err := r.ReadString('\n')
+    if sl == "" {
         return "", err
     }
-    rr += s
+    rr += sl
 
     for {
         b := make([]byte, 1024)
