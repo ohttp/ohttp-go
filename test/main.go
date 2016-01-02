@@ -27,11 +27,10 @@ func main() {
 
     c := http.NewClient(o)
 
-    // // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
-    // // util.Dumpf("%#v", r)
-    // // util.Dumpf("%+v", c.Request().String())
-    // // util.Dumpf("%+v", c.Response().String())
-
+    // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
+    // util.Dumpf("%#v", r)
+    // util.Dumpf("%+v", c.Request().String())
+    // util.Dumpf("%+v", c.Response().String())
     // c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
     //     func(req *request.Request, res *response.Response) {
     //     util.Dump(req.String())
@@ -70,9 +69,13 @@ func main() {
     //     util.Dump(res.String())
     // })
 
-    // c.Do("GET http://localhost/foo", nil, nil, nil)
-    // util.Dumpf("%#v", c.Request())
-    // util.Dumpf("%#v", c.Response())
+    // r := c.Put("http://localhost/foo.json", nil, nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.PutFunc("http://localhost/foo.json", nil, nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
 
     // q := query.New(map[string]interface{}{"a": true, "b": 1})
     // util.Dumpf("%#v", q.String())
