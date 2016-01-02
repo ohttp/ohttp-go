@@ -38,6 +38,14 @@ func main() {
     //     util.Dump(res.String())
     // })
 
+    // r := c.Options("http://localhost/foo.json", nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.OptionsFunc("http://localhost/foo.json", nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
+
     // r := c.Head("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.HeadFunc("http://localhost/foo.json", nil, nil,
@@ -46,13 +54,13 @@ func main() {
     //     util.Dump(res.String())
     // })
 
-    r := c.Get("http://localhost/foo.json", nil, nil)
-    util.Dumpf("%#v", r)
-    c.GetFunc("http://localhost/foo.json", nil, nil,
-        func(req *request.Request, res *response.Response) {
-        util.Dump(req.String())
-        util.Dump(res.String())
-    })
+    // r := c.Get("http://localhost/foo.json", nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.GetFunc("http://localhost/foo.json", nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
 
     // c.Do("GET http://localhost/foo", nil, nil, nil)
     // util.Dumpf("%#v", c.Request())
