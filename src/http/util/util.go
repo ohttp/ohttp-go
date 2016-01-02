@@ -2,10 +2,10 @@ package util
 
 import (
     _fmt "fmt"
-    _rex "regexp"
     _str "strings"; _strc "strconv"
     _url "net/url"
     _json "encoding/json"
+    _re "regexp"
 )
 
 const (
@@ -296,8 +296,8 @@ func Lower(input string) (string) {
 // @param  s  string
 // @param  sr string
 // @return ([]string, *regexp.Regexp, error)
-func RegExpMatch(s, sr string) ([]string, *_rex.Regexp, error) {
-    re, err := _rex.Compile(sr)
+func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
+    re, err := _re.Compile(sr)
     if err != nil {
         return nil, re, err
     }
@@ -309,7 +309,7 @@ func RegExpMatch(s, sr string) ([]string, *_rex.Regexp, error) {
 // @param  s  string
 // @param  sr string
 // @return (map[string]string, *regexp.Regexp, error)
-func RegExpMatchAll(s, sr string) (map[string]string, *_rex.Regexp, error) {
+func RegExpMatchAll(s, sr string) (map[string]string, *_re.Regexp, error) {
     m, re, err := RegExpMatch(s, sr)
     if err != nil {
         return nil, re, err
@@ -329,7 +329,7 @@ func RegExpMatchAll(s, sr string) (map[string]string, *_rex.Regexp, error) {
 // @param  search string
 // @return (bool)
 func RegExpTest(input, search string) (bool) {
-    re, _ := _rex.Compile(search)
+    re, _ := _re.Compile(search)
     if re == nil {
         return false
     }
