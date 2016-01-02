@@ -67,6 +67,9 @@ func (this *Message) HeaderAll() (map[string]string) {
 func (this *Message) Body() (*MessageBody) {
     return this.body
 }
+func (this *Message) BodyData() (*MessageBodyData) {
+    return this.bodyData
+}
 func (this *Message) Error() (*MessageError) {
     return this.error
 }
