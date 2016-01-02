@@ -2,6 +2,7 @@ package headers
 
 import (
     "util"
+    "util/array/sarray"
 )
 
 type Headers struct {
@@ -30,4 +31,20 @@ func (this *Headers) Get(k string) (string) {
 }
 func (this *Headers) GetAll() (map[string]string) {
     return this.data
+}
+
+func Parse(hs string) (map[string]string) {
+    ret := util.MapString()
+    if tmp := util.Explode(hs, "\r\n", -1); tmp != nil {
+        // status line (HTTP/1.0 200 OK)
+        ret["0"] = sarray.Shift(&tmp)
+
+        for _, tm := range tmp {
+            if t := util.Explode(tm, ":", 2); len(t) == 2 {
+                ret[util.Trim(t[0], "")] =  util.Trim(t[1], "")
+            }
+        }
+    }
+
+    return ret
 }
