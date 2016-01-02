@@ -107,4 +107,11 @@ func (this *Client) PostFunc(u string, up, b, h interface{},
     fn(this.request, this.response)
 }
 
-// ...
+func (this *Client) Put(u string, up, b, h interface{}) (*response.Response) {
+    return this.Do(method.PUT +" "+ u, up, b, h)
+}
+func (this *Client) PutFunc(u string, up, b, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Put(u, up, b, h)
+    fn(this.request, this.response)
+}
