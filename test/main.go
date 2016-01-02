@@ -62,6 +62,14 @@ func main() {
     //     util.Dump(res.String())
     // })
 
+    // r := c.Post("http://localhost/foo.json", nil, nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.PostFunc("http://localhost/foo.json", nil, nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
+
     // c.Do("GET http://localhost/foo", nil, nil, nil)
     // util.Dumpf("%#v", c.Request())
     // util.Dumpf("%#v", c.Response())
