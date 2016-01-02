@@ -1,22 +1,47 @@
 package main
 
 import (
-    // "util"
-    // "util/params"
-    // "http"
-    // "http/status"
+    "util"
+    "util/params"
+    // "util/query"
+    "http"
 )
 
 func main() {
+    o := params.New()
+    o.Set("debug", true)
+
+    c := http.NewClient(o)
+    r := c.Do("GET http://localhost:5984/foo.json", nil, nil, nil)
+    util.Dumpf("%#v", r)
+    util.Dumpf("%+v", c.Request().String())
+    util.Dumpf("%+v", c.Response().String())
+
+    // c.Do("GET http://localhost/foo", nil, nil, nil)
+    // util.Dumpf("%#v", c.Request())
+    // util.Dumpf("%#v", c.Response())
+
+    // q := query.New(map[string]interface{}{"a": true, "b": 1})
+    // util.Dumpf("%#v", q.String())
+    // util.Dumpf("%#v", q.Params().String())
+
     // req := http.NewRequest()
-    // req.SetUri("http://q:11@localhost:8080/foo?a=1#frg", nil)
-    // util.Dumpf("%#v", req)
-    // util.Dumpf("%+v", req.GetUri())
-    // util.Dumps("")
+    // // req.SetMethod("GET")
+    // req.SetUri("http://localhost/foo", nil)
+    // // // util.Dumpf("%#v", req)
+    // util.Dumpf("%#v", req.Uri())
+    // // // util.Dumps("")
+
+    // res, err := req.Send()
+    // if err != nil {
+    //     panic(err)
+    // }
+    // util.Dumps(res)
+
     // res := http.NewResponse()
     // res.SetStatus("HTTP/1.0 200 OK")
     // util.Dumpf("%#v", res)
-    // util.Dumpf("%#v", res.GetStatus())
+    // util.Dumpf("%#v", res.Status().Code())
 
     // uri := http.NewUri("http://kerem:123@git.local.com")
     // uri := http.NewUri("http://kerem:123@git.local.com:8080/foo?a=the%20a!#xxx")
