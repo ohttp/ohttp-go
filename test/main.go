@@ -77,6 +77,14 @@ func main() {
     //     util.Dump(res.String())
     // })
 
+    // r := c.Patch("http://localhost/foo.json", nil, nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.PatchFunc("http://localhost/foo.json", nil, nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
+
     // q := query.New(map[string]interface{}{"a": true, "b": 1})
     // util.Dumpf("%#v", q.String())
     // util.Dumpf("%#v", q.Params().String())
