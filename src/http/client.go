@@ -55,11 +55,9 @@ func (this *Client) Do(u string, up interface{}, b interface{}, h interface{}) (
     this.response.SetHeaderAll(rh)
     this.response.SetBody(rt[1])
 
-    if this.response.Status().Code() >= 400 {
-        this.response.SetError(
-            this.response.Status().Code(),
-            this.response.Status().Text(),
-        )
+    if sc := this.response.Status().Code(); sc >= 400 {
+        st := this.response.Status().Text()
+        this.response.SetError(sc, st)
     }
 
     return this.response
