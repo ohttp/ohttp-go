@@ -160,3 +160,12 @@ func (this *Client) CopyFunc(u string, up, h interface{},
     this.Copy(u, up, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Move(u string, up, h interface{}) (*response.Response) {
+    return this.Do(method.MOVE +" "+ u, up, nil, h)
+}
+func (this *Client) MoveFunc(u string, up, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Move(u, up, h)
+    fn(this.request, this.response)
+}
