@@ -153,7 +153,7 @@ func UInt(input interface{}) (uint) {
 // @param  input interface{}
 // @return (bool)
 func Bool(i interface{}) (bool) {
-    if r := String(i); r == "1" || r == "true" {
+    if r := String(i); r == "true" || r == "1" {
         return true
     }
     return false
