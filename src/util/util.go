@@ -75,6 +75,26 @@ func TypeReal(args... interface{}) (string) {
     return _str.Replace(_fmt.Sprintf("%T", args[0]), " ", "", -1)
 }
 
+// Check is empty.
+//
+// @param  input interface{}
+// @return (bool)
+func IsEmpty(input interface{}) (bool) {
+    return (input == nil || input == "" || input == 0)
+}
+
+// Check empty & set default value.
+//
+// @param  input        interface{}
+// @param  inputDefault interface{}
+// @return (bool)
+func IsEmptySet(input, inputDefault interface{}) (interface{}) {
+    if IsEmpty(input) {
+        input = inputDefault
+    }
+    return input
+}
+
 // Number converter..
 //
 // @param  input     interface{}
