@@ -9,6 +9,13 @@ import (
     // // "http/util/query"
 )
 
+func init() {
+    http.Shutup()
+    request.Shutup()
+    response.Shutup()
+    util.Shutup()
+}
+
 func main() {
     // r1, _, e1 := util.RegExpMatch(rs, re)
     // // r2, _, e2 := util.RegExpMatchName(rs, re)
@@ -25,7 +32,23 @@ func main() {
     // // util.Dumpf("%+v", c.Request().String())
     // // util.Dumpf("%+v", c.Response().String())
 
-    c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
+    // c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
+
+    // r := c.Head("http://localhost/foo.json", nil, nil)
+    // util.Dumpf("%#v", r)
+    // c.HeadFunc("http://localhost/foo.json", nil, nil,
+    //     func(req *request.Request, res *response.Response) {
+    //     util.Dump(req.String())
+    //     util.Dump(res.String())
+    // })
+
+    r := c.Get("http://localhost/foo.json", nil, nil)
+    util.Dumpf("%#v", r)
+    c.GetFunc("http://localhost/foo.json", nil, nil,
         func(req *request.Request, res *response.Response) {
         util.Dump(req.String())
         util.Dump(res.String())
