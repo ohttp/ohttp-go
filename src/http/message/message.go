@@ -90,25 +90,24 @@ func (this *Message) SetHeaderAll(kv interface{}) (*Message) {
 
 func (this *Message) SetBody(b interface{}) {
     if b != nil {
-        var c, ct string
-        ct = this.Header("Content-Type")
+        var c string
+        ct := this.Header("Content-Type")
         switch b := b.(type) {
             case string:
-                if ct == "application/json" {
+                if util.StringSearch(ct, "application/json") {
                     c = util.Quote(b)
+                } else {
+                    c = util.String(b)
                 }
             default:
-                bt := util.StringFormat("%T", b)
-                if util.StringSearch(bt, "^u?int(\\d+)?|float(32|64)$") {
-                    c = util.String(b)
-                } else {
-                    if ct == "application/json" {
-                        b, err := util.JsonEncode(b)
-                        if err != nil {
-                            panic(err)
-                        }
-                        c = b
+                if util.StringSearch(ct, "application/json") {
+                    b, err := util.JsonEncode(b)
+                    if err != nil {
+                        panic(err)
                     }
+                    c = b
+                } else {
+                    c = util.String(b)
                 }
         }
         // @overwrite
