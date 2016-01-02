@@ -37,7 +37,7 @@ func (this *Response) SetStatus(s string) (*Response) {
 }
 
 func (this *Response) String() (string) {
-    return this.ToString(this.TheStatusLine() +"\r\n")
+    return this.ToString(this.TheStatusLine() + message.CRLF)
 }
 
 func (this *Response) TheStatusLine() (string) {

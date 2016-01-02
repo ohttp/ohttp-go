@@ -69,10 +69,10 @@ func (this *Request) Send() (string, error) {
     rs += this.TheRequestLine()
     for k, v := range this.HeaderAll() {
         if v != "" {
-            rs += _fmt.Sprintf("%s: %s\r\n", k, v)
+            rs += _fmt.Sprintf("%s: %s%s", k, v, message.CRLF)
         }
     }
-    rs += "\r\n"
+    rs += message.CRLF
     rs += this.Body().Content()
 
     _fmt.Fprint(link, rs)
@@ -118,5 +118,5 @@ func (this *Request) TheRequestLine() (string) {
     if s := this.uri.Query().String(); s != "" {
         rp += "?"+ s
     }
-    return _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
+    return _fmt.Sprintf("%s %s HTTP/%s%s", rm, rp, rpv, message.CRLF)
 }
