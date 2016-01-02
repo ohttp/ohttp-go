@@ -22,13 +22,13 @@ func main() {
     // util.Dumpf("%#v %#v %d", r1, e1, len(r1))
     // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
 
-    // o := params.New()
+    o := params.New()
     // o.Set("debug", true)
 
-    // c := http.NewClient(o)
+    c := http.NewClient(o)
 
-    // r, _ := c.Do("GET http://localhost/foo.json", nil, nil, nil)
-    // util.Dumpf("%#v", r)
+    r, _ := c.Do("GET http://localhost/foo.json", nil, nil, nil)
+    util.Dumpf("%#v", r.OK())
     // util.Dumpf("%+v", c.Request().String())
     // util.Dumpf("%+v", c.Response().String())
     // c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,

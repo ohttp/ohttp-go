@@ -37,6 +37,10 @@ func (this *Response) SetStatus(s string) (*Response) {
     return this
 }
 
+func (this *Response) OK() (bool) {
+    return (this.Error().Code() == 0 && this.Error().Text() == "")
+}
+
 func (this *Response) String() (string) {
     return this.ToString(this.TheStatusLine() + util.CRLF)
 }

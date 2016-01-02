@@ -97,6 +97,10 @@ func (this *Request) Send() (string, error) {
     return rr, nil
 }
 
+func (this *Request) OK() (bool) {
+    return (this.Error().Code() == 0 && this.Error().Text() == "")
+}
+
 func (this *Request) String() (string) {
     return this.ToString(this.TheRequestLine())
 }
