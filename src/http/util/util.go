@@ -85,7 +85,7 @@ func IsEmpty(input interface{}) (bool) {
 //
 // @param  input        interface{}
 // @param  inputDefault interface{}
-// @return (bool)
+// @return (interface{})
 func IsEmptySet(input, inputDefault interface{}) (interface{}) {
     if IsEmpty(input) {
         input = inputDefault
