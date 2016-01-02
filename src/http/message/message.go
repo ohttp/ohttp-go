@@ -136,13 +136,10 @@ func (this *Message) SetBody(b interface{}) {
                     c = util.String(b)
                 }
         }
+        cl := len(c)
         // @overwrite
-        this.body = NewMessageBody(
-            c,
-            ct,
-            len(c),
-        )
-        this.SetHeader("Content-Length", util.String(len(c)))
+        this.body = NewMessageBody(c, ct, cl)
+        this.SetHeader("Content-Length", util.String(cl))
     } else if this.type_ == TYPE_RESPONSE {
         // @overwrite
         this.body = NewMessageBody(
