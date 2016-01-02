@@ -16,6 +16,8 @@ func Dial(h string, p uint) (_net.Conn, error) {
         return DialHttp(h, PORT_HTTP)
     } else if p == PORT_HTTPS {
         return DialHttps(h, PORT_HTTPS)
+    } else {
+        p = PORT_HTTP
     }
     return DialHttp(h, p)
 }
