@@ -115,3 +115,12 @@ func (this *Client) PutFunc(u string, up, b, h interface{},
     this.Put(u, up, b, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Patch(u string, up, b, h interface{}) (*response.Response) {
+    return this.Do(method.PATCH +" "+ u, up, b, h)
+}
+func (this *Client) PatchFunc(u string, up, b, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Patch(u, up, b, h)
+    fn(this.request, this.response)
+}
