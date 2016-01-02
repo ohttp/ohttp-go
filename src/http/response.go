@@ -1,9 +1,9 @@
 package http
 
 import (
-    "http/util/params"
     "http/message"
     "http/response"
+    "http/util/params"
 )
 
 func NewResponse(o *params.Params) (*response.Response) {
