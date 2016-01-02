@@ -59,7 +59,7 @@ func (this *Request) Send() (string, error) {
 
     link, err := scheme.Dial(uh, us)
     if err != nil {
-        panic(err)
+        return "", err
     }
     defer link.Close()
 
@@ -91,11 +91,7 @@ func (this *Request) Send() (string, error) {
     // status-line
     s, err := r.ReadString('\n')
     if s == "" {
-        print("HTTP error: no response returned from server!\n")
-        print("---------------------------------------------\n")
-        print(rs)
-        print("---------------------------------------------\n")
-        panic(err)
+        return "", err
     }
     rr += s
 
