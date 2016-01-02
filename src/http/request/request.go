@@ -20,10 +20,9 @@ type Request struct {
 }
 
 func New(m *message.Message) (*Request) {
-    this := &Request{
+    return &Request{
         Message: *m,
     }
-    return this
 }
 
 func (this *Request) Method() (string) {
