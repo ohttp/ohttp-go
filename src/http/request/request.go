@@ -10,7 +10,7 @@ import (
     "http/message"
     "http/uri"
     "http/useragent"
-    "http/request/scheme"
+    "http/connection"
 )
 
 type Request struct {
@@ -52,14 +52,7 @@ func (this *Request) Send() (string, error) {
             useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
     }
 
-    var uh, us string
-    uh = this.uri.Host()
-    us = this.uri.Scheme()
-    if this.uri.Port() == scheme.HTTPS_PORT {
-        us = scheme.HTTPS
-    }
-
-    link, err := scheme.Dial(uh, us)
+    link, err := connection.Dial(this.uri.Host(), this.uri.Port())
     if err != nil {
         return "", err
     }
