@@ -43,6 +43,8 @@ func (this *Request) SetUri(u string, up interface{}) (*Request) {
 }
 
 func (this *Request) Send() (string, error) {
+    debug := this.Options().GetBool("debug")
+
     this.SetHeader("Host", this.uri.Host())
     this.SetHeader("Connection", "close")
     if this.Header("User-Agent") == "" {
@@ -83,7 +85,6 @@ func (this *Request) Send() (string, error) {
     }
     rs += "\r\n"
     rs += this.Body().Content()
-    util.Dumps(rs)
 
     _fmt.Fprint(link, rs)
 
@@ -104,6 +105,11 @@ func (this *Request) Send() (string, error) {
     }
 
     link.Close()
+
+    if debug == true {
+        util.Dumps(rs)
+        util.Dumps(rr)
+    }
 
     return rr, nil
 }
