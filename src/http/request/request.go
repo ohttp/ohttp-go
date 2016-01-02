@@ -66,7 +66,7 @@ func (this *Request) Send() (string, error) {
     defer link.Close()
 
     var rs, rr string
-    rs += this.RequestLine()
+    rs += this.TheRequestLine()
     for k, v := range this.HeaderAll() {
         if v != "" {
             rs += _fmt.Sprintf("%s: %s\r\n", k, v)
@@ -104,11 +104,11 @@ func (this *Request) Send() (string, error) {
 }
 
 func (this *Request) String() (string) {
-    return this.ToString(this.RequestLine())
+    return this.ToString(this.TheRequestLine())
 }
 
 
-func (this *Request) RequestLine() (string) {
+func (this *Request) TheRequestLine() (string) {
     rm  := this.Method()
     rp  := "/"
     rpv := this.ProtocolVersion()
