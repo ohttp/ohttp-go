@@ -151,3 +151,12 @@ func (this *Client) ConnectFunc(u string, up, h interface{},
     this.Connect(u, up, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Copy(u string, up, h interface{}) (*response.Response) {
+    return this.Do(method.COPY +" "+ u, up, nil, h)
+}
+func (this *Client) CopyFunc(u string, up, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Copy(u, up, h)
+    fn(this.request, this.response)
+}
