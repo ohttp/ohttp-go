@@ -1,10 +1,12 @@
 package main
 
 import (
+    "http"
     "http/util"
     "http/util/params"
     // "http/util/query"
-    "http"
+    "http/request"
+    "http/response"
 )
 
 func main() {
@@ -12,10 +14,17 @@ func main() {
     o.Set("debug", true)
 
     c := http.NewClient(o)
-    r := c.Do("GET http://localhost:5984/foo.json", nil, nil, nil)
-    util.Dumpf("%#v", r)
-    util.Dumpf("%+v", c.Request().String())
-    util.Dumpf("%+v", c.Response().String())
+
+    // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
+    // util.Dumpf("%#v", r)
+    // util.Dumpf("%+v", c.Request().String())
+    // util.Dumpf("%+v", c.Response().String())
+
+    c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
+        func(req *request.Request, res *response.Response) {
+        util.Dumpf("%+v", req.String())
+        util.Dumpf("%+v", res.String())
+    })
 
     // c.Do("GET http://localhost/foo", nil, nil, nil)
     // util.Dumpf("%#v", c.Request())
