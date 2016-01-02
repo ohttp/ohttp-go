@@ -8,6 +8,10 @@ import (
     _json "encoding/json"
 )
 
+const (
+    CRLF = "\r\n"
+)
+
 func Shutup() {}
 
 // Dump.

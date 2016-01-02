@@ -27,10 +27,6 @@ type MessageStringInterface interface {
 }
 
 const (
-    CRLF = "\r\n"
-)
-
-const (
     TYPE_REQUEST  uint = 1
     TYPE_RESPONSE      = 2
 )
@@ -157,10 +153,10 @@ func (this *Message) ToString(sl string) (string) {
             continue
         }
         if (v != "") {
-            s += util.StringFormat("%s: %s%s", k, v, CRLF)
+            s += util.StringFormat("%s: %s%s", k, v, util.CRLF)
         }
     }
-    s += CRLF
+    s += util.CRLF
     if this.body != nil {
         s += this.body.Content()
     }

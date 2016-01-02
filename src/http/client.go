@@ -3,7 +3,6 @@ package http
 import (
     "util"
     "util/params"
-    "http/message"
     "http/request"
     "http/response"
     "http/headers"
@@ -44,7 +43,7 @@ func (this *Client) Do(u string, up interface{}, b interface{}, h interface{}) (
         panic(err)
     }
 
-    rt := util.Explode(rs, message.CRLF + message.CRLF, 2)
+    rt := util.Explode(rs, util.CRLF + util.CRLF, 2)
     if len(rt) != 2 {
         panic("No valid response returned from server!")
     }

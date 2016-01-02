@@ -35,7 +35,7 @@ func (this *Headers) GetAll() (map[string]string) {
 
 func Parse(hs string) (map[string]string) {
     ret := util.MapString()
-    if tmp := util.Explode(hs, "\r\n", -1); tmp != nil {
+    if tmp := util.Explode(hs, util.CRLF, -1); tmp != nil {
         // status line (HTTP/1.0 200 OK)
         ret["0"] = sarray.Shift(&tmp)
 
