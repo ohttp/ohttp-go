@@ -142,3 +142,12 @@ func (this *Client) TraceFunc(u string, up, h interface{},
     this.Trace(u, up, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Connect(u string, up, h interface{}) (*response.Response) {
+    return this.Do(method.CONNECT +" "+ u, up, nil, h)
+}
+func (this *Client) ConnectFunc(u string, up, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Connect(u, up, h)
+    fn(this.request, this.response)
+}
