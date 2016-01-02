@@ -74,6 +74,10 @@ func (this *Client) DoFunc(u string, up interface{}, b interface{}, h interface{
 func (this *Client) Head(u string, up interface{}, h interface{}) (*response.Response) {
     return this.Do(method.HEAD +" "+ u, up, nil, h)
 }
-func (this *Client) HeadFunc() {}
+func (this *Client) HeadFunc(u string, up interface{}, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Head(u, up, h)
+    fn(this.request, this.response)
+}
 
 // ...
