@@ -1,4 +1,4 @@
-package scheme
+package connection
 
 import (
     _fmt "fmt"
