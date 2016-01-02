@@ -22,105 +22,141 @@ func main() {
     // util.Dumpf("%#v %#v %d", r1, e1, len(r1))
     // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
 
-    o := params.New()
+    // o := params.New()
     // o.Set("debug", true)
 
-    c := http.NewClient(o)
+    // c := http.NewClient(o)
 
-    // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
+    // r, _ := c.Do("GET http://localhost/foo.json", nil, nil, nil)
     // util.Dumpf("%#v", r)
     // util.Dumpf("%+v", c.Request().String())
     // util.Dumpf("%+v", c.Response().String())
     // c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Options("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Options("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.OptionsFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Head("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Head("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.HeadFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Get("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Get("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.GetFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Post("http://localhost/foo.json", nil, nil, nil)
+    // r, _ := c.Post("http://localhost/foo.json", nil, nil, nil)
     // util.Dumpf("%#v", r)
     // c.PostFunc("http://localhost/foo.json", nil, nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Put("http://localhost/foo.json", nil, nil, nil)
+    // r, _ := c.Put("http://localhost/foo.json", nil, nil, nil)
     // util.Dumpf("%#v", r)
     // c.PutFunc("http://localhost/foo.json", nil, nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Patch("http://localhost/foo.json", nil, nil, nil)
+    // r, _ := c.Patch("http://localhost/foo.json", nil, nil, nil)
     // util.Dumpf("%#v", r)
     // c.PatchFunc("http://localhost/foo.json", nil, nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Delete("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Delete("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.DeleteFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Trace("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Trace("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.TraceFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Connect("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Connect("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.ConnectFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Copy("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Copy("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.CopyFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
 
-    // r := c.Move("http://localhost/foo.json", nil, nil)
+    // r, _ := c.Move("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
     // c.MoveFunc("http://localhost/foo.json", nil, nil,
-    //     func(req *request.Request, res *response.Response) {
+    //     func(req *request.Request, res *response.Response, err error) {
+    //     if err != nil {
+    //         panic(err)
+    //     }
     //     util.Dump(req.String())
     //     util.Dump(res.String())
     // })
