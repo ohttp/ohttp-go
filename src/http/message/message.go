@@ -31,8 +31,8 @@ const (
 )
 
 const (
-    TYPE_REQUEST  = 1
-    TYPE_RESPONSE = 2
+    TYPE_REQUEST  uint = 1
+    TYPE_RESPONSE      = 2
 )
 
 const (
@@ -115,7 +115,7 @@ func (this *Message) SetBody(b interface{}) {
         return
     }
 
-    if this.Type() == TYPE_REQUEST {
+    if this.type_ == TYPE_REQUEST {
         var c string
         ct := this.Header("Content-Type")
         switch b := b.(type) {
@@ -143,7 +143,7 @@ func (this *Message) SetBody(b interface{}) {
             len(c),
         )
         this.SetHeader("Content-Length", util.String(len(c)))
-    } else if this.Type() == TYPE_RESPONSE {
+    } else if this.type_ == TYPE_RESPONSE {
         // @overwrite
         this.body = NewMessageBody(
             util.String(b),
