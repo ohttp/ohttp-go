@@ -298,25 +298,6 @@ func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
     return re.FindStringSubmatch(s), re, nil
 }
 
-// RegExp match all.
-//
-// @param  s  string
-// @param  sr string
-// @return (map[string]string, *regexp.Regexp, error)
-func RegExpMatchAll(s, sr string) (map[string]string, *_re.Regexp, error) {
-    m, re, err := RegExpMatch(s, sr)
-    if err != nil {
-        return nil, re, err
-    }
-    ret := MapString()
-    for i, n := range re.SubexpNames() {
-        if i != 0 { // pass re input
-            ret[n] = m[i]
-        }
-    }
-    return ret, re, nil
-}
-
 // RegExp test.
 //
 // @param  format string
