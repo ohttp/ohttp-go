@@ -98,4 +98,13 @@ func (this *Client) GetFunc(u string, up interface{}, h interface{},
     fn(this.request, this.response)
 }
 
+func (this *Client) Post(u string, up interface{}, b interface{}, h interface{}) (*response.Response) {
+    return this.Do(method.POST +" "+ u, up, b, h)
+}
+func (this *Client) PostFunc(u string, up interface{}, b interface{}, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Post(u, up, b, h)
+    fn(this.request, this.response)
+}
+
 // ...
