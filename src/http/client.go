@@ -80,4 +80,13 @@ func (this *Client) HeadFunc(u string, up interface{}, h interface{},
     fn(this.request, this.response)
 }
 
+func (this *Client) Get(u string, up interface{}, h interface{}) (*response.Response) {
+    return this.Do(method.GET +" "+ u, up, nil, h)
+}
+func (this *Client) GetFunc(u string, up interface{}, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Get(u, up, h)
+    fn(this.request, this.response)
+}
+
 // ...
