@@ -1,6 +1,6 @@
 package method
 
-// HTTP methods.
+// HTTP Request methods.
 // @const string
 const (
     OPTIONS   = "OPTIONS"
