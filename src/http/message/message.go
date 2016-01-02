@@ -123,3 +123,10 @@ func (this *Message) SetBody(b interface{}) {
         this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
     }
 }
+
+func (this *Message) SetError(ec, et interface{}) {
+    if ec != nil && et != nil {
+        this.error.code = util.Int(ec)
+        this.error.text = util.String(et)
+    }
+}
