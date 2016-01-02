@@ -11,7 +11,12 @@ type Message struct {
     headers         *headers.Headers
     body            *MessageBody
     bodyData        *MessageBodyData // parsed
+    MessageOKInterface
     MessageStringInterface
+}
+
+type MessageOKInterface interface {
+    OK() (bool)
 }
 
 type MessageStringInterface interface {
