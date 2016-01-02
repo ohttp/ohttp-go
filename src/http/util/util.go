@@ -54,12 +54,6 @@ func Dumpt(args... interface{}) {
 // @param  args... interface{}
 // @return (void)
 func Dumpf(format string, args... interface{}) {
-    if format == "" {
-        for _, arg := range args {
-            _ = arg // silence..
-            format += "%+v "
-        }
-    }
     _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
 }
 
