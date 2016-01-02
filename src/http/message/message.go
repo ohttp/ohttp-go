@@ -149,3 +149,20 @@ func (this *Message) SetBody(b interface{}) {
         )
     }
 }
+
+func (this *Message) ToString(sl string) (string) {
+    s := sl
+    for k, v := range this.HeaderAll() {
+        if k == "0" { // response only
+            continue
+        }
+        if (v != "") {
+            s += util.StringFormat("%s: %s%s", k, v, CRLF)
+        }
+    }
+    s += CRLF
+    if this.body != nil {
+        s += this.body.Content()
+    }
+    return s
+}
