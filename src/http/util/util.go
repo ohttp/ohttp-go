@@ -285,19 +285,6 @@ func Lower(input string) (string) {
     return _str.ToLower(input)
 }
 
-// RegExp match.
-//
-// @param  s  string
-// @param  sr string
-// @return ([]string, *regexp.Regexp, error)
-func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
-    re, err := _re.Compile(sr)
-    if err != nil {
-        return nil, re, err
-    }
-    return re.FindStringSubmatch(s), re, nil
-}
-
 // RegExp test.
 //
 // @param  format string
@@ -309,6 +296,19 @@ func RegExpTest(input, search string) (bool) {
         return false
     }
     return ("" != re.FindString(input))
+}
+
+// RegExp match.
+//
+// @param  s  string
+// @param  sr string
+// @return ([]string, *regexp.Regexp, error)
+func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
+    re, err := _re.Compile(sr)
+    if err != nil {
+        return nil, re, err
+    }
+    return re.FindStringSubmatch(s), re, nil
 }
 
 // Map maker.
