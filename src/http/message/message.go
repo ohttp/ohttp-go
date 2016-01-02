@@ -106,9 +106,9 @@ func (this *Message) SetError(ec int, et string) {
     this.error.text = et
 }
 
-func (this *Message) SetBody(b interface{}) {
+func (this *Message) SetBody(b interface{}) (*Message) {
     if b == nil {
-        return
+        return this
     }
 
     if this.type_ == TYPE_REQUEST {
@@ -144,6 +144,8 @@ func (this *Message) SetBody(b interface{}) {
             util.Int(this.Header("Content-Length")),
         )
     }
+
+    return this
 }
 
 func (this *Message) ToString(sl string) (string) {

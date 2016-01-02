@@ -36,10 +36,10 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
         panic("Usage: <Method GET|POST...> <Scheme http|https>://<Host>/<Path>... !")
     }
 
-    this.request.SetMethod(m[1])
-    this.request.SetUri(m[2], up)
-    this.request.SetBody(b)
-    this.request.SetHeaderAll(h)
+    this.request.SetMethod(m[1]).
+        SetUri(m[2], up).
+        SetBody(b).
+        SetHeaderAll(h)
 
     rs, err := this.request.Send()
     if err != nil {
