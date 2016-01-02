@@ -51,7 +51,7 @@ func NewMessage(t uint, pv string, o *params.Params) (*Message) {
         body: NewMessageBody("", ""),
         bodyData: NewMessageBodyData(""),
         error: NewMessageError(0, ""),
-        options: util.IsEmptySet(o, params.New()).(*params.Params),
+        options: o,
     }
 }
 
@@ -74,6 +74,9 @@ func (this *Message) BodyData() (*MessageBodyData) {
     return this.bodyData
 }
 func (this *Message) Options() (*params.Params) {
+    if this.options == nil {
+        this.options = params.New()
+    }
     return this.options
 }
 func (this *Message) Error() (*MessageError) {
