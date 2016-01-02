@@ -30,9 +30,8 @@ func (this *Response) SetStatus(s string) (*Response) {
     }
     if len(m) == 3 {
         this.status.SetTextPhrase(s)
-        c, t := util.Int(m[1]), util.Trim(m[2], "")
-        this.status.SetCode(c)
-        this.status.SetText(t)
+        this.status.SetCode(util.Int(m[1]))
+        this.status.SetText(util.Trim(m[2], ""))
     }
     return this
 }
