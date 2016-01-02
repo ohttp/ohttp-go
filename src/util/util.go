@@ -280,12 +280,12 @@ func RegExpMatch(s, sr string) ([]string, *_rex.Regexp, error) {
     return re.FindStringSubmatch(s), re, nil
 }
 
-// RegExp match named.
+// RegExp match all.
 //
 // @param  s  string
 // @param  sr string
 // @return (map[string]string, *regexp.Regexp, error)
-func RegExpMatchNamed(s, sr string) (map[string]string, *_rex.Regexp, error) {
+func RegExpMatchAll(s, sr string) (map[string]string, *_rex.Regexp, error) {
     m, re, err := RegExpMatch(s, sr)
     if err != nil {
         return nil, re, err
