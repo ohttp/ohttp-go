@@ -48,8 +48,8 @@ func NewMessage(t uint, pv string, o *params.Params) (*Message) {
         type_: t,
         protocolVersion: pv,
         headers: headers.New(),
-        body: NewMessageBody("", ""),
-        bodyData: NewMessageBodyData(""),
+        body: NewMessageBody("", "", 0),
+        bodyData: NewMessageBodyData("", ""),
         error: NewMessageError(0, ""),
         options: o,
     }
@@ -105,8 +105,17 @@ func (this *Message) SetHeaderAll(kv interface{}) (*Message) {
     return this
 }
 
+func (this *Message) SetError(ec int, et string) {
+    this.error.code = ec
+    this.error.text = et
+}
+
 func (this *Message) SetBody(b interface{}) {
-    if b != nil {
+    if b == nil {
+        return
+    }
+
+    if this.Type() == TYPE_REQUEST {
         var c string
         ct := this.Header("Content-Type")
         switch b := b.(type) {
@@ -128,12 +137,18 @@ func (this *Message) SetBody(b interface{}) {
                 }
         }
         // @overwrite
-        this.body = NewMessageBody(c, ct)
-        this.SetHeader("Content-Length", util.String(this.body.ContentLength()))
+        this.body = NewMessageBody(
+            c,
+            ct,
+            len(c),
+        )
+        this.SetHeader("Content-Length", util.String(len(c)))
+    } else if this.Type() == TYPE_RESPONSE {
+        // @overwrite
+        this.body = NewMessageBody(
+            util.String(b),
+            this.Header("Content-Type"),
+            util.Int(this.Header("Content-Length")),
+        )
     }
-}
-
-func (this *Message) SetError(ec int, et string) {
-    this.error.code = ec
-    this.error.text = et
 }
