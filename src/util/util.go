@@ -153,7 +153,7 @@ func String(input interface{}) (string) {
         default:
             inputType := TypeReal(input)
             // check numerics
-            if StringSearch(inputType, "u?int(\\d+)?|float(32|64)") {
+            if RegExpTest(inputType, "u?int(\\d+)?|float(32|64)") {
                 return _fmt.Sprintf("%v", input)
             }
             panic("Unsupported input type '"+ inputType +"' given!")
@@ -301,6 +301,19 @@ func RegExpMatchNamed(s, sr string) (map[string]string, *_rex.Regexp, error) {
         }
     }
     return ret, re, nil
+}
+
+// RegExp test.
+//
+// @param  format string
+// @param  search string
+// @return (bool)
+func RegExpTest(input, search string) (bool) {
+    re, _ := _rex.Compile(search)
+    if re == nil {
+        return false
+    }
+    return ("" != re.FindString(input))
 }
 
 // Map maker.
