@@ -124,3 +124,12 @@ func (this *Client) PatchFunc(u string, up, b, h interface{},
     this.Patch(u, up, b, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Delete(u string, up, h interface{}) (*response.Response) {
+    return this.Do(method.DELETE +" "+ u, up, nil, h)
+}
+func (this *Client) DeleteFunc(u string, up, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Delete(u, up, h)
+    fn(this.request, this.response)
+}
