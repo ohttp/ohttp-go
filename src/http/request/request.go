@@ -65,16 +65,7 @@ func (this *Request) Send() (string, error) {
     }
     defer link.Close()
 
-    var rm, rp, rpv string
-    rm  = this.Method()
-    rp  = "/"
-    rpv = this.ProtocolVersion()
-    if s := this.uri.Path(); s != "" {
-        rp = s
-    }
-    if s := this.uri.Query().String(); s != "" {
-        rp += "?"+ s
-    }
+    rm, rp, rpv := this.preparePath()
 
     var rs, rr string
     rs += _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
@@ -112,4 +103,23 @@ func (this *Request) Send() (string, error) {
     }
 
     return rr, nil
+}
+
+func (this *Request) String() (string) {
+    rm, rp, rpv := this.preparePath()
+    return this.ToString(_fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv))
+}
+
+
+func (this *Request) preparePath() (rm, rp, rpv string) {
+    rm  = this.Method()
+    rp  = "/"
+    rpv = this.ProtocolVersion()
+    if s := this.uri.Path(); s != "" {
+        rp = s
+    }
+    if s := this.uri.Query().String(); s != "" {
+        rp += "?"+ s
+    }
+    return rm, rp, rpv
 }
