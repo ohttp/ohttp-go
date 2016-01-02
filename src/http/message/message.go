@@ -11,6 +11,7 @@ type Message struct {
     headers         *headers.Headers
     body            *MessageBody
     bodyData        *MessageBodyData // parsed
+    error           *MessageError
     MessageOKInterface
     MessageStringInterface
 }
@@ -47,6 +48,7 @@ func NewMessage(t uint, pv string) (*Message) {
         headers: headers.New(),
         body: NewMessageBody("", ""),
         bodyData: NewMessageBodyData(""),
+        error: NewMessageError(0, ""),
     }
 }
 
@@ -64,6 +66,9 @@ func (this *Message) HeaderAll() (map[string]string) {
 }
 func (this *Message) Body() (*MessageBody) {
     return this.body
+}
+func (this *Message) Error() (*MessageError) {
+    return this.error
 }
 
 func (this *Message) SetType(t uint) (*Message) {
