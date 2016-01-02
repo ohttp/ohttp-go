@@ -6,11 +6,11 @@ type MessageBody struct {
     contentLength int
 }
 
-func NewMessageBody(c, ct string) (*MessageBody) {
+func NewMessageBody(c, ct string, cl int) (*MessageBody) {
     return &MessageBody{
-        content: c,
-        contentType: ct,
-        contentLength: len(c),
+              content: c,
+          contentType: ct,
+        contentLength: cl,
     }
 }
 
