@@ -133,3 +133,12 @@ func (this *Client) DeleteFunc(u string, up, h interface{},
     this.Delete(u, up, h)
     fn(this.request, this.response)
 }
+
+func (this *Client) Trace(u string, up, h interface{}) (*response.Response) {
+    return this.Do(method.TRACE +" "+ u, up, nil, h)
+}
+func (this *Client) TraceFunc(u string, up, h interface{},
+    fn func (req *request.Request, res *response.Response)) {
+    this.Trace(u, up, h)
+    fn(this.request, this.response)
+}
