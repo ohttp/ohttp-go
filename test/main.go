@@ -2,23 +2,28 @@ package main
 
 import (
     "http"
-    "http/util"
-    "http/util/params"
-    // "http/util/query"
     "http/request"
     "http/response"
+    "http/util"
+    "http/util/params"
+    // // "http/util/query"
 )
 
 func main() {
+    // r1, _, e1 := util.RegExpMatch(rs, re)
+    // // r2, _, e2 := util.RegExpMatchName(rs, re)
+    // util.Dumpf("%#v %#v %d", r1, e1, len(r1))
+    // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
+
     o := params.New()
-    o.Set("debug", true)
+    // o.Set("debug", true)
 
     c := http.NewClient(o)
 
-    // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
-    // util.Dumpf("%#v", r)
-    // util.Dumpf("%+v", c.Request().String())
-    // util.Dumpf("%+v", c.Response().String())
+    // // r := c.Do("GET http://localhost/foo.json", nil, nil, nil)
+    // // util.Dumpf("%#v", r)
+    // // util.Dumpf("%+v", c.Request().String())
+    // // util.Dumpf("%+v", c.Response().String())
 
     c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
         func(req *request.Request, res *response.Response) {
