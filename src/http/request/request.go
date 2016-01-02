@@ -65,10 +65,8 @@ func (this *Request) Send() (string, error) {
     }
     defer link.Close()
 
-    rm, rp, rpv := this.preparePath()
-
     var rs, rr string
-    rs += _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
+    rs += this.RequestLine()
     for k, v := range this.HeaderAll() {
         if v != "" {
             rs += _fmt.Sprintf("%s: %s\r\n", k, v)
@@ -106,20 +104,19 @@ func (this *Request) Send() (string, error) {
 }
 
 func (this *Request) String() (string) {
-    rm, rp, rpv := this.preparePath()
-    return this.ToString(_fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv))
+    return this.ToString(this.RequestLine())
 }
 
 
-func (this *Request) preparePath() (rm, rp, rpv string) {
-    rm  = this.Method()
-    rp  = "/"
-    rpv = this.ProtocolVersion()
+func (this *Request) RequestLine() (string) {
+    rm  := this.Method()
+    rp  := "/"
+    rpv := this.ProtocolVersion()
     if s := this.uri.Path(); s != "" {
         rp = s
     }
     if s := this.uri.Query().String(); s != "" {
         rp += "?"+ s
     }
-    return rm, rp, rpv
+    return _fmt.Sprintf("%s %s HTTP/%s\r\n", rm, rp, rpv)
 }

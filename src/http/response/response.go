@@ -29,9 +29,17 @@ func (this *Response) SetStatus(s string) (*Response) {
         panic(err)
     }
     if len(m) == 3 {
-        this.status.SetTextPhrase(s)
+        this.status.SetStatus(s)
         this.status.SetCode(util.Int(m[1]))
         this.status.SetText(util.Trim(m[2], ""))
     }
     return this
+}
+
+func (this *Response) String() (string) {
+    return this.ToString(this.TheStatusLine() +"\r\n")
+}
+
+func (this *Response) TheStatusLine() (string) {
+    return this.status.Status()
 }
