@@ -3,9 +3,10 @@ package http
 import (
     "http/util"
     "http/util/params"
-    "http/request"
-    "http/response"
     "http/headers"
+    "http/request"
+    "http/request/method"
+    "http/response"
 )
 
 type Client struct {
@@ -68,7 +69,9 @@ func (this *Client) DoFunc(u string, up interface{}, b interface{}, h interface{
     fn(this.request, this.response)
 }
 
-func (this *Client) Head() {}
+func (this *Client) Head(u string, up interface{}, h interface{}) (*response.Response) {
+    return this.Do(method.HEAD +" "+ u, up, nil, h)
+}
 func (this *Client) HeadFunc() {}
 
 // ...
