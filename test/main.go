@@ -22,8 +22,8 @@ func main() {
 
     c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
         func(req *request.Request, res *response.Response) {
-        util.Dumpf("%+v", req.String())
-        util.Dumpf("%+v", res.String())
+        util.Dump(req.String())
+        util.Dump(res.String())
     })
 
     // c.Do("GET http://localhost/foo", nil, nil, nil)
