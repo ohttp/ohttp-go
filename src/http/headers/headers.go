@@ -1,8 +1,8 @@
 package headers
 
 import (
-    "util"
-    "util/array/sarray"
+    "http/util"
+    "http/util/array/sarray"
 )
 
 type Headers struct {

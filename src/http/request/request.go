@@ -6,7 +6,7 @@ import (
 )
 
 import (
-    "util"
+    "http/util"
     "http/message"
     "http/uri"
     "http/useragent"

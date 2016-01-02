@@ -1,7 +1,7 @@
 package http
 
 import (
-    "util/params"
+    "http/util/params"
     "http/message"
     "http/response"
 )

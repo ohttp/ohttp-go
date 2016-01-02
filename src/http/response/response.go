@@ -1,7 +1,7 @@
 package response
 
 import (
-    "util"
+    "http/util"
     "http/message"
     "http/response/status"
 )

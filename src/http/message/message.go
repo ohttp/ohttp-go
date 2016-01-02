@@ -1,8 +1,8 @@
 package message
 
 import (
-    "util"
-    "util/params"
+    "http/util"
+    "http/util/params"
     "http/headers"
 )
 

@@ -1,9 +1,5 @@
 package status
 
-import (
-    "util"
-)
-
 // Informational constants.
 // @const int
 const (
@@ -238,19 +234,12 @@ type Status struct {
 // @param  t string
 // @param  s string
 // @return (*http.status.Status)
-func New(c int, t string, s string) (*Status) {
-    this := &Status{
-        code: c,
-        text: t,
+func New(c int, t, s string) (*Status) {
+    return &Status{
+        status: s,
+          code: c,
+          text: t,
     }
-
-    // check status line
-    if s == "" {
-        s = util.StringFormat("%s %s", c, t)
-    }
-    this.status = s
-
-    return this
 }
 
 // Get status line.

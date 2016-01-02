@@ -1,7 +1,7 @@
 package params
 
 import (
-    "util"
+    "http/util"
 )
 
 type Params map[string]interface{}

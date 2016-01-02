@@ -1,9 +1,9 @@
 package main
 
 import (
-    "util"
-    "util/params"
-    // "util/query"
+    "http/util"
+    "http/util/params"
+    // "http/util/query"
     "http"
 )
 

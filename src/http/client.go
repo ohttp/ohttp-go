@@ -1,8 +1,8 @@
 package http
 
 import (
-    "util"
-    "util/params"
+    "http/util"
+    "http/util/params"
     "http/request"
     "http/response"
     "http/headers"

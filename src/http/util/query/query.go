@@ -1,8 +1,8 @@
 package query
 
 import (
-    "util"
-    "util/params"
+    "http/util"
+    "http/util/params"
 )
 
 type Query struct {
