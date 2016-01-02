@@ -223,7 +223,7 @@ func UrlDecode(input string) (string) {
 // @return (map[string]string)
 func UrlQueryParse(q string) (map[string]string) {
     ret := MapString()
-    if tmp := _str.Split(q, "&"); tmp != nil {
+    if tmp := _str.Split(q, "&"); len(tmp) >= 2 {
         for _, tm := range tmp {
             if t := _str.SplitN(tm, "=", 2); len(t) == 2 {
                 ret[t[0]] = t[1]
