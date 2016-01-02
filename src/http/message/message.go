@@ -124,9 +124,7 @@ func (this *Message) SetBody(b interface{}) {
     }
 }
 
-func (this *Message) SetError(ec, et interface{}) {
-    if ec != nil && et != nil {
-        this.error.code = util.Int(ec)
-        this.error.text = util.String(et)
-    }
+func (this *Message) SetError(ec int, et string) {
+    this.error.code = ec
+    this.error.text = et
 }
