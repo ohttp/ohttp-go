@@ -1,18 +1,20 @@
 package http
 
 import (
-    "http/util"
-    "http/util/params"
     "http/headers"
     "http/request"
     "http/request/method"
     "http/response"
+    "http/util"
+    "http/util/params"
 )
 
 type Client struct {
     request    *request.Request
     response   *response.Response
 }
+
+func Shutup() {}
 
 func NewClient(o *params.Params) (*Client) {
     return &Client{

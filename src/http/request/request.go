@@ -19,6 +19,8 @@ type Request struct {
     uri             *uri.Uri
 }
 
+func Shutup() {}
+
 func New(m message.Message) (*Request) {
     return &Request{
         Message: m,

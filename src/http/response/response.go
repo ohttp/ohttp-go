@@ -11,6 +11,8 @@ type Response struct {
     status          *status.Status
 }
 
+func Shutup() {}
+
 func New(m message.Message) (*Response) {
     return &Response{
         Message: m,
