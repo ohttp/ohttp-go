@@ -295,7 +295,7 @@ func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
     if err != nil {
         return nil, re, err
     }
-    return re.FindStringSubmatch(s), re, nil
+    return re.FindAllString(s, -1), re, nil
 }
 
 // RegExp match all.
