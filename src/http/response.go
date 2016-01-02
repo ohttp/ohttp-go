@@ -1,15 +1,17 @@
 package http
 
 import (
+    "util/params"
     "http/message"
     "http/response"
 )
 
-func NewResponse() (*response.Response) {
+func NewResponse(o *params.Params) (*response.Response) {
     return response.New(
         message.NewMessage(
             message.TYPE_RESPONSE,
             message.PROTOCOL_VERSION_1_0,
+            o,
         ),
     )
 }

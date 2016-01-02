@@ -2,6 +2,7 @@ package http
 
 import (
     "util"
+    "util/params"
     "http/request"
     "http/response"
     "http/headers"
@@ -12,10 +13,10 @@ type Client struct {
     response   *response.Response
 }
 
-func NewClient() (*Client) {
+func NewClient(o *params.Params) (*Client) {
     return &Client{
-        request: NewRequest(),
-        response: NewResponse(),
+         request: NewRequest(o),
+        response: NewResponse(o),
     }
 }
 
@@ -31,7 +32,7 @@ func (this *Client) Do(u string, up interface{}, b interface{}, h interface{}) (
     if len(m) < 3 {
         panic("Usage: <Method GET|POST...> <Scheme http|https>://<Host>/<Path>... !")
     }
-    util.Dumps(m[1], err, len(m))
+
     this.request.SetMethod(m[1])
     this.request.SetUri(m[2], up)
     this.request.SetBody(b)

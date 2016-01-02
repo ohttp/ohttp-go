@@ -2,6 +2,7 @@ package message
 
 import (
     "util"
+    "util/params"
     "http/headers"
 )
 
@@ -11,6 +12,7 @@ type Message struct {
     headers         *headers.Headers
     body            *MessageBody
     bodyData        *MessageBodyData // parsed
+    options         *params.Params
     error           *MessageError
     MessageOKInterface
     MessageStringInterface
@@ -41,7 +43,7 @@ const (
 
 func Shutup() {}
 
-func NewMessage(t uint, pv string) (*Message) {
+func NewMessage(t uint, pv string, o *params.Params) (*Message) {
     return &Message{
         type_: t,
         protocolVersion: pv,
@@ -49,6 +51,7 @@ func NewMessage(t uint, pv string) (*Message) {
         body: NewMessageBody("", ""),
         bodyData: NewMessageBodyData(""),
         error: NewMessageError(0, ""),
+        options: o,
     }
 }
 
