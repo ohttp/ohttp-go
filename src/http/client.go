@@ -36,7 +36,8 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
         panic("Usage: <Method GET|POST...> <Scheme http|https>://<Host>/<Path>... !")
     }
 
-    this.request.SetMethod(m[1]).
+    this.request.
+        SetMethod(m[1]).
         SetUri(m[2], up).
         SetBody(b).
         SetHeaderAll(h)
@@ -55,8 +56,9 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
     if _, ok := rh["0"]; ok {
         this.response.SetStatus(rh["0"])
     }
-    this.response.SetHeaderAll(rh)
-    this.response.SetBody(rt[1])
+    this.response.
+        SetHeaderAll(rh).
+        SetBody(rt[1])
 
     if sc := this.response.Status().Code(); sc >= 400 {
         st := this.response.Status().Text()
