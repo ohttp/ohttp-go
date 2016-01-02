@@ -88,8 +88,8 @@ func (this *Request) Send() (string, error) {
     link.Close()
 
     if debug == true {
-        util.Dumps(rs)
-        util.Dumps(rr)
+        util.Dump(rs)
+        util.Dump(rr)
     }
 
     return rr, nil
