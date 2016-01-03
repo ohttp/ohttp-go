@@ -218,6 +218,7 @@ func Parse(u string) (map[string]string) {
     }
 
     var p string
+    // add scheme
     p = "(?:(?P<Scheme>https?)://)?"
 
     // check authorization stuff
