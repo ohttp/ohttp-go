@@ -80,7 +80,7 @@ func NewMessage(t uint, pv string, o *params.Params) (*Message) {
         protocolVersion: pv,
         headers: headers.New(),
         body: NewMessageBody("", "", 0),
-        bodyData: NewMessageBodyData("", ""),
+        bodyData: NewMessageBodyData(nil, ""),
         error: NewMessageError(0, ""),
         options: o,
     }

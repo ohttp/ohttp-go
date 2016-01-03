@@ -32,7 +32,7 @@ type MessageBodyData struct {
 // @param  c  string
 // @param  ct string
 // @return (*ohttp.message.MessageBodyData)
-func NewMessageBodyData(c, ct string) (*MessageBodyData) {
+func NewMessageBodyData(c interface{}, ct string) (*MessageBodyData) {
     // @todo parse by contentType
     return &MessageBodyData{
             content: c,
