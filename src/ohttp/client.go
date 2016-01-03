@@ -60,18 +60,18 @@ func (this *Client) Request() (*request.Request) {
 
 // Get: Response object.
 //
-// @return (*ohttp.response.Response)
+// @return (*ohttp.response.Response, error)
 func (this *Client) Response() (*response.Response) {
     return this.response
 }
 
-// Perform a HTTP Request and return Response.
+// Perform a request.
 //
 // @param  u  string      Request URL.
 // @param  up interface{} Request URL parameters.
 // @param  b  interface{} Request body.
 // @param  h  interface{} Request headers.
-// @return (*ohttp.response.Response)
+// @return (*ohttp.response.Response, error)
 // @panics
 func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, error) {
     m, _, err := util.RegExpMatch(u, "^([A-Z]+)\\s+(.+)")
@@ -119,7 +119,7 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
     return this.response, nil
 }
 
-// Perform a HTTP Request and pass Request, Response to callback.
+// Perform a request with callback.
 //
 // @param  u  string      Request URL.
 // @param  up interface{} Request URL parameters.
@@ -134,18 +134,18 @@ func (this *Client) DoFunc(u string, up, b, h interface{},
     fn(this.request, this.response, err)
 }
 
-// Perform a HTTP OPTIONS Request and return Response.
+// Perform a OPTIONS request.
 //
 // @param  u  string      Request URL.
 // @param  up interface{} Request URL parameters.
 // @param  h  interface{} Request headers.
-// @return (*ohttp.response.Response)
+// @return (*ohttp.response.Response, error)
 // @panics
 func (this *Client) Options(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.OPTIONS +" "+ u, up, nil, h)
 }
 
-// Perform a HTTP Request and pass Request, Response to callback.
+// Perform a OPTIONS request with callback.
 //
 // @param  u  string      Request URL.
 // @param  up interface{} Request URL parameters.
@@ -159,90 +159,257 @@ func (this *Client) OptionsFunc(u string, up, h interface{},
     fn(this.request, this.response, err)
 }
 
+// Perform a HEAD request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Head(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.HEAD +" "+ u, up, nil, h)
 }
+
+// Perform a HEAD request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) HeadFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Head(u, up, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a GET request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Get(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.GET +" "+ u, up, nil, h)
 }
+
+// Perform a GET request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) GetFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Get(u, up, h)
     fn(this.request, this.response, err)
 }
 
+
+// Perform a POST request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Post(u string, up, b, h interface{}) (*response.Response, error) {
     return this.Do(method.POST +" "+ u, up, b, h)
 }
+
+// Perform a POST request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) PostFunc(u string, up, b, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Post(u, up, b, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a PUT request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Put(u string, up, b, h interface{}) (*response.Response, error) {
     return this.Do(method.PUT +" "+ u, up, b, h)
 }
+
+// Perform a PUT request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) PutFunc(u string, up, b, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Put(u, up, b, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a PATCH request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Patch(u string, up, b, h interface{}) (*response.Response, error) {
     return this.Do(method.PATCH +" "+ u, up, b, h)
 }
+
+// Perform a PATCH request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) PatchFunc(u string, up, b, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Patch(u, up, b, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a DELETE request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Delete(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.DELETE +" "+ u, up, nil, h)
 }
+
+// Perform a DELETE request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) DeleteFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Delete(u, up, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a TRACE request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Trace(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.TRACE +" "+ u, up, nil, h)
 }
+
+// Perform a TRACE request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) TraceFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Trace(u, up, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a CONNECT request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Connect(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.CONNECT +" "+ u, up, nil, h)
 }
+
+// Perform a CONNECT request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) ConnectFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Connect(u, up, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a COPY request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Copy(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.COPY +" "+ u, up, nil, h)
 }
+
+// Perform a COPY request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) CopyFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Copy(u, up, h)
     fn(this.request, this.response, err)
 }
 
+// Perform a MOVE request.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @return (*ohttp.response.Response, error)
+// @panics
 func (this *Client) Move(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.MOVE +" "+ u, up, nil, h)
 }
+
+// Perform a MOVE request with callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) MoveFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Move(u, up, h)
