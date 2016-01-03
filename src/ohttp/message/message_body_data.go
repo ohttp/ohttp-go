@@ -46,3 +46,10 @@ func NewMessageBodyData(c, ct string) (*MessageBodyData) {
 func (this *MessageBodyData) Content() (interface{}) {
     return this.content
 }
+
+// Get: content type.
+//
+// @return (string)
+func (this *MessageBodyData) ContentType() (string) {
+    return this.contentType
+}
