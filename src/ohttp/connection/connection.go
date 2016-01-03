@@ -60,7 +60,7 @@ func DialHttp(h string, p uint) (_net.Conn, error) {
 //
 // @param  h string
 // @param  p uint
-// @return (net.Conn, error)
-func DialHttps(h string, p uint) (_tls.Conn, error) {
+// @return (*_tls.Conn, error)
+func DialHttps(h string, p uint) (*_tls.Conn, error) {
     return _tls.Dial("tcp", _fmt.Sprintf("%s:%v", h, p), nil)
 }
