@@ -67,10 +67,10 @@ func (this *Client) Response() (*response.Response) {
 
 // Perform a HTTP Request and return Response.
 //
-// @param  u  string      Request URL
-// @param  up interface{} Request URL parameters
-// @param  b  interface{} Request body
-// @param  h  interface{} Request headers
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body.
+// @param  h  interface{} Request headers.
 // @return (*ohttp.response.Response)
 // @panics
 func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, error) {
@@ -121,11 +121,11 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
 
 // Perform a HTTP Request and pass Request, Response to callback.
 //
-// @param  u  string      Request URL
-// @param  up interface{} Request URL parameters
-// @param  b  interface{} Request body
-// @param  h  interface{} Request headers
-// @param  fn func        Callback function
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  b  interface{} Request body.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
 // @return (void)
 // @panics
 func (this *Client) DoFunc(u string, up, b, h interface{},
@@ -136,15 +136,23 @@ func (this *Client) DoFunc(u string, up, b, h interface{},
 
 // Perform a HTTP OPTIONS Request and return Response.
 //
-// @param  u  string      Request URL
-// @param  up interface{} Request URL parameters
-// @param  b  interface{} Request body
-// @param  h  interface{} Request headers
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
 // @return (*ohttp.response.Response)
 // @panics
 func (this *Client) Options(u string, up, h interface{}) (*response.Response, error) {
     return this.Do(method.OPTIONS +" "+ u, up, nil, h)
 }
+
+// Perform a HTTP Request and pass Request, Response to callback.
+//
+// @param  u  string      Request URL.
+// @param  up interface{} Request URL parameters.
+// @param  h  interface{} Request headers.
+// @param  fn func        Callback function.
+// @return (void)
+// @panics
 func (this *Client) OptionsFunc(u string, up, h interface{},
     fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Options(u, up, h)
