@@ -128,8 +128,7 @@ func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, erro
 // @param  fn func        Callback function
 // @return (*ohttp.response.Response)
 // @panics
-func (this *Client) DoFunc(u string, up, b, h interface{}, fn func (
-    req *request.Request, res *response.Response, err error)) {
+func (this *Client) DoFunc(u string, up, b, h interface{}, fn func (req *request.Request, res *response.Response, err error)) {
     _, err := this.Do(u, up, b, h)
     fn(this.request, this.response, err)
 }
