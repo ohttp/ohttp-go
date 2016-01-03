@@ -65,36 +65,52 @@ func (this *Client) Response() (*response.Response) {
     return this.response
 }
 
+// Perform a HTTP Request and return Response
+//
+// @param  u  string      Request URL
+// @param  up interface{} Request URL parameters
+// @param  b  interface{} Request body
+// @param  h  interface{} Request headers
+// @return (*ohttp.response.Response)
+// @panics
 func (this *Client) Do(u string, up, b, h interface{}) (*response.Response, error) {
     m, _, err := util.RegExpMatch(u, "^([A-Z]+)\\s+(.+)")
     if len(m) < 3 {
         panic("Usage: <Method GET|POST...> <Scheme http|https>://<Host>/<Path>... !")
     }
 
+    // set request method, uri, body and all headers
     this.request.
         SetMethod(m[1]).
         SetUri(m[2], up).
         SetBody(b).
         SetHeaderAll(h)
 
+    // send request
     rs, err := this.request.Send()
     if err != nil {
         return nil, err
     }
 
+    // split headers/body parts
     rt := util.Explode(rs, util.CRLF + util.CRLF, 2)
     if len(rt) != 2 {
         return nil, util.Error("No valid response returned from server!", nil)
     }
 
+    // parse headers
     rh := headers.Parse(rt[0])
     if _, ok := rh["0"]; ok {
+        // set status-line
         this.response.SetStatus(rh["0"])
     }
+
+    // set response body and all headers
     this.response.
         SetHeaderAll(rh).
         SetBody(rt[1])
 
+    // check http error by response status code
     if sc := this.response.Status().Code(); sc >= 400 {
         st := this.response.Status().Text()
         this.response.SetError(sc, st)
