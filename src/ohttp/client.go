@@ -18,7 +18,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 // @package ohttp
-// @uses    ohttp.util, ohttp.http.params, ohttp.headers,
+// @imports ohttp.util, ohttp.http.params, ohttp.headers,
 //          ohttp.request, ohttp.request.method, ohttp.response
 // @author  Kerem Güneş <qeremy[at]gmail[dot]com>
 package ohttp
