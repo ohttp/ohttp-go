@@ -146,9 +146,10 @@ func (this *Request) Send() (string, error) {
     return rr, nil
 }
 
-// Get: status
+// Get: state
 //
 // @return (bool)
+// @implements
 func (this *Request) OK() (bool) {
     return (this.Error().Code() == 0 && this.Error().Text() == "")
 }
@@ -156,6 +157,7 @@ func (this *Request) OK() (bool) {
 // Get: as string.
 //
 // @return (string)
+// @implements
 func (this *Request) String() (string) {
     return this.ToString(this.TheRequestLine())
 }
