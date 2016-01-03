@@ -19,7 +19,6 @@
 
 // @package    ohttp
 // @subpackage ohttp.uri
-// @imports    net.url
 // @imports    ohttp.util, ohttp.util.query, ohttp.util.array.sarray
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package uri
