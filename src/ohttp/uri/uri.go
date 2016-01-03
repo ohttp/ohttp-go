@@ -48,7 +48,7 @@ type Uri struct {
 // @const uint
 const (
     VALID_PORT_MIN uint = 1
-    VALID_PORT_MAX uint = 65535
+    VALID_PORT_MAX      = 65535
 )
 
 // Constructor.
