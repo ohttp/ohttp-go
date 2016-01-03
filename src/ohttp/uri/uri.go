@@ -25,10 +25,6 @@
 package uri
 
 import (
-    _url "net/url"
-)
-
-import (
     "ohttp/util"
     "ohttp/util/query"
     "ohttp/util/array/sarray"
@@ -59,14 +55,14 @@ func New(s string, q interface{}) (*Uri) {
     }
 
     if s != "" {
-        s, _ := _url.Parse(util.UrlDecode(s))
+        p := Parse(util.UrlDecode(s))
         // set scheme
-        if ss := s.Scheme; ss != "" {
+        if ss := p["Scheme"]; ss != "" {
             this.scheme = ss
         }
 
         // set host
-        if sh := s.Host; sh != "" {
+        if sh := p["Host"]; sh != "" {
             this.host = sh
             // set port yourself (cos url.Parse doesn't provide it..)
             if tmp := util.Explode(sh, ":", -1); len(tmp) == 2 {
@@ -76,7 +72,7 @@ func New(s string, q interface{}) (*Uri) {
         }
 
         // set path
-        if sp := s.Path; sp != "" {
+        if sp := p["Path"]; sp != "" {
             this.path = sp
             // set segments @note will be used later for routing operations
             if seg := util.Explode(sp, "/", -1); len(seg) > 0 {
@@ -93,20 +89,20 @@ func New(s string, q interface{}) (*Uri) {
         }
 
         // set username & password
-        if s.User != nil {
-            this.username = s.User.Username()
-            this.password, _ = s.User.Password()
+        if p["Username"] != "" {
+            this.username = p["Username"]
+            this.password = p["Password"]
         }
 
         // set query
-        if sq := s.RawQuery; sq != "" {
+        if sq := p["Query"]; sq != "" {
             this.query = query.New(sq)
         } else {
             this.query = query.New(q)
         }
 
         // set fragment
-        if sf := s.Fragment; sf != "" {
+        if sf := p["Fragment"]; sf != "" {
             this.fragment = sf
         }
     }
