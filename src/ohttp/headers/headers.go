@@ -17,9 +17,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-// @package ohttp
-// @imports ohttp.util, ohttp.util.array.sarray
-// @author  Kerem Güneş <qeremy[at]gmail[dot]com>
+// @package    ohttp
+// @subpackage ohttp.headers
+// @imports    ohttp.util, ohttp.util.array.sarray
+// @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package headers
 
 import (
