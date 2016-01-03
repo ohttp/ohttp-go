@@ -51,9 +51,16 @@ func NewClient(o *params.Params) (*Client) {
     }
 }
 
+// Get: Request object.
+//
+// @return (*ohttp.request.Request)
 func (this *Client) Request() (*request.Request) {
     return this.request
 }
+
+// Get: Response object.
+//
+// @return (*ohttp.response.Response)
 func (this *Client) Response() (*response.Response) {
     return this.response
 }
