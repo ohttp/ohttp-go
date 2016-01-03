@@ -1,3 +1,26 @@
+// Copyright (c) 2015-2016 Kerem Güneş
+//   <http://qeremy.com>
+//
+// GNU General Public License v3.0
+//   <http://www.gnu.org/licenses/gpl-3.0.txt>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+// @package    ohttp
+// @subpackage ohttp.response.status
+// @imports    fmt, bufio
+// @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package status
 
 // Informational constants.
@@ -194,7 +217,7 @@ var statuses = map[int]string{
 // Get status code by text.
 //
 // @param  x string
-// @return int
+// @return (int)
 func Code(x string) (int) {
     for c, t := range statuses {
         if x == t {
@@ -207,7 +230,7 @@ func Code(x string) (int) {
 // Get status text by code.
 //
 // @param  x int
-// @return string
+// @return (string)
 func Text(x int) (string) {
     for c, t := range statuses {
         if x == c {
@@ -217,7 +240,7 @@ func Text(x int) (string) {
     return ""
 }
 
-// @object https.status.Status
+// @object ohttp.response.status.Status
 type Status struct {
     status       string
     code         int
@@ -238,28 +261,28 @@ func New(c int, t, s string) (*Status) {
     }
 }
 
-// Get status line.
+// Get: status line.
 //
 // @return (string)
 func (this *Status) Status() (string) {
     return this.status
 }
 
-// Get code.
+// Get: code.
 //
 // @return (int)
 func (this *Status) Code() (int) {
     return this.code
 }
 
-// Get text.
+// Get: text.
 //
 // @return (string)
 func (this *Status) Text() (string) {
     return this.text
 }
 
-// Set status line.
+// Set: status-line.
 //
 // @param  s string
 // @return (*ohttp.status.Status)
@@ -268,7 +291,7 @@ func (this *Status) SetStatus(s string) (*Status) {
     return this
 }
 
-// Set code.
+// Set: code.
 //
 // @param  c int
 // @return (*ohttp.status.Status)
@@ -277,7 +300,7 @@ func (this *Status) SetCode(c int) (*Status) {
     return this
 }
 
-// Set text.
+// Set: text.
 //
 // @param  t string
 // @return (*ohttp.status.Status)
