@@ -1,3 +1,26 @@
+// Copyright (c) 2015-2016 Kerem Güneş
+//   <http://qeremy.com>
+//
+// GNU General Public License v3.0
+//   <http://www.gnu.org/licenses/gpl-3.0.txt>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+// @package    ohttp
+// @subpackage ohttp.request
+// @imports    fmt, bufio
+// @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package request
 
 import (
@@ -13,6 +36,7 @@ import (
     "ohttp/connection"
 )
 
+// @object ohttp.request
 type Request struct {
     message.Message // extends
     method          string
@@ -21,28 +45,53 @@ type Request struct {
 
 func Shutup() {}
 
+// Constructor.
+//
+// @param  m *ohttp.message.Message
+// @return (*ohttp.request.Request)
 func New(m message.Message) (*Request) {
     return &Request{
         Message: m,
     }
 }
 
+// Get: method.
+//
+// @return (string)
 func (this *Request) Method() (string) {
     return this.method
 }
+
+// Get: uri.
+//
+// @return (*ohttp.uri.Uri)
 func (this *Request) Uri() (*uri.Uri) {
     return this.uri
 }
 
+// Set: method.
+//
+// @param  m string
+// @return (*ohttp.request.Request)
 func (this *Request) SetMethod(m string) (*Request) {
     this.method = util.Upper(m)
     return this
 }
+
+// Set: uri.
+//
+// @param  u  string
+// @param  up interface{}
+// @return (*ohttp.request.Request)
 func (this *Request) SetUri(u string, up interface{}) (*Request) {
     this.uri = uri.New(u, up)
     return this
 }
 
+
+// Send.
+//
+// @return (string, error)
 func (this *Request) Send() (string, error) {
     debug := this.Options().GetBool("debug")
 
@@ -97,15 +146,23 @@ func (this *Request) Send() (string, error) {
     return rr, nil
 }
 
+// Get: status
+//
+// @return (bool)
 func (this *Request) OK() (bool) {
     return (this.Error().Code() == 0 && this.Error().Text() == "")
 }
 
+// Get: as string.
+//
+// @return (string)
 func (this *Request) String() (string) {
     return this.ToString(this.TheRequestLine())
 }
 
-
+// Get: the request-line
+//
+// @return (string)
 func (this *Request) TheRequestLine() (string) {
     rm  := this.Method()
     rp  := "/"
