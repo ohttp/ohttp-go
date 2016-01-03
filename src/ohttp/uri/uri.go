@@ -19,14 +19,13 @@
 
 // @package    ohttp
 // @subpackage ohttp.uri
-// @imports    net.url, strings
+// @imports    net.url
 // @imports    ohttp.util, ohttp.util.query, ohttp.util.array.sarray
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package uri
 
 import (
     _url "net/url"
-    _str "strings"
 )
 
 import (
@@ -70,7 +69,7 @@ func New(s string, q interface{}) (*Uri) {
         if sh := s.Host; sh != "" {
             this.host = sh
             // set port yourself (cos url.Parse doesn't provide it..)
-            if tmp := _str.Split(sh, ":"); len(tmp) == 2 {
+            if tmp := util.Explode(sh, ":", -1); len(tmp) == 2 {
                 this.host = tmp[0]
                 this.port = util.UInt(tmp[1])
             }
@@ -80,10 +79,10 @@ func New(s string, q interface{}) (*Uri) {
         if sp := s.Path; sp != "" {
             this.path = sp
             // set segments @note will be used later for routing operations
-            if seg := _str.Split(sp, "/"); len(seg) > 0 {
+            if seg := util.Explode(sp, "/", -1); len(seg) > 0 {
                 this.segments = util.MapStringSlice(seg)
                 for i, se := range seg {
-                    se = _str.TrimSpace(se)
+                    se = util.Trim(se, "")
                     if se != "" {
                         this.segments[i] = se
                     }
