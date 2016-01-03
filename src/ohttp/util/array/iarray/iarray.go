@@ -109,7 +109,7 @@ func Uniq(arr []int) ([]int) {
 // Shift.
 //
 // @param  arr *[]int
-// @return ([]int)
+// @return (int)
 func Shift(arr *[]int) (int) {
     v := (*arr)[0]
     *arr = (*arr)[1:len(*arr)]
