@@ -32,7 +32,7 @@ type Params map[string]interface{}
 
 // Constructor.
 //
-// @return (ohttp.params.Params)
+// @return (*ohttp.params.Params)
 func New() (*Params) {
     return &Params{}
 }
@@ -41,7 +41,7 @@ func New() (*Params) {
 //
 // @param  k string
 // @param  v interface{}
-// @return (ohttp.params.Params)
+// @return (*ohttp.params.Params)
 func (this *Params) Set(k string, v interface{}) (*Params) {
     (*this)[k] = v
     return this
