@@ -102,7 +102,7 @@ func (this *Request) Send() (string, error) {
             useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
     }
 
-    link, err := connection.Dial(this.uri.Host(), this.uri.Port())
+    link, err := connection.Dial(this.uri)
     if err != nil {
         return "", err
     }

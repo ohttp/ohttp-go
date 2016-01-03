@@ -29,36 +29,65 @@ import (
     _tls "crypto/tls"
 )
 
+import (
+    "ohttp/uri"
+)
+
+// Schemes.
+// @const string
+const (
+    SCHEME_HTTP     = "http"
+    SCHEME_HTTPS    = "https"
+)
+
 // Ports.
-// @const uing
+// @const uint
 const (
     PORT_HTTP  uint = 80
     PORT_HTTPS      = 443
 )
 
-func Dial(h string, p uint) (_net.Conn, error) {
+// Dial via HTTP or HTTPS scheme.
+//
+// @param  u *ohttp.uri.Uri
+// @return (net.Conn, error)
+// @panic
+func Dial(u *uri.Uri) (_net.Conn, error) {
+    h, s, p := u.Host(), u.Scheme(), u.Port()
+
     if p == PORT_HTTP {
-        return DialHttp(h, PORT_HTTP)
+        return DialHttp(_fmt.Sprintf("%s:%v", h, p))
     } else if p == PORT_HTTPS {
-        return DialHttps(h, PORT_HTTPS)
+        return DialHttps(_fmt.Sprintf("%s:%v", h, p))
     }
-    return DialHttp(h, PORT_HTTP)
+
+    if s == SCHEME_HTTP {
+        return DialHttp(_fmt.Sprintf("%s:%s", h, s))
+    } else if s == SCHEME_HTTPS {
+        return DialHttps(_fmt.Sprintf("%s:%s", h, s))
+    }
+
+    if p != 0 {
+        return DialHttp(_fmt.Sprintf("%s:%v", h, s))
+    } else if s != "" {
+        return DialHttp(_fmt.Sprintf("%s:%v", h, s))
+    }
+
+    panic("Scheme and/or port are required!")
 }
 
 // Dial via HTTP scheme.
 //
-// @param  h string
-// @param  p uint
+// @param  u string
 // @return (net.Conn, error)
-func DialHttp(h string, p uint) (_net.Conn, error) {
-    return _net.Dial("tcp", _fmt.Sprintf("%s:%v", h, p))
+func DialHttp(u string) (_net.Conn, error) {
+    return _net.Dial("tcp", u)
 }
 
 // Dial via HTTPS scheme.
 //
-// @param  h string
-// @param  p uint
+// @param  u string
 // @return (*_tls.Conn, error)
-func DialHttps(h string, p uint) (*_tls.Conn, error) {
-    return _tls.Dial("tcp", _fmt.Sprintf("%s:%v", h, p), nil)
+func DialHttps(u string) (*_tls.Conn, error) {
+    return _tls.Dial("tcp", u, nil)
 }
