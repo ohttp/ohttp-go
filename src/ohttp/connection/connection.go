@@ -51,7 +51,7 @@ const (
 //
 // @param  u *ohttp.uri.Uri
 // @return (net.Conn, error)
-// @panic
+// @panics
 func Dial(u *uri.Uri) (_net.Conn, error) {
     h, s, p := u.Host(), u.Scheme(), u.Port()
 
@@ -59,18 +59,16 @@ func Dial(u *uri.Uri) (_net.Conn, error) {
         return DialHttp(_fmt.Sprintf("%s:%v", h, p))
     } else if p == PORT_HTTPS {
         return DialHttps(_fmt.Sprintf("%s:%v", h, p))
+    } else if p != 0 {
+        return DialHttp(_fmt.Sprintf("%s:%v", h, p))
     }
 
     if s == SCHEME_HTTP {
         return DialHttp(_fmt.Sprintf("%s:%s", h, s))
     } else if s == SCHEME_HTTPS {
         return DialHttps(_fmt.Sprintf("%s:%s", h, s))
-    }
-
-    if p != 0 {
-        return DialHttp(_fmt.Sprintf("%s:%v", h, s))
     } else if s != "" {
-        return DialHttp(_fmt.Sprintf("%s:%v", h, s))
+        return DialHttp(_fmt.Sprintf("%s:%s", h, s))
     }
 
     panic("Scheme and/or port are required!")
