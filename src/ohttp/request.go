@@ -16,7 +16,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-//
+
 // @package ohttp
 // @imports ohttp.http.params, ohttp.message, ohttp.request
 // @author  Kerem Güneş <qeremy[at]gmail[dot]com>
@@ -30,7 +30,7 @@ import (
 
 // Constructor.
 //
-// @param  o ohttp.params.Params
+// @param  o ohttp.params.Params    Options.
 // @return (*ohttp.request.Request)
 func NewRequest(o *params.Params) (*request.Request) {
     return request.New(
