@@ -57,25 +57,25 @@ func New(s string, q interface{}) (*Uri) {
     if s != "" {
         p := Parse(util.UrlDecode(s))
         // set scheme
-        if ss := p["Scheme"]; ss != "" {
-            this.scheme = ss
+        if s := p["Scheme"]; s != "" {
+            this.scheme = s
         }
 
         // set host
-        if sh := p["Host"]; sh != "" {
-            this.host = sh
-            // set port yourself (cos url.Parse doesn't provide it..)
-            if tmp := util.Explode(sh, ":", -1); len(tmp) == 2 {
-                this.host = tmp[0]
-                this.port = util.UInt(tmp[1])
-            }
+        if s := p["Host"]; s != "" {
+            this.host = s
+        }
+
+        // set port
+        if s := p["Port"]; s != "" {
+            this.port = util.UInt(s)
         }
 
         // set path
-        if sp := p["Path"]; sp != "" {
-            this.path = sp
+        if s := p["Path"]; s != "" {
+            this.path = s
             // set segments @note will be used later for routing operations
-            if seg := util.Explode(sp, "/", -1); len(seg) > 0 {
+            if seg := util.Explode(s, "/", -1); len(seg) > 0 {
                 this.segments = util.MapStringSlice(seg)
                 for i, se := range seg {
                     se = util.Trim(se, "")
@@ -95,15 +95,15 @@ func New(s string, q interface{}) (*Uri) {
         }
 
         // set query
-        if sq := p["Query"]; sq != "" {
-            this.query = query.New(sq)
+        if s := p["Query"]; s != "" {
+            this.query = query.New(s)
         } else {
             this.query = query.New(q)
         }
 
         // set fragment
-        if sf := p["Fragment"]; sf != "" {
-            this.fragment = sf
+        if s := p["Fragment"]; s != "" {
+            this.fragment = s
         }
     }
 
