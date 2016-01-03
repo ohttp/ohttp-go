@@ -226,7 +226,6 @@ func UrlDecode(input string) (string) {
     if err != nil {
         return ""
     }
-
     return input
 }
 
@@ -322,6 +321,25 @@ func RegExpMatch(s, sr string) ([]string, *_re.Regexp, error) {
         return nil, re, err
     }
     return re.FindStringSubmatch(s), re, nil
+}
+
+// RegExp match name.
+//
+// @param  s  string
+// @param  sr string
+// @return (map[string]string, *regexp.Regexp, error)
+func RegExpMatchName(s, sr string) (map[string]string, *_re.Regexp, error) {
+    m, re, err := RegExpMatch(s, sr)
+    if err != nil {
+        return nil, re, err
+    }
+    r := MapString()
+    for i, name := range re.SubexpNames() {
+        if i != 0 { // pass re input
+            r[name] = m[i]
+        }
+    }
+    return r, re, nil
 }
 
 // Map maker.
