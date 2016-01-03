@@ -23,9 +23,9 @@
 package ohttp
 
 import (
+    "ohttp/util/params"
     "ohttp/message"
     "ohttp/response"
-    "ohttp/util/params"
 )
 
 // Constructor.
