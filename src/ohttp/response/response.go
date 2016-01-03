@@ -1,9 +1,9 @@
 package response
 
 import (
-    "http/util"
-    "http/message"
-    "http/response/status"
+    "ohttp/util"
+    "ohttp/message"
+    "ohttp/response/status"
 )
 
 type Response struct {

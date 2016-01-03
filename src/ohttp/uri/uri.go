@@ -6,9 +6,9 @@ import (
 )
 
 import (
-    "http/util"
-    "http/util/query"
-    "http/util/array/sarray"
+    "ohttp/util"
+    "ohttp/util/query"
+    "ohttp/util/array/sarray"
 )
 
 type Uri struct {

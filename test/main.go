@@ -1,16 +1,16 @@
 package main
 
 import (
-    "http"
-    "http/request"
-    "http/response"
-    "http/util"
-    "http/util/params"
-    // // "http/util/query"
+    "ohttp"
+    "ohttp/request"
+    "ohttp/response"
+    "ohttp/util"
+    "ohttp/util/params"
+    // // "ohttp/util/query"
 )
 
 func init() {
-    http.Shutup()
+    ohttp.Shutup()
     request.Shutup()
     response.Shutup()
     util.Shutup()
@@ -25,7 +25,7 @@ func main() {
     o := params.New()
     // o.Set("debug", true)
 
-    c := http.NewClient(o)
+    c := ohttp.NewClient(o)
 
     r, _ := c.Do("GET http://localhost/foo.json", nil, nil, nil)
     util.Dumpf("%#v", r.OK())
@@ -165,7 +165,7 @@ func main() {
     // util.Dumpf("%#v", q.String())
     // util.Dumpf("%#v", q.Params().String())
 
-    // req := http.NewRequest()
+    // req := ohttp.NewRequest()
     // // req.SetMethod("GET")
     // req.SetUri("http://localhost/foo", nil)
     // // // util.Dumpf("%#v", req)
@@ -178,13 +178,13 @@ func main() {
     // }
     // util.Dumps(res)
 
-    // res := http.NewResponse()
+    // res := ohttp.NewResponse()
     // res.SetStatus("HTTP/1.0 200 OK")
     // util.Dumpf("%#v", res)
     // util.Dumpf("%#v", res.Status().Code())
 
-    // uri := http.NewUri("http://kerem:123@git.local.com")
-    // uri := http.NewUri("http://kerem:123@git.local.com:8080/foo?a=the%20a!#xxx")
+    // uri := ohttp.NewUri("http://kerem:123@git.local.com")
+    // uri := ohttp.NewUri("http://kerem:123@git.local.com:8080/foo?a=the%20a!#xxx")
     // util.Dumps(uri)
     // util.Dumps(uri.Segments())
     // util.Dumps(uri.Segment(0))

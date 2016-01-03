@@ -229,7 +229,7 @@ type Status struct {
 // @param  c int
 // @param  t string
 // @param  s string
-// @return (*http.status.Status)
+// @return (*ohttp.status.Status)
 func New(c int, t, s string) (*Status) {
     return &Status{
         status: s,
@@ -262,7 +262,7 @@ func (this *Status) Text() (string) {
 // Set status line.
 //
 // @param  s string
-// @return (*http.status.Status)
+// @return (*ohttp.status.Status)
 func (this *Status) SetStatus(s string) (*Status) {
     this.status = s
     return this
@@ -271,7 +271,7 @@ func (this *Status) SetStatus(s string) (*Status) {
 // Set code.
 //
 // @param  c int
-// @return (*http.status.Status)
+// @return (*ohttp.status.Status)
 func (this *Status) SetCode(c int) (*Status) {
     this.code = c
     return this
@@ -280,7 +280,7 @@ func (this *Status) SetCode(c int) (*Status) {
 // Set text.
 //
 // @param  t string
-// @return (*http.status.Status)
+// @return (*ohttp.status.Status)
 func (this *Status) SetText(t string) (*Status) {
     this.text = t
     return this

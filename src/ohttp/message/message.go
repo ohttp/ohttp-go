@@ -1,9 +1,9 @@
 package message
 
 import (
-    "http/util"
-    "http/util/params"
-    "http/headers"
+    "ohttp/util"
+    "ohttp/util/params"
+    "ohttp/headers"
 )
 
 type Message struct {

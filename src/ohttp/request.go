@@ -1,9 +1,9 @@
-package http
+package ohttp
 
 import (
-    "http/message"
-    "http/request"
-    "http/util/params"
+    "ohttp/message"
+    "ohttp/request"
+    "ohttp/util/params"
 )
 
 func NewRequest(o *params.Params) (*request.Request) {

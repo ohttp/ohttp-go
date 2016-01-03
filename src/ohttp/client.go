@@ -1,12 +1,12 @@
-package http
+package ohttp
 
 import (
-    "http/headers"
-    "http/request"
-    "http/request/method"
-    "http/response"
-    "http/util"
-    "http/util/params"
+    "ohttp/headers"
+    "ohttp/request"
+    "ohttp/request/method"
+    "ohttp/response"
+    "ohttp/util"
+    "ohttp/util/params"
 )
 
 type Client struct {

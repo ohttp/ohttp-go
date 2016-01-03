@@ -6,11 +6,11 @@ import (
 )
 
 import (
-    "http/util"
-    "http/message"
-    "http/uri"
-    "http/useragent"
-    "http/connection"
+    "ohttp/util"
+    "ohttp/message"
+    "ohttp/uri"
+    "ohttp/useragent"
+    "ohttp/connection"
 )
 
 type Request struct {

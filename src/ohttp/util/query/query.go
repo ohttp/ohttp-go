@@ -1,8 +1,8 @@
 package query
 
 import (
-    "http/util"
-    "http/util/params"
+    "ohttp/util"
+    "ohttp/util/params"
 )
 
 type Query struct {
