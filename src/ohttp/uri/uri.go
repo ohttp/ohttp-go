@@ -44,11 +44,19 @@ type Uri struct {
     segments   []string
 }
 
+// Valid port range.
+// @const uint
+const (
+    VALID_PORT_MIN uint = 1
+    VALID_PORT_MAX uint = 65535
+)
+
 // Constructor.
 //
 // @param  s string
 // @param  q interface{}
 // @return (*ohttp.Uri)
+// @panics
 func New(s string, q interface{}) (*Uri) {
     this := &Uri{
         source: s,
@@ -68,7 +76,11 @@ func New(s string, q interface{}) (*Uri) {
 
         // set port
         if s := p["Port"]; s != "" {
-            this.port = util.UInt(s)
+            s := util.UInt(s)
+            if s < VALID_PORT_MIN || s > VALID_PORT_MAX {
+                panic("Invalid port given!")
+            }
+            this.port = s
         }
 
         // set path
