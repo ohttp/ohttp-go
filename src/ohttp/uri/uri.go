@@ -205,3 +205,41 @@ func (this *Uri) Authorization() (string) {
     }
     return ""
 }
+
+// Parse URL.
+//
+// @param  u string
+// @return (map[string]string)
+// @panics
+func Parse(u string) (map[string]string) {
+    if u == "" {
+        panic("No URL given!")
+    }
+
+    // add http as default
+    if u[:4] != "http" {
+        u = "http://"+ u
+    }
+
+    var p string
+    p = "(?:(?P<Scheme>https?)://)?"
+
+    // check authorization stuff
+    if util.RegExpTest(u, "://(.+?)@") {
+        p += "(?:(?P<Username>[^:@]+))?(?:(?P<Password>[^@]+))?"
+    }
+
+    // append others
+    p += "(?:(?P<Host>[^:/]+))?"      +
+         "(?:\\:(?P<Port>\\d+))?"     +
+         "(?P<Path>/[^?#]*)?"         +
+         "(?:\\?(?P<Query>[^#]+))?"   +
+         "(?:\\??#(?P<Fragment>.*))?"
+
+    r, _, err := util.RegExpMatchName(u, p)
+    if err != nil {
+        return nil
+    }
+
+    return r
+}
