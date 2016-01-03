@@ -19,7 +19,6 @@
 
 // @package    ohttp
 // @subpackage ohttp.response.status
-// @imports    fmt, bufio
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package status
 
