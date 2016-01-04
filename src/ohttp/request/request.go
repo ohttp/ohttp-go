@@ -20,6 +20,7 @@
 // @package    ohttp
 // @subpackage ohttp.request
 // @imports    fmt, bufio
+// @imports    ohttp.util, ohttp.message, ohttp.uri, ohttp.useragent, ohttp.connection
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package request
 
