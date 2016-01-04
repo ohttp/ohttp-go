@@ -26,7 +26,7 @@ Available formats: `github.com:80`, `http://github.com`, `github.com:443`, `http
 client.Get("github.com:443", nil, nil)
 client.Get("https://github.com", nil, nil)
 
-// connect couchdb
+// connect to CouchDB
 client.Get("localhost:5984", nil, nil)
 ```
 
