@@ -53,12 +53,12 @@ func Dump(args... interface{}) {
 // @param  args... interface{}
 // @return (void)
 func Dumps(args... interface{}) {
-    var format string
+    var f string
     for _, arg := range args {
         _ = arg // silence..
-        format += "%+v "
+        f += "%+v "
     }
-    _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
+    _fmt.Printf("%s\n", _fmt.Sprintf(f, args...))
 }
 
 // Dump types.
@@ -66,21 +66,21 @@ func Dumps(args... interface{}) {
 // @param  args... interface{}
 // @return (void)
 func Dumpt(args... interface{}) {
-    var format string
+    var f string
     for _, arg := range args {
         _ = arg // silence..
-        format += "%T "
+        f += "%T "
     }
-    _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
+    _fmt.Printf("%s\n", _fmt.Sprintf(f, args...))
 }
 
 // Dump as formatted string.
 //
-// @param  format  string
+// @param  f       string
 // @param  args... interface{}
 // @return (void)
-func Dumpf(format string, args... interface{}) {
-    _fmt.Printf("%s\n", _fmt.Sprintf(format, args...))
+func Dumpf(f string, args... interface{}) {
+    _fmt.Printf("%s\n", _fmt.Sprintf(f, args...))
 }
 
 // Error.
@@ -113,49 +113,49 @@ func TypeReal(args... interface{}) (string) {
 
 // Check is empty.
 //
-// @param  input interface{}
+// @param  i interface{}
 // @return (bool)
-func IsEmpty(input interface{}) (bool) {
-    return (input == nil || input == "" || input == 0)
+func IsEmpty(i interface{}) (bool) {
+    return (i == nil || i == "" || i == 0)
 }
 
 // Check empty & set default value.
 //
-// @param  input        interface{}
-// @param  inputDefault interface{}
+// @param  i  interface{}
+// @param  id interface{} Default value.
 // @return (interface{})
-func IsEmptySet(input, inputDefault interface{}) (interface{}) {
-    if IsEmpty(input) {
-        input = inputDefault
+func IsEmptySet(i, id interface{}) (interface{}) {
+    if IsEmpty(i) {
+        i = id
     }
-    return input
+    return i
 }
 
 // Number converter..
 //
-// @param  input     interface{}
-// @param  inputType string
+// @param  i  interface{}
+// @param  it string
 // @return (interface{})
-func Number(input interface{}, inputType string) (interface{}) {
-    if input != nil {
-        number, err := _strc.Atoi(String(input))
+func Number(i interface{}, it string) (interface{}) {
+    if i != nil {
+        n, err := _strc.Atoi(String(i))
         if err == nil {
-            switch inputType {
+            switch it {
                 // signed
-                case    "int": return int(number)
-                case   "int8": return int8(number)
-                case  "int16": return int16(number)
-                case  "int32": return int32(number)
-                case  "int64": return int64(number)
+                case    "int": return int(n)
+                case   "int8": return int8(n)
+                case  "int16": return int16(n)
+                case  "int32": return int32(n)
+                case  "int64": return int64(n)
                 // unsigned
-                case   "uint": return uint(number)
-                case  "uint8": return uint8(number)
-                case "uint16": return uint16(number)
-                case "uint32": return uint32(number)
-                case "uint64": return uint64(number)
+                case   "uint": return uint(n)
+                case  "uint8": return uint8(n)
+                case "uint16": return uint16(n)
+                case "uint32": return uint32(n)
+                case "uint64": return uint64(n)
                 // float
-                case "float32": return float32(number)
-                case "float64": return float64(number)
+                case "float32": return float32(n)
+                case "float64": return float64(n)
             }
         }
     }
@@ -164,29 +164,29 @@ func Number(input interface{}, inputType string) (interface{}) {
 
 // Int converter..
 //
-// @param  input interface{}
+// @param  i interface{}
 // @return (int)
-func Int(input interface{}) (int) {
-    if number := Number(input, "int"); number != nil {
-        return number.(int)
+func Int(i interface{}) (int) {
+    if n := Number(i, "int"); n != nil {
+        return n.(int)
     }
     return 0
 }
 
 // UInt converter..
 //
-// @param  input interface{}
+// @param  i interface{}
 // @return (uint)
-func UInt(input interface{}) (uint) {
-    if number := Number(input, "uint"); number != nil {
-        return number.(uint)
+func UInt(i interface{}) (uint) {
+    if n := Number(i, "uint"); n != nil {
+        return n.(uint)
     }
     return 0
 }
 
 // Bool converter..
 //
-// @param  input interface{}
+// @param  i interface{}
 // @return (bool)
 func Bool(i interface{}) (bool) {
     if r := String(i); r == "true" || r == "1" {
@@ -197,61 +197,61 @@ func Bool(i interface{}) (bool) {
 
 // String converter.
 //
-// @param  input interface{}
+// @param  i interface{}
 // @return (string)
 // @panics
-func String(input interface{}) (string) {
-    switch input.(type) {
+func String(i interface{}) (string) {
+    switch i.(type) {
         case nil:
             return ""
         case int, bool, string:
-            return _fmt.Sprintf("%v", input)
+            return _fmt.Sprintf("%v", i)
         default:
-            inputType := TypeReal(input)
+            it := TypeReal(i)
             // check numerics
-            if RegExpTest(inputType, "u?int(\\d+)?|float(32|64)") {
-                return _fmt.Sprintf("%v", input)
+            if RegExpTest(it, "u?int(\\d+)?|float(32|64)") {
+                return _fmt.Sprintf("%v", i)
             }
-            panic("Unsupported input type '"+ inputType +"' given!")
+            panic("Unsupported input type '"+ it +"' given!")
     }
 }
 
 // String format.
 //
-// @param  format string
+// @param  f string
 // @param  args... interface{}
 // @return (string)
-func StringFormat(format string, args... interface{}) (string) {
-    return _fmt.Sprintf(format, args...)
+func StringFormat(f string, args... interface{}) (string) {
+    return _fmt.Sprintf(f, args...)
 }
 
 // String search.
 //
-// @param  format string
-// @param  search string
+// @param  s  string
+// @param  ss string
 // @return (bool)
-func StringSearch(input, search string) (bool) {
-    return _str.Index(input, search) > -1
+func StringSearch(s, ss string) (bool) {
+    return _str.Index(s, ss) > -1
 }
 
 // URL encode.
 //
-// @param  input string
+// @param  s string
 // @return (string)
-func UrlEncode(input string) (string) {
-    return _url.QueryEscape(input)
+func UrlEncode(s string) (string) {
+    return _url.QueryEscape(s)
 }
 
 // URL decode.
 //
-// @param  input string
+// @param  s string
 // @return (string)
-func UrlDecode(input string) (string) {
-    input, err := _url.QueryUnescape(input)
+func UrlDecode(s string) (string) {
+    s, err := _url.QueryUnescape(s)
     if err != nil {
         return ""
     }
-    return input
+    return s
 }
 
 // Parse URL query.
@@ -259,15 +259,15 @@ func UrlDecode(input string) (string) {
 // @param  q string
 // @return (map[string]string)
 func UrlQueryParse(q string) (map[string]string) {
-    ret := MapString()
+    r := MapString()
     if tmp := _str.Split(q, "&"); len(tmp) >= 2 {
         for _, tm := range tmp {
             if t := _str.SplitN(tm, "=", 2); len(t) == 2 {
-                ret[t[0]] = t[1]
+                r[t[0]] = t[1]
             }
         }
     }
-    return ret
+    return r
 }
 
 // Unparse URL query.
@@ -275,11 +275,11 @@ func UrlQueryParse(q string) (map[string]string) {
 // @param  q map[string]interface{}
 // @return (string)
 func UrlQueryUnparse(q map[string]interface{}) (string) {
-    m := MapStringSlice(0)
+    r := MapStringSlice(0)
     for k, v := range q {
-        m = append(m, _joinKeyValue(k, v))
+        r = append(r, _joinKeyValue(k, v))
     }
-    return Implode(m, "&")
+    return Implode(r, "&")
 }
 
 // JSON encode.
@@ -313,26 +313,26 @@ func JsonDecode(in string, out interface{}) (interface{}, error) {
 
 // String upper/lower
 //
-// @param  input string
+// @param  s string
 // @return (string)
-func Upper(input string) (string) {
-    return _str.ToUpper(input)
+func Upper(s string) (string) {
+    return _str.ToUpper(s)
 }
-func Lower(input string) (string) {
-    return _str.ToLower(input)
+func Lower(s string) (string) {
+    return _str.ToLower(s)
 }
 
 // RegExp test.
 //
-// @param  format string
-// @param  search string
+// @param  s  string
+// @param  sr string
 // @return (bool)
-func RegExpTest(input, search string) (bool) {
-    re, _ := _re.Compile(search)
+func RegExpTest(s, sr string) (bool) {
+    re, _ := _re.Compile(sr)
     if re == nil {
         return false
     }
-    return ("" != re.FindString(input))
+    return ("" != re.FindString(s))
 }
 
 // RegExp match.
@@ -390,24 +390,24 @@ func MapString() (map[string]string) {
 
 // Map int slice maker.
 //
-// @param  length interface{}
+// @param  i interface{}
 // @return ([]int)
-func MapIntSlice(length interface{}) ([]int) {
-    len := _length(length)
-    if len != -1 {
-        return make([]int, len)
+func MapIntSlice(i interface{}) ([]int) {
+    l := _length(i)
+    if l != -1 {
+        return make([]int, l)
     }
     return []int{}
 }
 
 // Map string slice maker.
 //
-// @param  length interface{}
+// @param  i interface{}
 // @return ([]string)
-func MapStringSlice(length interface{}) ([]string) {
-    len := _length(length)
-    if len != -1 {
-        return make([]string, len)
+func MapStringSlice(i interface{}) ([]string) {
+    l := _length(i)
+    if l != -1 {
+        return make([]string, l)
     }
     return []string{}
 }
@@ -431,11 +431,11 @@ func Trim(s, sc string) (string) {
 // @param  n int
 // @return ([]string)
 func Explode(i, s string, n int) ([]string) {
-    ret := _str.SplitN(i, s, n)
-    if len(ret) < 2 {
+    r := _str.SplitN(i, s, n)
+    if len(r) < 2 {
         return nil
     }
-    return ret
+    return r
 }
 
 // Implode.
@@ -445,42 +445,42 @@ func Explode(i, s string, n int) ([]string) {
 // @param  n int
 // @return ([]string)
 func Implode(i interface{}, s string) (string) {
-    var ret string
+    var r string
     switch iv := i.(type) {
         case []int:
             for _, v := range iv {
-                ret += String(v) + s
+                r += String(v) + s
             }
-            ret = ret[: len(ret) -1]
+            r = r[: len(r) -1]
         case []string:
-            ret = _str.Join(iv, s)
+            r = _str.Join(iv, s)
     }
-    return ret
+    return r
 }
 
 // Quote.
 //
-// @param  input string
+// @param  s string
 // @return (string)
-func Quote(input string) (string) {
-    return _strc.Quote(input)
+func Quote(s string) (string) {
+    return _strc.Quote(s)
 }
 
 // Detect length.
 //
-// @param  length interface{}
+// @param  l interface{}
 // @return (int)
 // @private
-func _length(length interface{}) (int) {
-    switch length.(type) {
+func _length(l interface{}) (int) {
+    switch l.(type) {
         case int:
-            return length.(int)
+            return l.(int)
         case []int:
-            return len(length.([]int))
+            return len(l.([]int))
         case []string:
-            return len(length.([]string))
+            return len(l.([]string))
         case []interface{}:
-            return len(length.([]interface{}))
+            return len(l.([]interface{}))
         // case:
             // @todo add more cases if needs
     }
