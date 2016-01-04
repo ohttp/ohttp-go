@@ -19,14 +19,13 @@ util.Dump(res.Status().Code())
 
 ## URL's
 
+Available formats: `github.com:80`, `http://github.com`, `github.com:443`, `https://github.com`...
 ```go
-// all available below
-"github.com:80"
-"http://github.com"
-"github.com:443"
-"https://github.com"
+// connect via ssl
+client.Get("github.com:443", nil, nil)
+client.Get("https://github.com", nil, nil)
 
-// ie: connect local couchdb
+// connect couchdb
 client.Get("127.0.0.1:5984", nil, nil)
 client.Get("localhost:5984", nil, nil)
 ```
