@@ -176,29 +176,29 @@ func (this *Message) SetHeader(k, v string) (*Message) {
 
 // Set: all headers.
 //
-// @param  kv interface{}
+// @param  kva interface{}
 // @return (*ohttp.message.Message)
-func (this *Message) SetHeaderAll(kv interface{}) (*Message) {
-    ha := util.MapString()
-    switch kv.(type) {
+func (this *Message) SetHeaderAll(kva interface{}) (*Message) {
+    kv := util.MapString()
+    switch kva.(type) {
         case map[string]string:
-            if kv, _ := kv.(map[string]string); kv != nil {
-                ha = kv
+            if kva, _ := kva.(map[string]string); kva != nil {
+                kv = kva
             }
             break
         case params.Params:
-            p := kv.(params.Params)
+            p := kva.(params.Params)
             for k, v := range (&p).Array() {
-                ha[k] = v.(string)
+                kv[k] = v.(string)
             }
             break
         case *params.Params:
-            for k, v := range (kv.(*params.Params)).Array() {
-                ha[k] = v.(string)
+            for k, v := range (kva.(*params.Params)).Array() {
+                kv[k] = v.(string)
             }
             break
     }
-    this.headers.SetAll(ha)
+    this.headers.SetAll(kv)
 
     return this
 }
