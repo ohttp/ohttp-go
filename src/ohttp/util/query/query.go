@@ -41,6 +41,7 @@ func Shutup() {}
 // @return (*ohttp.query.Query)
 func New(p interface{}) (*Query) {
     this := &Query{}
+    util.Dumpt(p)
     this.params = params.New()
     if _, ok := p.(params.Params); ok {
         for k, v := range p.(params.Params) {
@@ -55,7 +56,7 @@ func New(p interface{}) (*Query) {
             this.params.Set(k, v)
         }
     } else if p, ok := p.(string); ok {
-        for k, v := range util.UrlQueryParse(p) {
+        for k, v := range Parse(p) {
             this.params.Set(k, v)
         }
     }
@@ -95,4 +96,27 @@ func (this *Query) String() (string) {
         return this.params.String()
     }
     return ""
+}
+
+// Parse URL query.
+//
+// @param  q string
+// @return (map[string]string)
+func Parse(q string) (map[string]string) {
+    r := util.MapString()
+
+    // ensure explode action
+    if util.StringSearch(q, "&") == false {
+        q += "&"
+    }
+
+    if tmp := util.Explode(q, "&", -1); len(tmp) >= 2 {
+        for _, tm := range tmp {
+            if t := util.Explode(tm, "=", 2); len(t) == 2 {
+                r[t[0]] = t[1]
+            }
+        }
+    }
+
+    return r
 }
