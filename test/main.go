@@ -6,7 +6,7 @@ import (
     "ohttp/response"
     "ohttp/util"
     "ohttp/util/params"
-    // // "ohttp/util/query"
+    // "ohttp/util/query"
 )
 
 func init() {
@@ -23,12 +23,22 @@ func main() {
     // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
 
     o := params.New()
-    // o.Set("debug", true)
+    o.Set("debug", true)
 
     c := ohttp.NewClient(o)
 
-    r, _ := c.Do("GET http://localhost/foo.json", nil, nil, nil)
-    util.Dumpf("%#v", r.OK())
+    // default port 80
+    r, err := c.Get("127.0.0.1:5984", params.Params{"a": 1}, params.Params{"X-foo": true})
+    if err != nil {
+        panic(err)
+    }
+    util.Dump(r.Status().Code())
+
+    // r, err := c.Do("GET localhost:5984", nil, nil, nil)
+    // if err != nil {
+    //     panic(err)
+    // }
+    // util.Dumpf("%#v", r.Status().Code())
     // util.Dumpf("%+v", c.Request().String())
     // util.Dumpf("%+v", c.Response().String())
     // c.DoFunc("GET http://localhost/foo.json", nil, nil, nil,
