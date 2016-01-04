@@ -13,6 +13,7 @@ res, err := client.Get("github.com", nil, nil)
 if err != nil {
     panic(err)
 }
+
 // => 301
 util.Dump(res.Status().Code())
 ```
