@@ -15,9 +15,7 @@ res, err := client.Get("github.com", nil, nil)
 if err != nil {
     panic(err)
 }
-
-// => 301
-util.Dump(res.Status().Code())
+util.Dump(res.Status().Code()) // => 301
 
 // with callback
 c.GetFunc("github.com", nil, nil,
