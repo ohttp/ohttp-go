@@ -27,7 +27,6 @@ client.Get("github.com:443", nil, nil)
 client.Get("https://github.com", nil, nil)
 
 // connect couchdb
-client.Get("127.0.0.1:5984", nil, nil)
 client.Get("localhost:5984", nil, nil)
 ```
 
