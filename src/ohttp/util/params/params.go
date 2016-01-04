@@ -18,7 +18,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // @package    ohttp
-// @subpackage ohttp.params
+// @subpackage ohttp.util.params
 // @imports    ohttp.util
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package params

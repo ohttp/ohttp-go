@@ -18,7 +18,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // @package    ohttp
-// @subpackage ohttp.query
+// @subpackage ohttp.util.query
 // @imports    ohttp.util, ohttp.util.params
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package query
