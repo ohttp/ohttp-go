@@ -4,6 +4,8 @@ Oh! HTTP is a toolbox that make easy to dial with HTTP URL's for you. It contain
 
 ```go
 import "ohttp"
+import "ohttp/request"
+import "ohttp/response"
 import "ohttp/util"
 
 client := ohttp.NewClient(nil)
@@ -16,6 +18,16 @@ if err != nil {
 
 // => 301
 util.Dump(res.Status().Code())
+
+// with callback
+c.GetFunc("github.com", nil, nil,
+    func(req *request.Request, res *response.Response, err error) {
+        if err != nil {
+            panic(err)
+        }
+        util.Dump(req.String())
+        util.Dump(res.String())
+    })
 ```
 
 ## URL's
