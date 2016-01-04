@@ -24,9 +24,9 @@ package message
 
 // @object ohttp.message.MessageBody
 type MessageBody struct {
-    content       string
-    contentType   string
-    contentLength int
+    content         string
+    contentType     string
+    contentLength   int
 }
 
 // Constructor.
