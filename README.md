@@ -52,9 +52,69 @@ res, err := client.Do(u, up, b, h)
 // or same with callback
 client.DoFunc(u, up, b, h, func(req, res, err))
 
-/* GET Request */
+/* OPTIONS Request's */
+// return
+res, err := client.Options(u, up, h)
+// callback
+client.OptionsFunc(u, up, h, func(req, res, err))
+
+/* HEAD Request's */
+// return
+res, err := client.Head(u, up, h)
+// callback
+client.HeadFunc(u, up, h, func(req, res, err))
+
+/* GET Request's */
 // return
 res, err := client.Get(u, up, h)
 // callback
 client.GetFunc(u, up, h, func(req, res, err))
+
+/* POST Request's */
+// return
+res, err := client.Post(u, up, b, h)
+// callback
+client.PostFunc(u, up, b, h, func(req, res, err))
+
+/* PUT Request's */
+// return
+res, err := client.Put(u, up, b, h)
+// callback
+client.PutFunc(u, up, b, h, func(req, res, err))
+
+/* PATCH Request's */
+// return
+res, err := client.Patch(u, up, b, h)
+// callback
+client.PatchFunc(u, up, b, h, func(req, res, err))
+
+/* DELETE Request's */
+// return
+res, err := client.Delete(u, up, h)
+// callback
+client.DeleteFunc(u, up, h, func(req, res, err))
+
+/* TRACE Request's */
+// return
+res, err := client.Trace(u, up, h)
+// callback
+client.TraceFunc(u, up, h, func(req, res, err))
+
+/* CONNECT Request's */
+// return
+res, err := client.Connect(u, up, h)
+// callback
+client.ConnectFunc(u, up, h, func(req, res, err))
+
+/* COPY Request's */
+// return
+res, err := client.Copy(u, up, h)
+// callback
+client.CopyFunc(u, up, h, func(req, res, err))
+
+/* MOVE Request's */
+// return
+res, err := client.Move(u, up, h)
+// callback
+client.MoveFunc(u, up, h, func(req, res, err))
 ```
