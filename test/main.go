@@ -23,16 +23,25 @@ func main() {
     // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
 
     o := params.New()
-    o.Set("debug", true)
+    // o.Set("debug", true)
 
     c := ohttp.NewClient(o)
 
-    // default port 80
-    r, err := c.Get("127.0.0.1:5984", params.Params{"a": 1}, params.Params{"X-foo": true})
-    if err != nil {
-        panic(err)
-    }
-    util.Dump(r.Status().Code())
+    c.GetFunc("localhost:5984", "a=1", nil,
+        func(req *request.Request, res *response.Response, err error) {
+            if err != nil {
+                panic(err)
+            }
+            util.Dump(req.String())
+            util.Dump(res.String())
+        },
+    )
+
+    // r, err := c.Get("127.0.0.1:5984", params.Params{"a": 1}, params.Params{"X-foo": true})
+    // if err != nil {
+    //     panic(err)
+    // }
+    // util.Dump(r.Status().Code())
 
     // r, err := c.Do("GET localhost:5984", nil, nil, nil)
     // if err != nil {
