@@ -20,6 +20,7 @@ util.Dump(res.Status().Code())
 ## URL's
 
 Available formats: `github.com:80`, `http://github.com`, `github.com:443`, `https://github.com`...
+
 ```go
 // connect via ssl
 client.Get("github.com:443", nil, nil)
@@ -45,9 +46,15 @@ b  := "hello=world!"
 // headers (nullable)
 h  := params.Params{"X-foo": true}
 
-// the main request func's: Do()
+// main request func is Do()
 res, err := client.Do(u, up, b, h)
 
-// or with callback
+// or same with callback
 client.DoFunc(u, up, b, h, func(req, res, err))
+
+/* GET Request */
+// return
+res, err := client.Get(u, up, h)
+// callback
+client.GetFunc(u, up, h, func(req, res, err))
 ```
