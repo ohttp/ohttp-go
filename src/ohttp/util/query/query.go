@@ -18,7 +18,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // @package    ohttp
-// @subpackage ohttp.qeremy
+// @subpackage ohttp.query
 // @imports    ohttp.util, ohttp.util.params
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package query
@@ -38,7 +38,7 @@ func Shutup() {}
 // Constructor.
 //
 // @param  p interface{}
-// @return (*ohttp.qeremy.Query)
+// @return (*ohttp.query.Query)
 func New(p interface{}) (*Query) {
     this := &Query{}
     this.params = params.New()
@@ -66,7 +66,7 @@ func New(p interface{}) (*Query) {
 //
 // @param  k string
 // @param  v interface{}
-// @return (*ohttp.qeremy.Query)
+// @return (*ohttp.query.Query)
 func (this *Query) Set(k string, v interface{}) (*Query) {
     this.params.Set(k, v)
     return this
