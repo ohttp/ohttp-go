@@ -86,6 +86,15 @@ func (this *Request) SetMethod(m string) (*Request) {
 // @return (*ohttp.request.Request)
 func (this *Request) SetUri(u string, up interface{}) (*Request) {
     this.uri = uri.New(u, up)
+
+    // set initial headers
+    this.SetHeader("Host", this.uri.Host())
+    this.SetHeader("Connection", "close")
+    if this.Header("User-Agent") == "" {
+        this.SetHeader("User-Agent", _fmt.Sprintf("%s/v%s (+%s)",
+            useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
+    }
+
     return this
 }
 
@@ -94,15 +103,6 @@ func (this *Request) SetUri(u string, up interface{}) (*Request) {
 //
 // @return (string, error)
 func (this *Request) Send() (string, error) {
-    debug := this.Options().GetBool("debug")
-
-    this.SetHeader("Host", this.uri.Host())
-    this.SetHeader("Connection", "close")
-    if this.Header("User-Agent") == "" {
-        this.SetHeader("User-Agent", _fmt.Sprintf("%s/v%s (+%s)",
-            useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
-    }
-
     link, err := connection.Dial(this.uri)
     if err != nil {
         return "", err
@@ -139,6 +139,7 @@ func (this *Request) Send() (string, error) {
 
     link.Close()
 
+    debug := this.Options().GetBool("debug")
     if debug == true {
         util.Dump(rs)
         util.Dump(rr)
