@@ -50,5 +50,5 @@ h  := params.Params{"X-foo": true}
 res, err := client.Do(u, up, b, h)
 
 // or with callback
-client.Do(u, up, b, h, func(req, res, err))
+client.DoFunc(u, up, b, h, func(req, res, err))
 ```
