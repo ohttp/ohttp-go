@@ -189,12 +189,12 @@ func (this *Message) SetHeaderAll(kva interface{}) (*Message) {
         case params.Params:
             p := kva.(params.Params)
             for k, v := range (&p).Array() {
-                kv[k] = v.(string)
+                kv[k] = util.String(v)
             }
             break
         case *params.Params:
             for k, v := range (kva.(*params.Params)).Array() {
-                kv[k] = v.(string)
+                kv[k] = util.String(v)
             }
             break
     }
