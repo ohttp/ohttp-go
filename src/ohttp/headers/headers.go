@@ -55,9 +55,9 @@ func (this *Headers) Set(k, v string) (*Headers) {
 
 // Set header.
 //
-// @param  v string
+// @param  kv map[string]string
 // @return (void)
-func (this *Headers) SetAll(data map[string]string) {
+func (this *Headers) SetAll(kv map[string]string) {
     this.data = data
 }
 
