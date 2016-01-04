@@ -22,7 +22,7 @@ util.Dump(res.Status().Code())
 Available formats: `github.com:80`, `http://github.com`, `github.com:443`, `https://github.com`...
 
 ```go
-// connect via ssl
+// connect via SSL
 client.Get("github.com:443", nil, nil)
 client.Get("https://github.com", nil, nil)
 
