@@ -92,7 +92,7 @@ func (this *Request) SetUri(u string, up interface{}) (*Request) {
     this.SetHeader("Connection", "close")
     if this.Header("User-Agent") == "" {
         this.SetHeader("User-Agent", _fmt.Sprintf("%s/v%s (+%s)",
-            useragent.OH_NAME, useragent.OH_VERSION, useragent.OH_LINK))
+            useragent.OHTTP_NAME, useragent.OHTTP_VERSION, useragent.OHTTP_LINK))
     }
 
     return this

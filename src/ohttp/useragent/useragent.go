@@ -33,9 +33,9 @@ type UserAgent struct {
 // Oh! HTTP ua details.
 // @const string
 const (
-    OH_NAME       = "Oh! HTTP"
-    OH_LINK       = "http://github.com/oh-http/oh-http-go"
-    OH_VERSION    = "1.0.0"
+    OHTTP_NAME    = "Oh! HTTP"
+    OHTTP_LINK    = "http://github.com/ohttp/ohttp-go"
+    OHTTP_VERSION = "1.0.0"
 )
 
 // User agent strings.
