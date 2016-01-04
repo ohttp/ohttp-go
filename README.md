@@ -15,3 +15,16 @@ if err != nil {
 // => 301
 util.Dump(res.Status().Code())
 ```
+
+## URL's
+
+```go
+// all available below
+"github.com:80"
+"http://github.com"
+"github.com:443"
+"https://github.com"
+
+// ie: connect local couchdb
+client.Get("localhost:5984", nil, nil)
+```
