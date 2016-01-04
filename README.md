@@ -1,4 +1,4 @@
-Oh! HTTP, is a toolbox that make easy to dial with `http` URL's for you. It contains URL / header parser and much more utilities.
+Oh! HTTP, is a toolbox that make easy to dial with HTTP URL's for you. It contains URL / header parser and much more utilities.
 
 ## Simply
 
