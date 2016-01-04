@@ -98,13 +98,24 @@ func (this *Params) Empty() (bool) {
     return true
 }
 
-// Stringfy.
+// Arrayify.
+//
+// @return (map[string]interface{})
+func (this *Params) Array() (map[string]interface{}) {
+    r := util.Map()
+    for k, v := range (*this) {
+        r[k] = v
+    }
+    return r
+}
+
+// Stringify.
 //
 // @return (int)
 func (this *Params) String() (string) {
-    m := util.Map()
+    r := util.Map()
     for k, v := range (*this) {
-        m[k] = v
+        r[k] = v
     }
-    return util.UrlQueryUnparse(m)
+    return util.UrlQueryUnparse(r)
 }
