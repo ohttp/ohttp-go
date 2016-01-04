@@ -5,13 +5,13 @@ Oh! HTTP, is a toolbox that make easy to dial with `http` URL's for you. It cont
 import "ohttp"
 import "ohttp/util"
 
-c := ohttp.NewClient(nil)
+client := ohttp.NewClient(nil)
 
 // default port 80
-r, err := c.Get("github.com", nil, nil)
+res, err := client.Get("github.com", nil, nil)
 if err != nil {
     panic(err)
 }
 // => 301
-util.Dump(r.Status().Code())
+util.Dump(res.Status().Code())
 ```
