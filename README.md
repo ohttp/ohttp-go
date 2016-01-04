@@ -52,7 +52,7 @@ u  := "localhost"
 // url params (nullable)
 up := params.Params{"a": 1}
 // body (nullable, string or map for JSON payloads, only for POST|PUT|PATCH)
-b  := "hello=world!"
+b  := "Hello, world!"
 // headers (nullable)
 h  := params.Params{"X-foo": true}
 
