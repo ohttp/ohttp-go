@@ -254,6 +254,26 @@ func UrlDecode(s string) (string) {
     return s
 }
 
+// Parse URL query.
+//
+// @param  q string
+// @return (map[string]string)
+func UrlQueryParse(q string) (map[string]string) {
+    r := MapString()
+    // ensure explode action
+    if StringSearch(q, "&") == false {
+        q += "&"
+    }
+    if tmp := _str.Split(q, "&"); len(tmp) >= 2 {
+        for _, tm := range tmp {
+            if t := _str.SplitN(tm, "=", 2); len(t) == 2 {
+                r[t[0]] = t[1]
+            }
+        }
+    }
+    return r
+}
+
 // Unparse URL query.
 //
 // @param  q map[string]interface{}
