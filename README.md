@@ -169,12 +169,12 @@ client.GetFunc(
     util.Dumps(j.(*Json).Sha)
 
     // or
-    j, err := util.JsonDecode(b, nil)
-    if err != nil {
-      panic(err)
-    }
-    util.Dumps(j)
-    util.Dumps(j.(map[string]interface{})["sha"])
+    // j, err := util.JsonDecode(b, nil)
+    // if err != nil {
+    //   panic(err)
+    // }
+    // util.Dumps(j)
+    // util.Dumps(j.(map[string]interface{})["sha"])
   })
 ```
 
