@@ -5,21 +5,18 @@ import (
     "ohttp/request"
     "ohttp/response"
     "ohttp/util"
-    // "ohttp/util/params"
+    "ohttp/util/params"
     // "ohttp/util/query"
 )
 
+func init() {
+    util.Shutup()
+}
+
 func main() {
-
-    // r1, _, e1 := util.RegExpMatch(rs, re)
-    // // r2, _, e2 := util.RegExpMatchName(rs, re)
-    // util.Dumpf("%#v %#v %d", r1, e1, len(r1))
-    // // util.Dumpf("%#v %#v %d", r2["method"], e2, len(r2))
-
-    // o := params.New()
-    // // o.Set("debug", true)
-
-    // c := ohttp.NewClient(o)
+    o := params.New()
+    // o.Set("debug", true)
+    c := ohttp.NewClient(o)
 
     // c.GetFunc("localhost:5984", "a=1", nil,
     //     func(req *request.Request, res *response.Response, err error) {
@@ -66,7 +63,7 @@ func main() {
 
     // r, _ := c.Head("http://localhost/foo.json", nil, nil)
     // util.Dumpf("%#v", r)
-    // c.HeadFunc("http://localhost/foo.json", nil, nil,
+    // c.HeadFunc("github.com:443", nil, nil,
     //     func(req *request.Request, res *response.Response, err error) {
     //     if err != nil {
     //         panic(err)
