@@ -9,65 +9,7 @@ import (
     // "ohttp/util/query"
 )
 
-func init() {
-    ohttp.Shutup()
-    request.Shutup()
-    response.Shutup()
-}
-
-func strrev(s string) (string) {
-    sr := []rune(s)
-    sl := len(sr)
-    rr := make([]rune, sl)
-    for i, ii := (sl - 1), 0; i >= 0; i-- {
-        rr[ii] = sr[i]
-        ii++
-    }
-    return string(rr)
-}
-
-func strsub(s string, ss, sl interface{}) (string) {
-    rs := []rune(s)
-    rl := len(rs)
-    ssi, sli := util.Int(ss), util.Int(sl)
-    if ssi >= rl {
-        return ""
-    }
-    ssl, sll := ssi, sli
-    if ssi <= -1 { ssl = (ssi * -1) }
-    if sli <= -1 { sll = (sli * -1) }
-    if sl == nil {
-        if ssi <= -1 {
-            rr := []rune(strrev(s))
-            if ssl >= len(rr) {
-                return s
-            }
-            var rs string
-            for i := 0; i < ssl; i++ {
-                rs = string(rr[i]) + rs
-            }
-            return rs
-        }
-        return string(rs[ssl:])
-    }
-    if sli >= 1 {
-        if sll > rl {
-            return string(rs[ssl: rl])
-        }
-        return string(rs[ssl: ssl + sll])
-    }
-    return "..."
-}
-
 func main() {
-    s:= "abcdef"
-    util.Dumps(strsub(s, -1, nil))
-    util.Dumps(strsub(s, -2, nil))
-    util.Dumps(strsub(s, -3, 1))
-    util.Dumps(strsub(s, 1, nil))
-    util.Dumps(strsub(s, 1, 1))
-    util.Dumps(strsub(s, 1, 2))
-    util.Dumps(strsub(s, 1, -1))
 
     // r1, _, e1 := util.RegExpMatch(rs, re)
     // // r2, _, e2 := util.RegExpMatchName(rs, re)
