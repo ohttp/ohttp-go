@@ -219,7 +219,7 @@ u := req.Uri()
   x := req.Uri().Fragment()       => string
   x := req.Uri().Segment(i int)   => string|""
   x := req.Uri().Segments()       => []string
-  x := req.Uri().Authorization()  => "username:password|username|"|""
+  x := req.Uri().Authorization()  => "username:password"|"username"|""
 
 // @return bool
 ok := req.OK()
