@@ -229,7 +229,7 @@ func (this *Message) SetBody(b interface{}) (*Message) {
                 if util.StringSearch(ct, "application/json") {
                     c = util.Quote(b)
                 } else {
-                    c = util.String(b)
+                    c = b
                 }
             default:
                 if util.StringSearch(ct, "application/json") {
