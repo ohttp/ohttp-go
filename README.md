@@ -129,6 +129,65 @@ res, err := client.Move(u, up, h)
 client.MoveFunc(u, up, h, func(req, res, err))
 ```
 
+Notice: Constructor methods could be named as just `New`, also be named as `NewClient` etc. But all setter methods have a `Set` prefix, and getters have not `Get` prefix. For example, if you want to get client's request object, just do it like `req := client.Request()`.
+
+## Message
+
+Both `Request` and `Response` object extends / implements `ohttp.message.Message` object. So it has many methods that comes from `Message` object. Here are some of them that you may want/available to use.
+
+```go
+// m is just a pseudo, it could be client's request or response
+m := client.Request()
+
+// @return ohttp.message.(TYPE_REQUEST | TYPE_RESPONSE)
+t := m.Type()
+
+// @return ohttp.message.(PROTOCOL_VERSION_1_0 | PROTOCOL_VERSION_1_1 | PROTOCOL_VERSION_2_0)
+// @default 1.0
+pv := m.ProtocolVersion()
+
+// @return string | ""
+h := m.Header("Content-Type")
+
+// @return map[string]string
+ha := m.HeaderAll()
+
+// @return string
+b := m.Body()
+
+// @return *ohttp.params.Params
+o := m.Options()
+
+// @return *ohttp.message.MessageError
+e := m.Error()
+
+// @param uint (see types above)
+m := m.SetType(t)
+
+// @param string (see protocols above)
+m := m.SetProtocolVersion(pv)
+
+// @param k string
+// @param v string
+m := m.SetHeader(k, v)
+
+// @param kv map[string]string|params.Params|*params.Params
+m := m.SetHeaderAll(kv)
+
+// @param ec uint
+// @param et string
+m.SetError(ec, et)
+
+// @param b interface{}
+m := m.SetBody(b)
+```
+
 ## Request
+
+```go
+req := client.Request()
+
+//
+```
 
 ## Response
