@@ -30,7 +30,7 @@ client.GetFunc("github.com", nil, nil,
 
 ## URL's
 
-Available formats: `github.com:80`, `http://github.com`, `github.com:443`, `https://github.com`...
+Available formats: `github.com`, `github.com:80`, `http://github.com`, `github.com:443`, `https://github.com`...
 
 ```go
 // connect via SSL
