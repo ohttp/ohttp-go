@@ -75,6 +75,11 @@ func (this *Response) SetStatus(s string) (*Response) {
     return this
 }
 
+// Send.
+//
+// @shablon For server implementation later..
+// func (this *Response) Send() (error) {}
+
 // Get: state
 //
 // @return (bool)
