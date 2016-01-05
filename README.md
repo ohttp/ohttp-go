@@ -154,25 +154,25 @@ ha := m.HeaderAll()
 
 // @return *ohttp.message.MessageBody
 b := m.Body()
-    bc  := m.Body().Content()       => string
-    bct := m.Body().ContentType()   => string
-    bcl := m.Body().ContentLength() => int
+  bc  := m.Body().Content()       => string
+  bct := m.Body().ContentType()   => string
+  bcl := m.Body().ContentLength() => int
 
 // @return *ohttp.params.Params
 o := m.Options()
-    x := m.Options().Get()          => interface{}
-    x := m.Options().GetInt()       => int
-    x := m.Options().GetUInt()      => uint
-    x := m.Options().GetString()    => string
-    x := m.Options().GetBool()      => bool
-    x := m.Options().Empty()        => bool
-    x := m.Options().Array()        => map[string]interface{}
-    x := m.Options().String()       => string // a=1&b=2...
+  x := m.Options().Get()          => interface{}
+  x := m.Options().GetInt()       => int
+  x := m.Options().GetUInt()      => uint
+  x := m.Options().GetString()    => string
+  x := m.Options().GetBool()      => bool
+  x := m.Options().Empty()        => bool
+  x := m.Options().Array()        => map[string]interface{}
+  x := m.Options().String()       => string // a=1&b=2...
 
 // @return *ohttp.message.MessageError
 e := m.Error()
-    ec := m.Error().Code()          => int
-    ec := m.Error().Text()          => string
+  ec := m.Error().Code()          => int
+  ec := m.Error().Text()          => string
 
 // @param uint (see types above)
 m := m.SetType(t)
@@ -201,10 +201,31 @@ m := m.SetBody(b)
 req := client.Request()
 
 // @return GET|POST..
-m := request.Method()
+m := req.Method()
 
 // @return *ohttp.uri.Uri
-u := request.Uri()
+u := req.Uri()
+  x := req.Uri().Source()         => string // github.com:443/foo/?a=1#xyz
+  x := req.Uri().Scheme()         => string
+  x := req.Uri().Host()           => string
+  x := req.Uri().Port()           => uint
+  x := req.Uri().Path()           => string
+  x := req.Uri().Username()       => string
+  x := req.Uri().Password()       => string
+  x := req.Uri().Query()          => *ohttp.util.query.Query
+    x := req.Uri().Get(k string)  => interface{}
+    x := req.Uri().Params()       => *ohttp.util.params.Params
+    x := req.Uri().String()       => string // a=1
+  x := req.Uri().Fragment()       => string
+  x := req.Uri().Segment(i int)   => string|""
+  x := req.Uri().Segments()       => []string
+  x := req.Uri().Authorization()  => "username:password|username|"|""
+
+// @return bool
+ok := req.OK()
+
+// @return string
+s := req.String()
 ```
 
 ## Response
