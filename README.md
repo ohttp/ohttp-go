@@ -140,7 +140,9 @@ client.HeadFunc("github.com:443", nil, nil,
     if err != nil {
       panic(err)
     }
-    if !res.OK() { panic("GitHub is down!") }
+    if !res.OK() {
+      panic("Mayday mayday! GitHub down, it's fuckin' down!")
+    }
   })
 ```
 
