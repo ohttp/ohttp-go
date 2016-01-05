@@ -134,7 +134,7 @@ Notice: Constructor methods could be named as just `New`, also be named as `NewC
 ## Client in Action
 
 ```go
-// check a service status
+// check github status
 client.HeadFunc("github.com:443", nil, nil,
   func(req *request.Request, res *response.Response, err error) {
     if err != nil {
