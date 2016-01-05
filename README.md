@@ -19,13 +19,13 @@ util.Dump(res.Status().Code()) // => 301
 
 // with callback
 client.GetFunc("github.com", nil, nil,
-    func(req *request.Request, res *response.Response, err error) {
-        if err != nil {
-            panic(err)
-        }
-        util.Dump(req.String()) // dump whole message data
-        util.Dump(res.String()) // dump whole message data
-    })
+  func(req *request.Request, res *response.Response, err error) {
+    if err != nil {
+        panic(err)
+    }
+    util.Dump(req.String()) // dump whole message data
+    util.Dump(res.String()) // dump whole message data
+  })
 ```
 
 ## URL's
@@ -143,6 +143,38 @@ client.HeadFunc("github.com:443", nil, nil,
     if !res.OK() {
       panic("Mayday mayday! GitHub down, it's fuckin' down!")
     }
+  })
+
+// get / parse a commit data
+c.GetFunc(
+    "api.github.com:443/repos/ohttp/ohttp-go/"+
+        "commits/1dd6510567ce8cb1e7f9cf202f1861ea701f0b19", nil, nil,
+  func(req *request.Request, res *response.Response, err error) {
+    if err != nil {
+        panic(err)
+    }
+    // get body content
+    b := res.Body().Content()
+
+    // build a struct
+    type Json struct {
+        Sha   string `json:"sha"`
+    }
+
+    j, err := util.JsonDecode(b, &Json{})
+    if err != nil {
+        panic(err)
+    }
+    util.Dumps(j)
+    util.Dumps(j.(*Json).Sha)
+
+    // or
+    j, err := util.JsonDecode(b, nil)
+    if err != nil {
+      panic(err)
+    }
+    util.Dumps(j)
+    util.Dumps(j.(map[string]interface{})["sha"])
   })
 ```
 
