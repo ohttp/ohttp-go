@@ -226,6 +226,9 @@ ok := req.OK()
 
 // @return string
 s := req.String()
+// GET /foo?a=1 HTTP/1.0
+// Host: github.com
+// ...
 ```
 
 ## Response
