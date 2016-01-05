@@ -146,7 +146,7 @@ client.HeadFunc("github.com:443", nil, nil,
   })
 
 // get / parse a commit data
-c.GetFunc(
+client.GetFunc(
     "api.github.com:443/repos/ohttp/ohttp-go/"+
         "commits/1dd6510567ce8cb1e7f9cf202f1861ea701f0b19", nil, nil,
   func(req *request.Request, res *response.Response, err error) {
