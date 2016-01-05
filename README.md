@@ -152,8 +152,14 @@ h := m.Header("Content-Type")
 // @return map[string]string
 ha := m.HeaderAll()
 
-// @return string
+// @return *ohttp.message.MessageBody
 b := m.Body()
+    // @return string
+    // @return string
+    // @return int
+    bc  := m.Body().Content()
+    bct := m.Body().ContentType()
+    bcl := m.Body().ContentLength()
 
 // @return *ohttp.params.Params
 o := m.Options()
@@ -187,7 +193,11 @@ m := m.SetBody(b)
 ```go
 req := client.Request()
 
-//
+// @return GET|POST..
+m := request.Method()
+
+// @return *ohttp.uri.Uri
+u := request.Uri()
 ```
 
 ## Response
