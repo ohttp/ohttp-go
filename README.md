@@ -18,7 +18,7 @@ if err != nil {
 util.Dump(res.Status().Code()) // => 301
 
 // with callback
-c.GetFunc("github.com", nil, nil,
+client.GetFunc("github.com", nil, nil,
     func(req *request.Request, res *response.Response, err error) {
         if err != nil {
             panic(err)
@@ -135,7 +135,7 @@ Notice: Constructor methods could be named as just `New`, also be named as `NewC
 
 ```go
 // check a service status
-c.HeadFunc("github.com:443", nil, nil,
+client.HeadFunc("github.com:443", nil, nil,
   func(req *request.Request, res *response.Response, err error) {
     if err != nil {
       panic(err)
