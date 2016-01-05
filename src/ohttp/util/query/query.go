@@ -41,7 +41,6 @@ func Shutup() {}
 // @return (*ohttp.query.Query)
 func New(p interface{}) (*Query) {
     this := &Query{}
-    util.Dumpt(p)
     this.params = params.New()
     if _, ok := p.(params.Params); ok {
         for k, v := range p.(params.Params) {
