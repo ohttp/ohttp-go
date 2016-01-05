@@ -21,7 +21,7 @@ util.Dump(res.Status().Code()) // => 301
 client.GetFunc("github.com", nil, nil,
   func(req *request.Request, res *response.Response, err error) {
     if err != nil {
-        panic(err)
+      panic(err)
     }
     util.Dump(req.String()) // dump whole message data
     util.Dump(res.String()) // dump whole message data
@@ -151,19 +151,19 @@ client.GetFunc(
         "commits/1dd6510567ce8cb1e7f9cf202f1861ea701f0b19", nil, nil,
   func(req *request.Request, res *response.Response, err error) {
     if err != nil {
-        panic(err)
+      panic(err)
     }
     // get body content
     b := res.Body().Content()
 
     // build a struct
     type Json struct {
-        Sha   string `json:"sha"`
+      Sha   string `json:"sha"`
     }
 
     j, err := util.JsonDecode(b, &Json{})
     if err != nil {
-        panic(err)
+      panic(err)
     }
     util.Dumps(j)
     util.Dumps(j.(*Json).Sha)
