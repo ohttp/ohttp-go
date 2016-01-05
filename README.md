@@ -133,6 +133,8 @@ Notice: Constructor methods could be named as just `New`, also be named as `NewC
 
 ## Message
 
+Actually, even you don't need many stuffs below, but suppose should be explained all.
+
 Both `Request` and `Response` object extends / implements `ohttp.message.Message` object. So it has many methods that comes from `Message` object. Here are some of them that you may want/available to use.
 
 ```go
@@ -158,7 +160,7 @@ b := m.Body()
   bct := m.Body().ContentType()   => string
   bcl := m.Body().ContentLength() => int
 
-// @return *ohttp.params.Params
+// @return *ohttp.util.params.Params
 o := m.Options()
   x := m.Options().Get()          => interface{}
   x := m.Options().GetInt()       => int
@@ -218,6 +220,7 @@ u := req.Uri()
   x := req.Uri().Query()          => *ohttp.util.query.Query
     x := req.Uri().Get(k string)  => interface{}
     x := req.Uri().Params()       => *ohttp.util.params.Params
+      // see above
     x := req.Uri().String()       => string // a=1
   x := req.Uri().Fragment()       => string
   x := req.Uri().Segment(i int)   => string|""
