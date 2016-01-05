@@ -160,19 +160,19 @@ b := m.Body()
 
 // @return *ohttp.params.Params
 o := m.Options()
-    x := m.Options().Get()        >> interface{}
-    x := m.Options().GetInt()     >> int
-    x := m.Options().GetUInt()    >> uint
-    x := m.Options().GetString()  >> string
-    x := m.Options().GetBool()    >> bool
-    x := m.Options().Empty()      >> bool
-    x := m.Options().Array()      >> map[string]interface{}
-    x := m.Options().String()     >> string // a=1&b=2...
+    x := m.Options().Get()          => interface{}
+    x := m.Options().GetInt()       => int
+    x := m.Options().GetUInt()      => uint
+    x := m.Options().GetString()    => string
+    x := m.Options().GetBool()      => bool
+    x := m.Options().Empty()        => bool
+    x := m.Options().Array()        => map[string]interface{}
+    x := m.Options().String()       => string // a=1&b=2...
 
 // @return *ohttp.message.MessageError
 e := m.Error()
-    ec := m.Error().Code() : int
-    ec := m.Error().Text() : string
+    ec := m.Error().Code()          : int
+    ec := m.Error().Text()          : string
 
 // @param uint (see types above)
 m := m.SetType(t)
