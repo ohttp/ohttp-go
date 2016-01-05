@@ -179,21 +179,20 @@ func (this *Message) SetHeader(k, v string) (*Message) {
 // @param  kv interface{}
 // @return (*ohttp.message.Message)
 func (this *Message) SetHeaderAll(kv interface{}) (*Message) {
-    switch kv.(type) {
+    switch kv := kv.(type) {
         case map[string]string:
-            for k, v := range kv.(map[string]string) {
+            for k, v := range kv {
                 this.headers.Set(k, v)
             }
             break
         case params.Params:
             // take addr!
-            p := kv.(params.Params)
-            for k, v := range (&p).Array() {
+            for k, v := range (&kv).Array() {
                 this.headers.Set(k, util.String(v))
             }
             break
         case *params.Params:
-            for k, v := range (kv.(*params.Params)).Array() {
+            for k, v := range (kv).Array() {
                 this.headers.Set(k, util.String(v))
             }
             break
