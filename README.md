@@ -174,6 +174,9 @@ e := m.Error()
   ec := m.Error().Code()          => int
   ec := m.Error().Text()          => string
 
+// @return bool
+ok := req.OK()
+
 // @param uint (see types above)
 m := m.SetType(t)
 
@@ -221,14 +224,30 @@ u := req.Uri()
   x := req.Uri().Segments()       => []string
   x := req.Uri().Authorization()  => "username:password"|"username"|""
 
-// @return bool
-ok := req.OK()
-
 // @return string
 s := req.String()
 // GET /foo?a=1 HTTP/1.0
 // Host: github.com
 // ...
+// [body]
 ```
 
 ## Response
+
+```go
+res := client.Response()
+
+// @return *ohttp.response.status.Status
+s := res.Status()
+  x := res.Status().Code()        => int
+  x := res.Status().Text()        => string
+  x := res.Status().Status()      => string // HTTP/1.0 200 OK
+
+// @return string
+s := res.String()
+// HTTP/1.1 200 OK
+// Server: GitHub.com
+// Date: Tue, 05 Jan 2016 19:49:00 GMT
+// ...
+// [body]
+```
