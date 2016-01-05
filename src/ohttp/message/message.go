@@ -77,13 +77,13 @@ func Shutup() {}
 // @return (*ohttp.message.Message)
 func NewMessage(t uint, pv string, o *params.Params) (*Message) {
     return &Message{
-        type_: t,
+                  type_: t,
         protocolVersion: pv,
-        headers: headers.New(),
-        body: NewMessageBody("", "", 0),
-        bodyData: NewMessageBodyData(nil, ""),
-        error: NewMessageError(0, ""),
-        options: o,
+                headers: headers.New(),
+                   body: NewMessageBody("", "", 0),
+               bodyData: NewMessageBodyData(nil, ""),
+                  error: NewMessageError(0, ""),
+                options: o,
     }
 }
 
