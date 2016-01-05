@@ -154,18 +154,25 @@ ha := m.HeaderAll()
 
 // @return *ohttp.message.MessageBody
 b := m.Body()
-    // @return string
-    // @return string
-    // @return int
-    bc  := m.Body().Content()
-    bct := m.Body().ContentType()
-    bcl := m.Body().ContentLength()
+    bc  := m.Body().Content()       >> string
+    bct := m.Body().ContentType()   >> string
+    bcl := m.Body().ContentLength() >> int
 
 // @return *ohttp.params.Params
 o := m.Options()
+    x := m.Options().Get()        >> interface{}
+    x := m.Options().GetInt()     >> int
+    x := m.Options().GetUInt()    >> uint
+    x := m.Options().GetString()  >> string
+    x := m.Options().GetBool()    >> bool
+    x := m.Options().Empty()      >> bool
+    x := m.Options().Array()      >> map[string]interface{}
+    x := m.Options().String()     >> string // a=1&b=2...
 
 // @return *ohttp.message.MessageError
 e := m.Error()
+    ec := m.Error().Code() : int
+    ec := m.Error().Text() : string
 
 // @param uint (see types above)
 m := m.SetType(t)
