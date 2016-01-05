@@ -23,8 +23,8 @@ client.GetFunc("github.com", nil, nil,
         if err != nil {
             panic(err)
         }
-        util.Dump(req.String())
-        util.Dump(res.String())
+        util.Dump(req.String()) // dump whole message data
+        util.Dump(res.String()) // dump whole message data
     })
 ```
 
