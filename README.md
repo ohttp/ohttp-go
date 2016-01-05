@@ -139,14 +139,14 @@ Both `Request` and `Response` object extends / implements `ohttp.message.Message
 // m is just a pseudo, it could be client's request or response
 m := client.Request()
 
-// @return ohttp.message.(TYPE_REQUEST | TYPE_RESPONSE)
+// @return ohttp.message.(TYPE_REQUEST|TYPE_RESPONSE)
 t := m.Type()
 
-// @return ohttp.message.(PROTOCOL_VERSION_1_0 | PROTOCOL_VERSION_1_1 | PROTOCOL_VERSION_2_0)
+// @return ohttp.message.(PROTOCOL_VERSION_1_0|PROTOCOL_VERSION_1_1|PROTOCOL_VERSION_2_0)
 // @default 1.0
 pv := m.ProtocolVersion()
 
-// @return string | ""
+// @return string|""
 h := m.Header("Content-Type")
 
 // @return map[string]string
