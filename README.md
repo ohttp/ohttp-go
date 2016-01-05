@@ -131,6 +131,19 @@ client.MoveFunc(u, up, h, func(req, res, err))
 
 Notice: Constructor methods could be named as just `New`, also be named as `NewClient` etc. But all setter methods have a `Set` prefix, and getters have not `Get` prefix. For example, if you want to get client's request object, just do it like `req := client.Request()`.
 
+## Client in Action
+
+```go
+// check a service status
+c.HeadFunc("github.com:443", nil, nil,
+  func(req *request.Request, res *response.Response, err error) {
+    if err != nil {
+      panic(err)
+    }
+    if !res.OK() { panic("GitHub is down!") }
+  })
+```
+
 ## Message
 
 Actually, even you don't need many stuffs below, but suppose should be explained all.
