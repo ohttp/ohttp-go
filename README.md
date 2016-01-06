@@ -158,7 +158,7 @@ client.GetFunc(
 
     // build a struct
     type Json struct {
-      Sha string `json:"sha"`
+      Sha string
     }
 
     j, err := util.JsonDecode(b, &Json{})
