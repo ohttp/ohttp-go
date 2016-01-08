@@ -48,7 +48,7 @@ import "ohttp/util/params"
 
 /* available args */
 // url
-u  := "localhost"
+u  := "GET localhost"
 // url params (nullable)
 up := params.Params{"a": 1}
 // body (nullable, string or map for JSON payloads, only for POST|PUT|PATCH)
