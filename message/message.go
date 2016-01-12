@@ -262,7 +262,8 @@ func (this *Message) SetBody(b interface{}) (*Message) {
 // @param  sl string
 // @return (void)
 func (this *Message) ToString(sl string) (string) {
-    s := sl
+    s := sl // status-line
+
     for k, v := range this.HeaderAll() {
         if k == "0" { // response only
             continue
