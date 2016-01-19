@@ -18,19 +18,19 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // @package    ohttp
-// @subpackage ohttp.util.array.iarray
+// @subpackage ohttp.util.list.slist
 // @link       https://gobyexample.com/collection-functions
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
-package iarray
+package slist
 
 // Index.
 //
-// @param  arr []int
-// @param  s   int
+// @param  arr []string
+// @param  s   string
 // @return (int)
-func Index(arr []int, s int) (int) {
+func Index(arr []string, is string) (int) {
     for i, v := range arr {
-        if v == s {
+        if v == is {
             return i
         }
     }
@@ -39,52 +39,66 @@ func Index(arr []int, s int) (int) {
 
 // Has.
 //
-// @param  arr []int
-// @param  s   int
+// @param  arr []string
+// @param  s   string
 // @return (bool)
-func Has(arr []int, s int) (bool) {
-    return Index(arr, s) > -1
+func Has(arr []string, is string) (bool) {
+    return Index(arr, is) > -1
 }
 
 // Find.
 //
-// @param  arr []int
-// @param  s   int
-// @return (int, bool)
-func Find(arr[]int, s int) (int, bool) {
-    if i := Index(arr, s); i > -1 {
+// @param  arr []string
+// @param  s   string
+// @return (string, bool)
+func Find(arr []string, is string) (string, bool) {
+    if i := Index(arr, is); i > -1 {
         return arr[i], true
     }
-    return 0, false
+    return "", false
+}
+
+// Find by index.
+//
+// @param  arr []string
+// @param  is  int
+// @return (string, bool)
+func FindIndex(arr []string, is int) (string, bool) {
+    for i, v := range arr {
+        if i == is {
+            return v, true
+        }
+    }
+    return "", false
 }
 
 // Map.
 //
-// @param  arr []int
-// @param  fn  func(int, int) (int)
-// @return ([]int)
-func Map(arr []int, fn func(int, int) (int)) ([]int) {
-    ret := make([]int, len(arr))
+// @param  arr []string
+// @param  fn  func(string, int) (string)
+// @return ([]string)
+func Map(arr []string, fun func(string, int) (string)) ([]string) {
+    ret := make([]string, len(arr))
     for k, v := range arr {
-        ret[k] = fn(v, k)
+        ret[k] = fun(v, k)
     }
     return ret
 }
 
 // Filter.
 //
-// @param  arr []int
-// @param  fn  func(int, int) (bool)
-// @return ([]int)
-func Filter(arr []int, fn func(int, int) (bool)) ([]int) {
-    if fn == nil {
-        fn = func(v, k int) (bool) {
-            return v != 0
+// @param  arr []string
+// @param  fn  func(string, int) (bool)
+// @return ([]string)
+func Filter(arr []string, fun func(string, int) (bool)) ([]string) {
+    if fun == nil {
+        fun = func(v string, k int) (bool) {
+            return v != ""
         }
     }
-    ret := make([]int, 0)
+    ret := make([]string, 0)
     for k, v := range arr {
-        if fn(v, k) {
+        if fun(v, k) {
             ret = append(ret, v)
         }
     }
@@ -93,10 +107,10 @@ func Filter(arr []int, fn func(int, int) (bool)) ([]int) {
 
 // Uniq.
 //
-// @param  arr []int
-// @return ([]int)
-func Uniq(arr []int) ([]int) {
-    ret, f := []int{}, map[int]bool{}
+// @param  arr []string
+// @return ([]string)
+func Uniq(arr []string) ([]string) {
+    ret, f := []string{}, map[string]bool{}
     for k := range arr {
         if f[arr[k]] != true {
             f[arr[k]] = true
@@ -108,10 +122,10 @@ func Uniq(arr []int) ([]int) {
 
 // Shift.
 //
-// @param  arr *[]int
-// @return (int)
-func Shift(arr *[]int) (int) {
+// @param  arr *[]string
+// @return (string)
+func Shift(arr *[]string) (string) {
     v := (*arr)[0]
-    *arr = (*arr)[1:len(*arr)]
+    *arr = (*arr)[1 : len(*arr)]
     return v
 }

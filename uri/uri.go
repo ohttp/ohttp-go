@@ -19,14 +19,14 @@
 
 // @package    ohttp
 // @subpackage ohttp.uri
-// @imports    ohttp.util, ohttp.util.query, ohttp.util.array.sarray
+// @imports    ohttp.util, ohttp.util.query, ohttp.util.list.slist
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package uri
 
 import (
     "ohttp/util"
     "ohttp/util/query"
-    "ohttp/util/array/sarray"
+    "ohttp/util/list/slist"
 )
 
 // @object ohttp.Uri
@@ -95,7 +95,7 @@ func New(s string, q interface{}) (*Uri) {
                     }
                 }
                 // remove empty segments
-                this.segments = sarray.Filter(this.segments, nil)
+                this.segments = slist.Filter(this.segments, nil)
             }
         }
 
@@ -195,7 +195,7 @@ func (this *Uri) Segments() ([]string) {
 //
 // @return (string)
 func (this *Uri) Segment(i int) (string) {
-    if se, ok := sarray.FindIndex(this.segments, i); ok {
+    if se, ok := slist.FindIndex(this.segments, i); ok {
         return se
     }
     return ""

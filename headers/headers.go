@@ -19,13 +19,13 @@
 
 // @package    ohttp
 // @subpackage ohttp.headers
-// @imports    ohttp.util, ohttp.util.array.sarray
+// @imports    ohttp.util, ohttp.util.list.slist
 // @author     Kerem Güneş <qeremy[at]gmail[dot]com>
 package headers
 
 import (
     "ohttp/util"
-    "ohttp/util/array/sarray"
+    "ohttp/util/list/slist"
 )
 
 // @object ohttp.Headers
@@ -88,7 +88,7 @@ func Parse(hs string) (map[string]string) {
     r := util.MapString()
     if tmp := util.Explode(hs, util.CRLF, -1); tmp != nil {
         // status line (HTTP/1.0 200 OK)
-        r["0"] = sarray.Shift(&tmp)
+        r["0"] = slist.Shift(&tmp)
 
         for _, tm := range tmp {
             if t := util.Explode(tm, ":", 2); len(t) == 2 {
