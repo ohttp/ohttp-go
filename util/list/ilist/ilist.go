@@ -51,7 +51,7 @@ func Has(arr []int, s int) (bool) {
 // @param  arr []int
 // @param  s   int
 // @return (int, bool)
-func Find(arr[]int, s int) (int, bool) {
+func Find(arr []int, s int) (int, bool) {
     if i := Index(arr, s); i > -1 {
         return arr[i], true
     }
