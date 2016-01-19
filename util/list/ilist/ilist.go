@@ -77,11 +77,6 @@ func Map(arr []int, fn func(int, int) (int)) ([]int) {
 // @param  fn  func(int, int) (bool)
 // @return ([]int)
 func Filter(arr []int, fn func(int, int) (bool)) ([]int) {
-    if fn == nil {
-        fn = func(v, k int) (bool) {
-            return v != 0
-        }
-    }
     ret := make([]int, 0)
     for k, v := range arr {
         if fn(v, k) {
