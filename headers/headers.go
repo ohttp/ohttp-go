@@ -58,7 +58,9 @@ func (this *Headers) Set(k, v string) (*Headers) {
 // @param  kv map[string]string
 // @return (void)
 func (this *Headers) SetAll(kv map[string]string) {
-    this.data = kv
+    for k, v := range kv {
+        this.Set(k, v)
+    }
 }
 
 
