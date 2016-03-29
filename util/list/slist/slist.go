@@ -93,7 +93,7 @@ func Map(arr []string, fun func(string, int) (string)) ([]string) {
 func Filter(arr []string, fun func(string, int) (bool)) ([]string) {
     if fun == nil {
         fun = func(v string, k int) (bool) {
-            return v != ""
+            return (v != "")
         }
     }
     ret := make([]string, 0)
