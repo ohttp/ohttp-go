@@ -4,9 +4,9 @@ Oh! HTTP is a toolbox that make easy to dial with HTTP URL's for you. It contain
 
 ```go
 import "ohttp"
+import "ohttp/util"
 import "ohttp/request"
 import "ohttp/response"
-import "ohttp/util"
 
 client := ohttp.NewClient(nil)
 
