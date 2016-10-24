@@ -221,7 +221,7 @@ o := m.Options()
 // @return *ohttp.message.MessageError
 e := m.Error()
   ec := m.Error().Code()          => int
-  ec := m.Error().Text()          => string
+  et := m.Error().Text()          => string
 
 // @return bool
 ok := req.OK()
